@@ -2,15 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+
+*
+{
+  box-sizing: border-box;
 }
 
 body
 {
   background-color: #F9F9F9;
+  margin: 0;
+  padding: 0;
+}
+
+nav
+{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
 }
 
 
