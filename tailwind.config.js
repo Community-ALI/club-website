@@ -28,6 +28,16 @@ module.exports = {
     },
 
     extend: {
+      keyframes: {
+        translateY: {
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
+        },
+      },
+      animation: {
+        'hamburgerFade': 'translateY 400ms ease-in-out',
+      },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

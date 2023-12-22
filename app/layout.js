@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></link>
+      <script src="https://kit.fontawesome.com/5fc59c26d3.js" crossorigin="anonymous"></script>
       <body className={inter.className}>{children}</body>
     </html>
   )
