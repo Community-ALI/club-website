@@ -12,8 +12,19 @@ module.exports = {
       orange: "#EDA91F",      // Hover text in navigation bar
       gray: "#4D4D4D",        // Description text in application 
       darkGray: "#C0C0C0",    // Current section of application
-      lineGray: "#C1C1C1",    // Line dividers of application
-      offWhite: "#F9F9F9"        // Background color of application 
+      lightGray: "#C1C1C1",   // Line dividers of application
+      offWhite: "#F9F9F9"     // Background color of application 
+    },
+
+    screens: {
+      'xxxlg': {'max': '1600px'},       // Big Boi Monitors 
+      'xxlg': {'max': '1440px'},        // Large Computers
+      'xlg': {'max': '1250px'},         // Regular Computers
+      'lg': {'max': '1024px'},          // Small Computers
+      'md': {'max': '850px'},           // Regular Tablets
+      'sm': {'max': '600px'},           // Small Tablets 
+      'xsm': {'max': '480px'},          // Regular Phones
+      'xxsm': {'max': '360px'},         // Small Phones
     },
 
     extend: {
