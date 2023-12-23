@@ -21,7 +21,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 850);
+      setIsMobile(window.innerWidth <= 900);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -31,9 +31,9 @@ export default function Navbar() {
   return (
     <>
       {isMobile ? (
-        <nav className="bg-darkBlue relative h-[80px] flex justify-between items-center px-[20px]">
+        <nav className="bg-darkBlue relative h-[80px] xsm:h-[70px] flex justify-between items-center px-[20px]">
           <img
-            className="absolute left-1/2 top-[20%] transform -translate-x-1/2 w-[100px] z-10"
+            className="absolute left-1/2 top-[20%] transform -translate-x-1/2 w-[100px] z-10 xsm:w-[90px]"
             src="images/ASMJC.png"
             alt="ASMJC Logo"
           ></img>
@@ -100,13 +100,13 @@ export default function Navbar() {
             />
           </div>
 
-          <button
+          <div
             className="hover:text-orange text-[white]
            hover:border-orange ease-in-out duration-300
            bg-opacity-0 font-[700]"
           >
             Sign In
-          </button>
+          </div>
         </nav>
       ) : (
         <nav className="bg-darkBlue h-[100px] lg:h-[90px] flex justify-between items-center relative px-[40px] lg:px-[20px]">
@@ -144,7 +144,7 @@ export default function Navbar() {
           </div>
 
           <img
-            className="absolute left-1/2 top-1/4 transform -translate-x-1/2 w-[150px] xlg:w-[120px] lg:w-[110px]"
+            className="absolute left-1/2 top-[18%] transform -translate-x-1/2 w-[120px] lg:w-[110px]"
             src="images/ASMJC.png"
             alt="ASMJC Logo"
           ></img>
@@ -153,7 +153,7 @@ export default function Navbar() {
             <NavItem text="Tech Support"></NavItem>
             <NavItem text="Contact"></NavItem>
             <li
-              className="hover:text-darkBlue hover:bg-orange
+              className="hover:text-darkBlue hover:bg-orange whitespace-nowrap
            hover:border-orange ease-in-out duration-300 px-[20px] py-[5px] 
            bg-opacity-0 rounded-[20px] border-2 border-white font-[700] lg:px-[15px] lg:py-[3px]"
             >
