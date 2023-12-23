@@ -30,9 +30,9 @@ export default function Navbar() {
   return (
     <>
       {isMobile ? (
-        <nav className="bg-darkBlue relative h-[80px] flex justify-between items-center px-[20px]">
+        <nav className="bg-darkBlue relative h-[80px] xsm:h-[70px] flex justify-between items-center px-[20px]">
           <img
-            className="absolute left-1/2 top-[20%] transform -translate-x-1/2 w-[100px] z-10"
+            className="absolute left-1/2 top-[20%] transform -translate-x-1/2 w-[100px] z-10 xsm:w-[90px]"
             src="images/ASMJC.png"
             alt="ASMJC Logo"
           ></img>
