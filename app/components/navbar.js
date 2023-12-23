@@ -4,19 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
+const NavItem = ({ text }) => (
+  <li className="hover:text-orange ease-out duration-200">{text}</li>
+);
+
+const NavIcon = ({ href, imgSrc, imgAlt, imgWidth }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer">
+    <img className={imgWidth} src={imgSrc} alt={imgAlt} />
+  </a>
+);
+
 export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(false);
-
-  const NavItem = ({ text }) => (
-    <li className="hover:text-orange ease-out duration-200">{text}</li>
-  );
-
-  const NavIcon = ({ href, imgSrc, imgAlt, imgWidth }) => (
-    <a href={href} target="_blank" rel="noopener noreferrer">
-      <img className={imgWidth} src={imgSrc} alt={imgAlt} />
-    </a>
-  );
+  const toggleOverlay = () => setOverlayVisible(!overlayVisible);
 
   useEffect(() => {
     const handleResize = () => {
@@ -91,21 +92,12 @@ export default function Navbar() {
           </div>
 
           <div className="flex justify-between items-center relative">
-            {overlayVisible ? (
-              <FontAwesomeIcon
-                icon={faXmark}
-                className="cursor-pointer text-3xl z-10"
-                color="white"
-                onClick={() => setOverlayVisible(!overlayVisible)}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faBars}
-                className="cursor-pointer text-3xl z-10"
-                color="white"
-                onClick={() => setOverlayVisible(!overlayVisible)}
-              />
-            )}
+            <FontAwesomeIcon
+              icon={overlayVisible ? faXmark : faBars}
+              className="cursor-pointer text-3xl z-10"
+              color="white"
+              onClick={toggleOverlay}
+            />
           </div>
 
           <button
