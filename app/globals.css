@@ -21,6 +21,11 @@ h1, h2, h3, button
   font-family: 'Heavitas', sans-serif;
 }
 
+input
+{
+  font-family: 'Nunito', sans-serif;
+}
+
 nav
 {
   font-family: 'Nunito', sans-serif;

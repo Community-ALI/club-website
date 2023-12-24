@@ -3,9 +3,10 @@ import React, { Component, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Pages } from "../utils.js/constants";
 
-const NavItem = ({ text }) => (
-  <li className="hover:text-orange ease-out duration-200">{text}</li>
+const NavItem = ({ text, onClick}) => (
+  <li className="hover:text-orange ease-out duration-200" onClick={onClick}>{text}</li>
 );
 
 const NavIcon = ({ href, imgSrc, imgAlt, imgWidth }) => (
@@ -14,7 +15,7 @@ const NavIcon = ({ href, imgSrc, imgAlt, imgWidth }) => (
   </a>
 );
 
-export default function Navbar() {
+export default function Navbar({ setCurrentPage }) {
   const [isMobile, setIsMobile] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const toggleOverlay = () => setOverlayVisible(!overlayVisible);
@@ -51,7 +52,7 @@ export default function Navbar() {
               className="flex flex-col items-center justify-center mt-[100px] gap-8
             text-offWhite cursor-pointer text-[20px] animate-hamburgerFade"
             >
-              <NavItem text="Home"></NavItem>
+              <NavItem text="Home" onClick={() => setCurrentPage(Pages.HOME)}></NavItem>
               <NavItem text="Tech Support"></NavItem>
               <NavItem text="Contact"></NavItem>
               <a
@@ -103,7 +104,7 @@ export default function Navbar() {
           <div
             className="hover:text-orange text-[white]
            hover:border-orange ease-in-out duration-300
-           bg-opacity-0 font-[700]"
+           bg-opacity-0 font-[700]" onClick={() => setCurrentPage(Pages.SIGN_IN)}
           >
             Sign In
           </div>
@@ -149,14 +150,14 @@ export default function Navbar() {
             alt="ASMJC Logo"
           ></img>
           <ul className="flex items-center gap-10 xlg:gap-7 lg:gap-5 text-offWhite cursor-pointer lg:text-[13px] xlg:text-[15px]">
-            <NavItem text="Home"></NavItem>
+            <NavItem text="Home" onClick={() => setCurrentPage('home')}></NavItem>
             <NavItem text="Tech Support"></NavItem>
             <NavItem text="Contact"></NavItem>
             <li
               className="hover:text-darkBlue hover:bg-orange whitespace-nowrap
            hover:border-orange ease-in-out duration-300 px-[20px] py-[5px] 
            bg-opacity-0 rounded-[20px] border-2 border-white font-[700] lg:px-[15px] lg:py-[3px]"
-            >
+           onClick={() => setCurrentPage('signIn')}>
               Sign In
             </li>
           </ul>

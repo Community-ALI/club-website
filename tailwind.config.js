@@ -33,9 +33,14 @@ module.exports = {
           '100%': { transform: 'translateY(0)', opacity: '1' },
           '0%': { transform: 'translateY(-10px)', opacity: '0' },
         },
+        translateYY: {
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': { transform: 'translateY(-30px)', opacity: '0' },
+        },
       },
       animation: {
         'hamburgerFade': 'translateY 400ms ease-in-out',
+        'componentFade': 'translateYY 300ms ease-out',
       },
 
       backgroundImage: {
