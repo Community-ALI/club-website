@@ -3,7 +3,7 @@ import SectionTitle from "./section-title";
 
 export default function Home() {
   return (
-    <>
+    <div className="animate-componentFade">
       <SectionTitle text="Club Application"></SectionTitle>
       <p
         className="text-darkBlue text-center font-[Nunito] font-[600] w-[540px] 
@@ -20,9 +20,9 @@ export default function Home() {
         of these departments play a key role in booking a room and hosting a
         campus event.
       </p>
-      <div className="flex justify-center items-center mt-[80px] md:mt-[60px] xsm:mt-[40px]">
+      <div className="flex justify-center items-center mt-[80px] lg:mt-[60px] xsm:mt-[40px]">
         <MainButton text="Start Application"></MainButton>
       </div>
-    </>
+    </div>
   );
 }
