@@ -5,21 +5,10 @@ import Home from "./components/home";
 import Title from "./components/title";
 import Deadline from "./components/deadline";
 import SignIn from "./components/sign-in";
-import { Pages } from './utils.js/constants';
+import CreateAccount from './components/create-account';
 
 export default function LandingPage() {
   const [currentPage, setCurrentPage] = useState('home');
-
-  // const renderPage = () => {
-  //   switch (currentPage) {
-  //     case Pages.HOME:
-  //       return <Home/>;
-  //     case Pages.SIGN_IN:
-  //       return <SignIn/>;
-  //     default:
-  //       return <Home/>;
-  //   }
-  // };
 
   return (
     <>
@@ -28,8 +17,8 @@ export default function LandingPage() {
       <Navbar setCurrentPage={setCurrentPage} />
       <Title></Title>
       {currentPage === 'home' && <Home />}
-      {currentPage === 'signIn' && <SignIn />}
-      {/* {renderPage()} */}
+      {currentPage === 'signIn' && <SignIn setCurrentPage={setCurrentPage} />}
+      {currentPage === 'createAccount' && <CreateAccount/>}
       <Deadline></Deadline>
     </>
   );

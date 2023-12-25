@@ -6,9 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-export default function SignIn() {
-  // When enter is pressed on the email input field,
-  // the password input field is automatically selected.
+export default function SignIn( {setCurrentPage}) {
+
   const passwordRef = useRef(null);
   const handleEnterKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -25,7 +24,7 @@ export default function SignIn() {
     <div className="animate-componentFade">
       <SectionTitle text="Club Sign In"></SectionTitle>
 
-      <form className="flex justify-center flex-col">
+      <form className="flex justify-center flex-col w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] mr-auto ml-auto">
         <div className="flex flex-col justify-center items-center mt-[20px] sm:mt-[10px]">
           <p className="text-center text-darkBlue font-[Nunito] font-[600] text-[18px] mb-[10px] xsm:text-[16px]">
             MJC Club Email
@@ -35,10 +34,10 @@ export default function SignIn() {
             placeholder="MJC Club Email"
             onKeyPress={handleEnterKeyPress}
             autoFocus
-            className="w-[450px] px-8 py-3 bg-white rounded-[80px] border-2
+            className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
          border-darkBlue text-darkBlue font-[600] tracking-wide text-[18px]
-         lg:w-[400px] lg:text-[16px] md:w-[350px] md:text-[15px] md:px-5 xsm:py-[10px] 
-         xsm:text-[14px] xsm:w-[80%] xxsm:text-[13px] xxsm:px-4"
+         lg:text-[16px] md:text-[15px] md:px-5 xsm:py-[10px] 
+         xsm:text-[14px] xxsm:text-[13px] xxsm:px-4"
           ></input>
         </div>
 
@@ -49,12 +48,12 @@ export default function SignIn() {
           >
             MJC Club Password
           </p>
-          <div className="relative w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] flex justify-center items-center">
+          <div className="relative w-[100%] flex justify-center items-center">
             <input
               type={passwordVisible ? "text" : "password"}
               placeholder="MJC Club Password"
               ref={passwordRef}
-              className="w-[450px] px-8 py-3 bg-white rounded-[80px] border-2
+              className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
           border-darkBlue text-darkBlue font-[600] tracking-wide text-[18px]
           lg:text-[16px] md:text-[15px] md:px-5 xsm:py-[10px] 
           xsm:text-[14px] xxsm:text-[13px] xxsm:px-4"
@@ -65,11 +64,15 @@ export default function SignIn() {
             onClick={togglePasswordVisibility}
             />
           </div>
+        </div>
 
+        <div className="flex justify-between mt-[30px] font-[Nunito] text-lightBlue underline underline-offset-4">
+            <p className="px-[10px] cursor-pointer hover:text-darkBlue duration-200 ease" onClick={() => setCurrentPage('createAccount')}>Create New Account</p>
+            <p className="px-[10px] cursor-pointer hover:text-darkBlue duration-200 ease">Forgot Password?</p>
         </div>
       </form>
 
-      <div className="flex justify-center items-center mt-[70px] md:mt-[60px] xsm:mt-[50px]">
+      <div className="flex justify-center items-center mt-[40px]">
         <MainButton text="Sign In"></MainButton>
       </div>
     </div>
