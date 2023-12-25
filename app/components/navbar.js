@@ -3,10 +3,9 @@ import React, { Component, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Pages } from "../utils.js/constants";
 
-const NavItem = ({ text, onClick}) => (
-  <li className="hover:text-orange ease-out duration-200" onClick={onClick}>{text}</li>
+const NavItem = ({ text, onClick, closeMenu}) => (
+  <li className="hover:text-orange ease-out duration-200" onClick={() => { onClick && onClick(); closeMenu && closeMenu(); }}>{text}</li>
 );
 
 const NavIcon = ({ href, imgSrc, imgAlt, imgWidth }) => (
@@ -19,6 +18,7 @@ export default function Navbar({ setCurrentPage }) {
   const [isMobile, setIsMobile] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const toggleOverlay = () => setOverlayVisible(!overlayVisible);
+  const closeMobileMenu = () => setOverlayVisible(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,9 +52,9 @@ export default function Navbar({ setCurrentPage }) {
               className="flex flex-col items-center justify-center mt-[100px] gap-8
             text-offWhite cursor-pointer text-[20px] animate-hamburgerFade"
             >
-              <NavItem text="Home" onClick={() => setCurrentPage(Pages.HOME)}></NavItem>
-              <NavItem text="Tech Support"></NavItem>
-              <NavItem text="Contact"></NavItem>
+              <NavItem text="Home" onClick={() => setCurrentPage('home')} closeMenu={closeMobileMenu}></NavItem>
+              <NavItem text="Tech Support" closeMenu={closeMobileMenu}></NavItem>
+              <NavItem text="Contact" closeMenu={closeMobileMenu}></NavItem>
               <a
                 href="https://www.mjc.edu/"
                 target="_blank"
@@ -104,7 +104,7 @@ export default function Navbar({ setCurrentPage }) {
           <div
             className="hover:text-orange text-[white]
            hover:border-orange ease-in-out duration-300
-           bg-opacity-0 font-[700]" onClick={() => setCurrentPage(Pages.SIGN_IN)}
+           bg-opacity-0 font-[700]" onClick={() => setCurrentPage('signIn')}
           >
             Sign In
           </div>

@@ -20,7 +20,7 @@ export default function Home() {
         of these departments play a key role in booking a room and hosting a
         campus event.
       </p>
-      <div className="flex justify-center items-center mt-[80px] md:mt-[60px] xsm:mt-[40px]">
+      <div className="flex justify-center items-center mt-[80px] lg:mt-[60px] xsm:mt-[40px]">
         <MainButton text="Start Application"></MainButton>
       </div>
     </div>
