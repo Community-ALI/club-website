@@ -19,7 +19,7 @@ export default function LandingPage() {
       <main className="flex-grow">
         {currentPage === "home" && <Home/>}
         {currentPage === "signIn" && <SignIn setCurrentPage={setCurrentPage}/>}
-        {currentPage === "createAccount" && <CreateAccount/>}
+        {currentPage === "createAccount" && <CreateAccount />}
         {currentPage === "contact" && <ContactInfo/>}
       </main>
       <Deadline></Deadline>
