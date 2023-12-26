@@ -22,7 +22,7 @@ export default function CreateAccount() {
           <div className="flex justify-center md:flex-col gap-[50px] md:gap-[10px]">
             <div className="w-[45%] md:w-[100%] flex flex-col justify-center items-center relative mt-[20px]">
               <p className="text-center font-[Nunito] font-[600] text-[18px] lg:text-[16px] sm:text-[14px] mb-[10px]">
-                Select the Club You're Representing
+                {"Select the Club You're Representing"}
               </p>
               <select
                 placeholder="MJC Club Email"
