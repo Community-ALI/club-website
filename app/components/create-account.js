@@ -18,18 +18,18 @@ export default function CreateAccount() {
       <div className="animate-componentFade">
         <SectionTitle text="Create Account"></SectionTitle>
 
-        <form className="flex justify-center flex-col w-[950px] lg:w-[90%] md:w-[400px] xsm:w-[85%] xxsm:w-[90%] mr-auto ml-auto text-darkBlue">
+        <form className="flex justify-center flex-col w-[950px] lg:w-[90%] md:w-[400px] xsm:w-[80%] xxsm:w-[85%] mr-auto ml-auto text-darkBlue">
           <div className="flex justify-center md:flex-col gap-[50px] md:gap-[10px]">
             <div className="w-[45%] md:w-[100%] flex flex-col justify-center items-center relative mt-[20px]">
               <p className="text-center font-[Nunito] font-[600] text-[18px] lg:text-[16px] sm:text-[14px] mb-[10px]">
-                {"Select the Club You're Representing"}
+                Select the Club {"You're"} Representing
               </p>
               <select
                 placeholder="MJC Club Email"
                 className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
          border-darkBlue font-[400] tracking-wide text-[18px]
          lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px]
-         xsm:text-[14px] xxsm:text-[13px] xxsm:px-4 appearance-none"
+         xsm:text-[13px] xxsm:text-[12px] xxsm:px-4 appearance-none"
               >
                 <option disabled selected>
                   Select Your MJC Club...
@@ -56,7 +56,7 @@ export default function CreateAccount() {
                 className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
          border-darkBlue font-[600] tracking-wide text-[18px]
          lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-         xsm:text-[14px] xxsm:text-[13px] xxsm:px-4"
+         xsm:text-[13px] xxsm:text-[12px] xxsm:px-4"
               ></input>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function CreateAccount() {
                   className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
           border-darkBlue font-[600] tracking-wide text-[18px]
           lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-          xsm:text-[14px] xxsm:text-[13px] xxsm:px-4"
+          xsm:text-[13px] xxsm:text-[12px] xxsm:px-4"
                 ></input>
                 <FontAwesomeIcon
                   icon={passwordVisible ? faEye : faEyeSlash}
@@ -100,7 +100,7 @@ export default function CreateAccount() {
                 className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
           border-darkBlue font-[600] tracking-wide text-[18px]
           lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-          xsm:text-[14px] xxsm:text-[13px] xxsm:px-4"
+          xsm:text-[13px] xxsm:text-[12px] xxsm:px-4"
               ></input>
             </div>
           </div>
