@@ -67,8 +67,10 @@ export default function SignIn( {setCurrentPage}) {
         </div>
 
         <div className="flex justify-between mt-[30px] font-[Nunito] text-lightBlue underline underline-offset-4">
-            <p className="px-[10px] cursor-pointer hover:text-darkBlue duration-200 ease" onClick={() => setCurrentPage('createAccount')}>Create New Account</p>
-            <p className="px-[10px] cursor-pointer hover:text-darkBlue duration-200 ease">Forgot Password?</p>
+            <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease" 
+            onClick={() => setCurrentPage('createAccount')}>Create New Account</p>
+            <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
+            >Forgot Password?</p>
         </div>
       </form>
 

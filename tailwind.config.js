@@ -38,15 +38,14 @@ module.exports = {
           '0%': { transform: 'translateY(-30px)', opacity: '0' },
         },
       },
+
       animation: {
         'hamburgerFade': 'translateY 400ms ease-in-out',
         'componentFade': 'translateYY 300ms ease-out',
       },
 
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'mjc': "url('/images/background.png')",
       },
     },
   },
