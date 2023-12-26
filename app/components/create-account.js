@@ -7,7 +7,7 @@ import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { ClubOptions } from "./clubs";
 
-export default function CreateAccount() {
+export default function CreateAccount( {setCurrentPage} ) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
@@ -29,7 +29,7 @@ export default function CreateAccount() {
                 className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
          border-darkBlue font-[400] tracking-wide text-[18px]
          lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px]
-         xsm:text-[13px] xxsm:text-[12px] xxsm:px-4 appearance-none"
+         xsm:text-[14px] xxsm:text-[12px] xxsm:px-4 appearance-none"
               >
                 <option disabled selected>
                   Select Your MJC Club...
@@ -40,7 +40,7 @@ export default function CreateAccount() {
                 <option>Other / New Club</option>
               </select>
               <FontAwesomeIcon
-                className="absolute right-[20px] top-[50px] lg:top-[46px] md:top-[42px] text-lightBlue"
+                className="absolute right-[20px] top-[50px] lg:top-[46px] sm:top-[40px] text-lightBlue"
                 icon={faCaretDown}
                 size="xl"
               />
@@ -61,7 +61,7 @@ export default function CreateAccount() {
             </div>
           </div>
 
-          <div className="flex justify-center gap-[50px] md:flex-col md:gap-[10px] md:mt-[10px]">
+          <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
             <div className="w-[45%] md:w-[100%] flex flex-col justify-center items-center relative mt-[20px]">
               <p
                 className="text-center font-[Nunito] font-[600] text-[18px] 
@@ -76,7 +76,7 @@ export default function CreateAccount() {
                   className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
           border-darkBlue font-[600] tracking-wide text-[18px]
           lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-          xsm:text-[13px] xxsm:text-[12px] xxsm:px-4"
+          xsm:text-[14px] xxsm:text-[12px] xxsm:px-4"
                 ></input>
                 <FontAwesomeIcon
                   icon={passwordVisible ? faEye : faEyeSlash}
@@ -97,16 +97,22 @@ export default function CreateAccount() {
               <input
                 placeholder="Must match your club password"
                 type="password"
-                className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
+                className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
           border-darkBlue font-[600] tracking-wide text-[18px]
           lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-          xsm:text-[13px] xxsm:text-[12px] xxsm:px-4"
+          xsm:text-[14px] xxsm:text-[12px] xxsm:px-4"
               ></input>
             </div>
           </div>
+
+          <div className="flex justify-center mt-[30px] sm:mt-[20px] font-[Nunito] text-lightBlue underline underline-offset-4">
+            <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
+            onClick={() => setCurrentPage('signIn')}
+            >Already Have an Account? Sign In</p>
+        </div>
         </form>
 
-        <div className="flex justify-center items-center mt-[70px] md:mt-[60px] xsm:mt-[50px]">
+        <div className="flex justify-center items-center mt-[40px] md:mt-[30px]">
           <MainButton text="Create Account"></MainButton>
         </div>
       </div>

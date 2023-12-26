@@ -26,8 +26,8 @@ export default function SignIn( {setCurrentPage}) {
 
       <form className="flex justify-center flex-col w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] mr-auto ml-auto">
         <div className="flex flex-col justify-center items-center mt-[20px] sm:mt-[10px]">
-          <p className="text-center text-darkBlue font-[Nunito] font-[600] text-[18px] mb-[10px] xsm:text-[16px]">
-            MJC Club Email
+          <p className="text-center text-darkBlue font-[Nunito] font-[600] tracking-wide text-[18px] mb-[10px] xsm:text-[16px]">
+            Club Email
           </p>
           <input
             type="email"
@@ -44,9 +44,9 @@ export default function SignIn( {setCurrentPage}) {
         <div className="flex flex-col justify-center items-center mt-[10px] relative">
           <p
             className="text-center text-darkBlue font-[Nunito] font-[600] text-[18px] 
-          mb-[10px] mt-[20px] xsm:text-[16px]"
+          mb-[10px] mt-[20px] xsm:text-[16px] tracking-wide"
           >
-            MJC Club Password
+            Club Password
           </p>
           <div className="relative w-[100%] flex justify-center items-center">
             <input
