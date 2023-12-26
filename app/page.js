@@ -6,6 +6,7 @@ import Title from "./components/title";
 import Deadline from "./components/deadline";
 import SignIn from "./components/sign-in";
 import CreateAccount from "./components/create-account";
+import ContactInfo from "./components/contact-info";
 
 export default function LandingPage() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -16,9 +17,10 @@ export default function LandingPage() {
       <Navbar setCurrentPage={setCurrentPage} />
       <Title></Title>
       <main className="flex-grow">
-        {currentPage === "home" && <Home />}
-        {currentPage === "signIn" && <SignIn setCurrentPage={setCurrentPage} />}
-        {currentPage === "createAccount" && <CreateAccount />}
+        {currentPage === "home" && <Home/>}
+        {currentPage === "signIn" && <SignIn setCurrentPage={setCurrentPage}/>}
+        {currentPage === "createAccount" && <CreateAccount/>}
+        {currentPage === "contact" && <ContactInfo/>}
       </main>
       <Deadline></Deadline>
     </div>

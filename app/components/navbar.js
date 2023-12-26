@@ -54,7 +54,7 @@ export default function Navbar({ setCurrentPage }) {
             >
               <NavItem text="Home" onClick={() => setCurrentPage('home')} closeMenu={closeMobileMenu}></NavItem>
               <NavItem text="Tech Support" closeMenu={closeMobileMenu}></NavItem>
-              <NavItem text="Contact" closeMenu={closeMobileMenu}></NavItem>
+              <NavItem text="Contact" onClick={() => setCurrentPage('contact')} closeMenu={closeMobileMenu}></NavItem>
               <a
                 href="https://www.mjc.edu/"
                 target="_blank"
@@ -152,7 +152,7 @@ export default function Navbar({ setCurrentPage }) {
           <ul className="flex items-center gap-10 xlg:gap-7 lg:gap-5 text-offWhite cursor-pointer lg:text-[13px] xlg:text-[15px]">
             <NavItem text="Home" onClick={() => setCurrentPage('home')}></NavItem>
             <NavItem text="Tech Support"></NavItem>
-            <NavItem text="Contact"></NavItem>
+            <NavItem text="Contact" onClick={() => setCurrentPage('contact')}></NavItem>
             <li
               className="hover:text-darkBlue hover:bg-orange whitespace-nowrap
            hover:border-orange ease-in-out duration-300 px-[20px] py-[5px] 

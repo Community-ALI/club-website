@@ -60,7 +60,7 @@ export default function SignIn( {setCurrentPage}) {
             ></input>
             <FontAwesomeIcon
             icon={passwordVisible ? faEye : faEyeSlash}
-            className="cursor-pointer text-[18px] z-10 absolute top-[17px] right-[22px] xsm:text-[16px] xsm:top-[14px] xsm:right-[20px]"
+            className="cursor-pointer text-[18px] z-10 absolute top-[18px] right-[22px] xsm:text-[16px] xsm:top-[14px] xsm:right-[20px]"
             onClick={togglePasswordVisibility}
             />
           </div>
