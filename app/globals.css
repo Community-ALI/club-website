@@ -28,6 +28,11 @@ input
   font-family: 'Nunito', sans-serif;
 }
 
+.custom-input
+{
+  background-color: transparent !important;
+}
+
 nav
 {
   font-family: 'Nunito', sans-serif;

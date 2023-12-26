@@ -7,6 +7,7 @@ import Deadline from "./components/deadline";
 import SignIn from "./components/sign-in";
 import CreateAccount from "./components/create-account";
 import ContactInfo from "./components/contact-info";
+import TechSupport from "./components/tech-support";
 
 export default function LandingPage() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -21,6 +22,7 @@ export default function LandingPage() {
         {currentPage === "signIn" && <SignIn setCurrentPage={setCurrentPage}/>}
         {currentPage === "createAccount" && <CreateAccount setCurrentPage={setCurrentPage}/>}
         {currentPage === "contact" && <ContactInfo/>}
+        {currentPage === "techSupport" && <TechSupport></TechSupport>}
       </main>
       <Deadline></Deadline>
     </div>
