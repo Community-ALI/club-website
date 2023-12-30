@@ -34,14 +34,13 @@ export default function Navbar({ setCurrentPage }) {
       {isMobile ? (
         <nav className="bg-darkBlue relative h-[80px] xsm:h-[70px] flex justify-between items-center px-[20px]">
           <img
-            className="absolute left-1/2 top-[20%] transform -translate-x-1/2 w-[100px] z-10 xsm:w-[90px]"
+            className="absolute left-1/2 top-[20%] transform -translate-x-1/2 w-[100px] z-20 xsm:w-[90px]"
             src="images/ASMJC.png"
             alt="ASMJC Logo"
           ></img>
           <div
-            className={`fixed inset-0 z-10 ${
-              overlayVisible ? "bg-[#001E60] bg-opacity-[90%]" : "hidden"
-            }`}
+            className={`fixed top-0 bottom-0 z-10 bg-[#001E60]
+            transition-all duration-500 ease-in-out ${overlayVisible ? 'left-0' : '-left-[300px]'} w-[300px] xsm:w-[260px] xxsm:w-[230px]`}
             onClick={(e) => {
               if (e.target.classList.contains("faBars")) {
                 handleIconClick();
@@ -49,8 +48,8 @@ export default function Navbar({ setCurrentPage }) {
             }}
           >
             <ul
-              className="flex flex-col items-center justify-center mt-[100px] gap-8
-            text-offWhite cursor-pointer text-[20px] animate-hamburgerFade"
+              className="flex flex-col items-center justify-center mt-[140px] gap-8
+            text-offWhite cursor-pointer text-[20px] xxsm:text-[18px] animate-hamburgerFade"
             >
               <NavItem text="Home" onClick={() => setCurrentPage('home')} closeMenu={closeMobileMenu}></NavItem>
               <NavItem text="Tech Support" onClick={() => setCurrentPage('techSupport')} closeMenu={closeMobileMenu}></NavItem>
@@ -104,7 +103,11 @@ export default function Navbar({ setCurrentPage }) {
           <div
             className="hover:text-orange text-[white]
            hover:border-orange ease-in-out duration-300
-           bg-opacity-0 font-[700]" onClick={() => setCurrentPage('signIn')}
+           bg-opacity-0 font-[700]"
+           onClick={() => {
+            setCurrentPage('signIn');
+            closeMobileMenu();
+          }}
           >
             Sign In
           </div>
@@ -145,7 +148,7 @@ export default function Navbar({ setCurrentPage }) {
           </div>
 
           <img
-            className="absolute left-1/2 top-[18%] transform -translate-x-1/2 w-[120px] lg:w-[110px]"
+            className="absolute left-1/2 top-[18%] transform -translate-x-1/2 w-[120px] lg:w-[110px] z-12"
             src="images/ASMJC.png"
             alt="ASMJC Logo"
           ></img>
