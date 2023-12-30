@@ -49,7 +49,7 @@ export default function Navbar({ setCurrentPage }) {
           >
             <ul
               className="flex flex-col items-center justify-center mt-[140px] gap-8
-            text-offWhite cursor-pointer text-[20px] xxsm:text-[18px] animate-hamburgerFade"
+            text-offWhite cursor-pointer text-[20px] xsm:text-[18px] animate-hamburgerFade"
             >
               <NavItem text="Home" onClick={() => setCurrentPage('home')} closeMenu={closeMobileMenu}></NavItem>
               <NavItem text="Tech Support" onClick={() => setCurrentPage('techSupport')} closeMenu={closeMobileMenu}></NavItem>
