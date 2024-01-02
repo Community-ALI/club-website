@@ -36,27 +36,30 @@ const ClubInformation = () => {
             <hr />
           </div>
           <div>
-            <ClubApplicationTextField
-              label="Club Name"
-              value={ClubInformation.clubName}
-              subtext="Start the name with MJC"
-              onChange={(e) =>
-                setClubInformation({
-                  ...ClubInformation,
-                  clubName: e.target.value,
-                })
-              }
-            />
-            <ClubApplicationTextField
-              label="Meeting Days and Time"
-              value={ClubInformation.meetingDaysAndTime}
-              onChange={(e) =>
-                setClubInformation({
-                  ...ClubInformation,
-                  meetingDaysAndTime: e.target.value,
-                })
-              }
-            />
+            <div className="flex items-center">
+                <ClubApplicationTextField
+                  label="Club Name"
+                  value={ClubInformation.clubName}
+                  subtext="Start the name with MJC"
+                  onChange={(e) =>
+                    setClubInformation({
+                      ...ClubInformation,
+                      clubName: e.target.value,
+                    })
+                  }
+                />
+                <ClubApplicationTextField
+                  label="Meeting Days and Time"
+                  value={ClubInformation.meetingDaysAndTime}
+                  subtext="Example : Every Friday at 2pm"
+                  onChange={(e) =>
+                    setClubInformation({
+                      ...ClubInformation,
+                      meetingDaysAndTime: e.target.value,
+                    })
+                  }
+                />
+            </div>
             <hr />
             <ClubApplicationRadioField
               label="Meeting Location"
@@ -73,6 +76,9 @@ const ClubInformation = () => {
             />
           </div>
         </div>
+            <div className="flex ">
+
+            </div>
       </div>
     </form>
   );
@@ -94,12 +100,12 @@ function ClubApplicationTextField(props) {
   const { label, subtext, value, onChange } = props;
 
   return (
-    <div className="flex flex-col gap-2 mt-8">
+    <div className="flex flex-col gap-2 mt-8 flex-1">
       <label className="text-lightBlue font-bold text-lg">{label}</label>
       <p>{subtext}</p>
       <input
         type="text"
-        className="h-[40px] w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF"
+        className="h-[40px] max-w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF"
         value={value}
         onChange={onChange}
       />
