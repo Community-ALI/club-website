@@ -11,6 +11,8 @@ const ClubInformation = () => {
     zoomLink: "",
   });
 
+  const meetingLocationOptions = ["In Person", "Online/Zoom", "Both"];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
@@ -19,43 +21,57 @@ const ClubInformation = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" />
-      <div></div>
-      <ClubApplicationSection sectionTitle="CLUB INFORMATION" />
-      <div className="px-8">
-        <div>
-          <p>
-            The Associated Students of Modesto Junior College are responsible
-            for the registration of all student clubs and organizations. To be
-            considered as a new or returning club, this packet MUST be submitted
-            along with a Constitution and Bylaws, Officer Roster, and Membership
-            Roster with five (5) members to Campus Life Department and Student
-            Learning.
-          </p>
-          <hr />
-        </div>
-        <div>
-          <ClubApplicationTextField
-            label="Club Name"
-            value={ClubInformation.clubName}
-            subtext="Start the name with MJC"
-            onChange={(e) =>
-              setClubInformation({
-                ...ClubInformation,
-                clubName: e.target.value,
-              })
-            }
-          />
-          <ClubApplicationTextField
-            label="Meeting Days and Time"
-            value={ClubInformation.meetingDaysAndTime}
-            onChange={(e) =>
-              setClubInformation({
-                ...ClubInformation,
-                meetingDaysAndTime: e.target.value,
-              })
-            }
-          />
-          <hr />
+      <div className="p-12">
+        <ClubApplicationSection sectionTitle="CLUB INFORMATION" />
+        <div className="px-8">
+          <div>
+            <p>
+              The Associated Students of Modesto Junior College are responsible
+              for the registration of all student clubs and organizations. To be
+              considered as a new or returning club, this packet MUST be
+              submitted along with a Constitution and Bylaws, Officer Roster,
+              and Membership Roster with five (5) members to Campus Life
+              Department and Student Learning.
+            </p>
+            <hr />
+          </div>
+          <div>
+            <ClubApplicationTextField
+              label="Club Name"
+              value={ClubInformation.clubName}
+              subtext="Start the name with MJC"
+              onChange={(e) =>
+                setClubInformation({
+                  ...ClubInformation,
+                  clubName: e.target.value,
+                })
+              }
+            />
+            <ClubApplicationTextField
+              label="Meeting Days and Time"
+              value={ClubInformation.meetingDaysAndTime}
+              onChange={(e) =>
+                setClubInformation({
+                  ...ClubInformation,
+                  meetingDaysAndTime: e.target.value,
+                })
+              }
+            />
+            <hr />
+            <ClubApplicationRadioField
+              label="Meeting Location"
+              subtext="Select the environment of your club meetings"
+              value={ClubInformation.meetingLocation}
+              onChange={(e) =>
+                !setClubInformation({
+                  ...ClubInformation,
+                  meetingLocation: e.target.value,
+                })
+              }
+              options={meetingLocationOptions}
+              checkedValue={ClubInformation.meetingLocation}
+            />
+          </div>
         </div>
       </div>
     </form>
@@ -87,6 +103,32 @@ function ClubApplicationTextField(props) {
         value={value}
         onChange={onChange}
       />
+    </div>
+  );
+}
+
+function ClubApplicationRadioField(props) {
+  const { label, subtext, onChange, options, checkedValue } = props;
+
+  return (
+    <div className="flex flex-col gap-2 mt-8">
+      <h4 className="text-lightBlue font-bold text-lg">{label}</h4>
+      <p>{subtext}</p>
+      <div className="flex gap-16 mt-8">
+        {options.map((option, index) => {
+          return (
+            <div key={index}>
+              <input
+                type="radio"
+                value={option}
+                onChange={onChange}
+                checked={checkedValue === option}
+              />
+              <label>{option}</label>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
