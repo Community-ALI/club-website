@@ -18,8 +18,21 @@ const ClubInformation = () => {
     return (
         <form onSubmit={handleSubmit}>
             <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" />
+            <div></div>
+            <ClubApplicationSection sectionTitle="CLUB INFORMATION" />
         </form>
     );
 };
+
+function ClubApplicationSection(props) {
+    const {sectionTitle} = props;
+
+    
+    return (<div className="p-8 bg-offWhite">
+        <h1 className='text-darkBlue'>Registration Packet</h1>
+        <h2 className='text-lightBlue mb-8'>{sectionTitle}</h2>
+        <hr className='border-darkBlue border-[3px]'/>
+    </div>)
+}
 
 export default ClubInformation;
