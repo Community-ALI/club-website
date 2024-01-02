@@ -12,26 +12,39 @@ export default function CreateAccount( {setCurrentPage} ) {
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
   };
+  // set up a ref for the form
+  const submitRef = useRef(null);
+
+  function submitForm(e) {
+    e.preventDefault();
+    alert("Form submitted!")
+  }
+
+  function clickSubmit() {
+    submitRef.current.click();
+  }
 
   return (
+    
     <>
       <div className="animate-componentFade">
         <SectionTitle text="Create Account"></SectionTitle>
-
-        <form className="flex justify-center flex-col w-[950px] lg:w-[90%] md:w-[400px] xsm:w-[80%] xxsm:w-[85%] mr-auto ml-auto text-darkBlue">
+        <form className="flex justify-center flex-col w-[950px] lg:w-[90%] md:w-[400px] xsm:w-[80%] xxsm:w-[85%] mr-auto ml-auto text-darkBlue" onSubmit={submitForm}>
           <div className="flex justify-center md:flex-col gap-[50px] md:gap-[10px]">
             <div className="w-[45%] md:w-[100%] flex flex-col justify-center items-center relative mt-[20px]">
               <p className="text-center font-[Nunito] font-[600] text-[18px] lg:text-[16px] sm:text-[14px] mb-[10px]">
                 Select the Club {"You're"} Representing
               </p>
               <select
+                required
+                defaultValue={""}
                 placeholder="MJC Club Email"
                 className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
          border-darkBlue font-[400] tracking-wide text-[18px]
          lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px]
          xsm:text-[14px] xxsm:text-[12px] xxsm:px-4 appearance-none"
               >
-                <option disabled selected>
+                <option disabled value="">
                   Select Your MJC Club...
                 </option>
                 {ClubOptions.map((club, index) => (
@@ -51,6 +64,7 @@ export default function CreateAccount( {setCurrentPage} ) {
                 Enter Your Club Email
               </p>
               <input
+                required
                 type="email"
                 placeholder="something@(my)yosemite.edu"
                 className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
@@ -71,6 +85,7 @@ export default function CreateAccount( {setCurrentPage} ) {
               </p>
               <div className="relative w-[100%] flex justify-center items-center">
                 <input
+                  required
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Must be at least 8 characters"
                   className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
@@ -95,6 +110,7 @@ export default function CreateAccount( {setCurrentPage} ) {
                 Confirm Club Password
               </p>
               <input
+                required
                 placeholder="Must match your club password"
                 type="password"
                 className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
@@ -102,6 +118,7 @@ export default function CreateAccount( {setCurrentPage} ) {
           lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
           xsm:text-[14px] xxsm:text-[12px] xxsm:px-4"
               ></input>
+              <input type="submit" className="hidden" ref={submitRef}></input> {/* this is the hidden submit button */}
             </div>
           </div>
 
@@ -113,7 +130,8 @@ export default function CreateAccount( {setCurrentPage} ) {
         </form>
 
         <div className="flex justify-center items-center mt-[40px] md:mt-[30px]">
-          <MainButton text="Create Account"></MainButton>
+          {/* when clicked, trigger the form to submit */}
+          <MainButton onClick={clickSubmit} text="Create Account"></MainButton>
         </div>
       </div>
     </>
