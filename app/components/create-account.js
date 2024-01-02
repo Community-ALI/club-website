@@ -17,10 +17,47 @@ export default function CreateAccount( {setCurrentPage} ) {
 
   function submitForm(e) {
     e.preventDefault();
-    alert("Form submitted!")
+    // make sure the passwords match
+    const password = e.target[2].value;
+    const confirmPassword = e.target[3].value;
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    // make sure the password is at least 8 characters, has a Capital letter, and has a number
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long");
+      return;
+    }
+    if (!password.match(/[A-Z]/)) {
+      alert("Password must contain at least one capital letter");
+      return;
+    }
+    if (!password.match(/[0-9]/)) {
+      alert("Password must contain at least one number");
+      return;
+    }
+    // if all the checks pass, submit the form to the api
+    // then alert the response from the api
+    
+    fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        club_name: e.target[0].value,
+        email: e.target[1].value,
+        password: e.target[2].value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+    });
   }
 
-  function clickSubmit() {
+  function clickSubmit() { // this function is called when the button is clicked
     submitRef.current.click();
   }
 
