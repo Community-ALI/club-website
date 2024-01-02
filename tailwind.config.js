@@ -12,15 +12,40 @@ module.exports = {
       orange: "#EDA91F",      // Hover text in navigation bar
       gray: "#4D4D4D",        // Description text in application 
       darkGray: "#C0C0C0",    // Current section of application
-      lineGray: "#C1C1C1",    // Line dividers of application
-      offWhite: "#F9F9F9"        // Background color of application 
+      lightGray: "#C1C1C1",   // Line dividers of application
+      offWhite: "#F9F9F9"     // Background color of application 
+    },
+
+    screens: {
+      'xxxlg': {'max': '1600px'},       // Big Boi Monitors 
+      'xxlg': {'max': '1440px'},        // Large Computers
+      'xlg': {'max': '1250px'},         // Regular Computers
+      'lg': {'max': '1024px'},          // Small Computers
+      'md': {'max': '850px'},           // Regular Tablets
+      'sm': {'max': '600px'},           // Small Tablets 
+      'xsm': {'max': '480px'},          // Regular Phones
+      'xxsm': {'max': '360px'},         // Small Phones
     },
 
     extend: {
+      keyframes: {
+        translateY: {
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
+        },
+        translateYY: {
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': { transform: 'translateY(-30px)', opacity: '0' },
+        },
+      },
+
+      animation: {
+        'hamburgerFade': 'translateY 400ms ease-in-out',
+        'componentFade': 'translateYY 300ms ease-out',
+      },
+
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'mjc': "url('/images/background.png')",
       },
     },
   },
