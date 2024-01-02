@@ -24,7 +24,7 @@ export default function CreateAccount( {setCurrentPage} ) {
       alert("Passwords do not match");
       return;
     }
-    // make sure the password is at least 8 characters, has a Capital letter, and has a number
+    // make sure the password is at least 8 characters, has a capital letter, and has a number
     if (password.length < 8) {
       alert("Password must be at least 8 characters long");
       return;
@@ -37,8 +37,8 @@ export default function CreateAccount( {setCurrentPage} ) {
       alert("Password must contain at least one number");
       return;
     }
+    
     // if all the checks pass, submit the form to the api
-    // then alert the response from the api
     
     fetch("/api/auth/register", {
       method: "POST",
@@ -62,7 +62,6 @@ export default function CreateAccount( {setCurrentPage} ) {
   }
 
   return (
-    
     <>
       <div className="animate-componentFade">
         <SectionTitle text="Create Account"></SectionTitle>
