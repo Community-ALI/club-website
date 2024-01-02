@@ -37,7 +37,7 @@ export default function CreateAccount( {setCurrentPage} ) {
       alert("Password must contain at least one number");
       return;
     }
-    
+
     // if all the checks pass, submit the form to the api
     
     fetch("/api/auth/register", {
@@ -54,6 +54,10 @@ export default function CreateAccount( {setCurrentPage} ) {
       .then((response) => response.json())
       .then((data) => {
         alert(data.message);
+        // if the account was created successfully, redirect to the sign in page
+        if(data.message === "Account Created"){
+          setCurrentPage('signIn');
+        }
     });
   }
 
