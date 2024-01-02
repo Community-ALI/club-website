@@ -20,6 +20,10 @@ const ClubInformation = () => {
             <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" />
             <div></div>
             <ClubApplicationSection sectionTitle="CLUB INFORMATION" />
+            <div>
+                <p>The Associated Students of Modesto Junior College are responsible for the registration of all student clubs and organizations. To be considered as a new or returning club, this packet MUST be submitted along with a Constitution and Bylaws, Officer Roster, and Membership Roster with five (5) members to Campus Life Department and Student Learning.</p>
+                <hr />
+            </div>
         </form>
     );
 };
@@ -27,8 +31,8 @@ const ClubInformation = () => {
 function ClubApplicationSection(props) {
     const {sectionTitle} = props;
 
-    
-    return (<div className="p-8 bg-offWhite">
+
+    return (<div className="bg-offWhite">
         <h1 className='text-darkBlue'>Registration Packet</h1>
         <h2 className='text-lightBlue mb-8'>{sectionTitle}</h2>
         <hr className='border-darkBlue border-[3px]'/>
