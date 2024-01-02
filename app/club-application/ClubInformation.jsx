@@ -21,37 +21,42 @@ const ClubInformation = () => {
       <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" />
       <div></div>
       <ClubApplicationSection sectionTitle="CLUB INFORMATION" />
-      <div>
-        <p>
-          The Associated Students of Modesto Junior College are responsible for
-          the registration of all student clubs and organizations. To be
-          considered as a new or returning club, this packet MUST be submitted
-          along with a Constitution and Bylaws, Officer Roster, and Membership
-          Roster with five (5) members to Campus Life Department and Student
-          Learning.
-        </p>
-        <hr />
-      </div>
-      <div>
-        <ClubApplicationTextField
-          label="Club Name"
-          value={ClubInformation.clubName}
-          subtext="Start the name with MJC"
-          onChange={(e) =>
-            setClubInformation({ ...ClubInformation, clubName: e.target.value })
-          }
-        />
-        <ClubApplicationTextField
-          label="Meeting Days and Time"
-          value={ClubInformation.meetingDaysAndTime}
-          onChange={(e) =>
-            setClubInformation({
-              ...ClubInformation,
-              meetingDaysAndTime: e.target.value,
-            })
-          }
-        />
-        <hr />
+      <div className="px-8">
+        <div>
+          <p>
+            The Associated Students of Modesto Junior College are responsible
+            for the registration of all student clubs and organizations. To be
+            considered as a new or returning club, this packet MUST be submitted
+            along with a Constitution and Bylaws, Officer Roster, and Membership
+            Roster with five (5) members to Campus Life Department and Student
+            Learning.
+          </p>
+          <hr />
+        </div>
+        <div>
+          <ClubApplicationTextField
+            label="Club Name"
+            value={ClubInformation.clubName}
+            subtext="Start the name with MJC"
+            onChange={(e) =>
+              setClubInformation({
+                ...ClubInformation,
+                clubName: e.target.value,
+              })
+            }
+          />
+          <ClubApplicationTextField
+            label="Meeting Days and Time"
+            value={ClubInformation.meetingDaysAndTime}
+            onChange={(e) =>
+              setClubInformation({
+                ...ClubInformation,
+                meetingDaysAndTime: e.target.value,
+              })
+            }
+          />
+          <hr />
+        </div>
       </div>
     </form>
   );
@@ -73,10 +78,15 @@ function ClubApplicationTextField(props) {
   const { label, subtext, value, onChange } = props;
 
   return (
-    <div className="flex flex-col gap-2 p-8">
+    <div className="flex flex-col gap-2 mt-8">
       <label className="text-lightBlue font-bold text-lg">{label}</label>
-      <p>{subtext}</p> 
-      <input type="text" className="h-[40px] w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF" value={value} onChange={onChange} />
+      <p>{subtext}</p>
+      <input
+        type="text"
+        className="h-[40px] w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF"
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 }

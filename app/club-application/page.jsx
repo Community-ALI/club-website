@@ -28,7 +28,7 @@ const sections = [
 export default function ClubAgreementPage() {
   const [currentSection, setCurrentSection] = useState(0);
   return (
-    <div id="club-application-page" className="flex justify-center py-[220px] h-screen bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]">
+    <div id="club-application-page" className="flex justify-center pt-[220px] h-screen bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]">
       <div className="bg-offWhite w-[900px]">
         {sections[currentSection].form}
       </div>
