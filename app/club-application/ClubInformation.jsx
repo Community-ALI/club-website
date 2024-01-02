@@ -33,10 +33,10 @@ const ClubInformation = () => {
         <hr />
       </div>
       <div>
-        <h3>Club Name</h3>
         <ClubApplicationTextField
           label="Club Name"
           value={ClubInformation.clubName}
+          subtext="Start the name with MJC"
           onChange={(e) =>
             setClubInformation({ ...ClubInformation, clubName: e.target.value })
           }
@@ -73,10 +73,10 @@ function ClubApplicationTextField(props) {
   const { label, subtext, value, onChange } = props;
 
   return (
-    <div>
-      <label>{label}</label>
+    <div className="flex flex-col gap-2 p-8">
+      <label className="text-lightBlue font-bold text-lg">{label}</label>
       <p>{subtext}</p> 
-      <input type="text" value={value} onChange={onChange} />
+      <input type="text" className="h-[40px] w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF" value={value} onChange={onChange} />
     </div>
   );
 }
