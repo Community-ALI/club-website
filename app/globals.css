@@ -42,3 +42,7 @@ nav
 #club-application-page hr{
 margin-top: 32spx !important;
 }
+
+#club-application-page p{
+  color: #4D4D4D;
+}
