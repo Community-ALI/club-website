@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import Navbar from "./components/navbar";
-import Home from "./components/home";
-import Title from "./components/title";
-import Deadline from "./components/deadline";
-import SignIn from "./components/sign-in";
-import CreateAccount from "./components/create-account";
-import ContactInfo from "./components/contact-info";
-import TechSupport from "./components/tech-support";
-import ForgotPassword from "./components/forgot-password";
+import Navbar from "./landing-tabs/navbar";
+import Home from "./landing-tabs/home";
+import Title from "./landing-tabs/title";
+import Deadline from "./landing-tabs/deadline";
+import SignIn from "./landing-tabs/sign-in";
+import CreateAccount from "./landing-tabs/create-account";
+import ContactInfo from "./landing-tabs/contact-info";
+import TechSupport from "./landing-tabs/tech-support";
+import ForgotPassword from "./landing-tabs/forgot-password";
 
 export default function LandingPage() {
   const [currentPage, setCurrentPage] = useState("home");
