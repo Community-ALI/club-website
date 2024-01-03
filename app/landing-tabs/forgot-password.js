@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
-import SectionTitle from "./section-title";
-import MainButton from "./main-button";
+import SectionTitle from "../reusable-components/section-title";
+import MainButton from "../reusable-components/main-button";
 
 export default function PasswordReset( {setCurrentPage}) {
   const submitRef = useRef(null);

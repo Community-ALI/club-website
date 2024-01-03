@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
-import SectionTitle from "./section-title";
-import MainButton from "./main-button";
+import SectionTitle from "../reusable-components/section-title";
+import MainButton from "../reusable-components/main-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Navbar from "./landing-tabs/navbar";
+import Navbar from "./reusable-components/navbar";
 import Home from "./landing-tabs/home";
-import Title from "./landing-tabs/title";
-import Deadline from "./landing-tabs/deadline";
+import Title from "./reusable-components/title";
+import Deadline from "./reusable-components/deadline";
 import SignIn from "./landing-tabs/sign-in";
 import CreateAccount from "./landing-tabs/create-account";
 import ContactInfo from "./landing-tabs/contact-info";

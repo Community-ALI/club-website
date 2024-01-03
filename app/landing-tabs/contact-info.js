@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import SectionTitle from "./section-title";
+import SectionTitle from "../reusable-components/section-title";
 
 const ContactBox = ({ title, image, name, phone, email, emailto }) => (
   <div
