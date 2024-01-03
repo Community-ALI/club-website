@@ -29,7 +29,13 @@ export default function Navbar({ setCurrentPage }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const token = localStorage.getItem('token'); // get the token from local storage
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    // This code runs only on the client side
+    const storedToken = localStorage.getItem('token');
+    setToken(storedToken);
+  }, []);
 
   return (
     <>
