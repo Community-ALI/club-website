@@ -7,7 +7,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignIn( {setCurrentPage}) {
-
+  const submitRef = useRef(null);
   const passwordRef = useRef(null);
   const handleEnterKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -20,16 +20,45 @@ export default function SignIn( {setCurrentPage}) {
     setPasswordVisible((prev) => !prev);
   };
 
+  function clickSubmit() {
+    submitRef.current.click();
+  };
+
+  function submitForm(e) {
+    e.preventDefault();
+    fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: e.target[0].value,
+        password: e.target[1].value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        // if the account was created successfully, redirect to the sign in page
+        if(data.message === "Success"){
+          console.log(data.token);
+          localStorage.setItem('token', data.token);
+          setCurrentPage('home');
+        }
+    });
+  };
+
   return (
     <div className="animate-componentFade">
       <SectionTitle text="Club Sign In"></SectionTitle>
 
-      <form className="flex justify-center flex-col w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] mr-auto ml-auto">
+      <form className="flex justify-center flex-col w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] mr-auto ml-auto" onSubmit={submitForm}>
         <div className="flex flex-col justify-center items-center mt-[20px] sm:mt-[10px]">
           <p className="text-center text-darkBlue font-[Nunito] font-[600] tracking-wide text-[18px] mb-[10px] xsm:text-[16px]">
             Club Email
           </p>
           <input
+            required
             type="email"
             placeholder="MJC Club Email"
             onKeyPress={handleEnterKeyPress}
@@ -50,6 +79,7 @@ export default function SignIn( {setCurrentPage}) {
           </p>
           <div className="relative w-[100%] flex justify-center items-center">
             <input
+              required
               type={passwordVisible ? "text" : "password"}
               placeholder="MJC Club Password"
               ref={passwordRef}
@@ -72,10 +102,12 @@ export default function SignIn( {setCurrentPage}) {
             <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
             >Forgot Password?</p>
         </div>
+        {/* invisible submit button */}
+        <input type="submit" className="hidden" ref={submitRef}></input>
       </form>
 
       <div className="flex justify-center items-center mt-[40px]">
-        <MainButton text="Sign In"></MainButton>
+        <MainButton onClick={clickSubmit} text="Sign In"></MainButton>
       </div>
     </div>
   );
