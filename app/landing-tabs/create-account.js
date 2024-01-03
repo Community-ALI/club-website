@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
 import SectionTitle from "../reusable-components/section-title";
 import MainButton from "../reusable-components/main-button";
+import FormInput from "../reusable-components/form-input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { ClubOptions } from "./clubs";
+import { Form } from "react-router-dom";
 
-export default function CreateAccount( {setCurrentPage} ) {
+export default function CreateAccount({ setCurrentPage }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
@@ -39,7 +41,7 @@ export default function CreateAccount( {setCurrentPage} ) {
     }
 
     // if all the checks pass, submit the form to the api
-    
+
     fetch("/api/auth/register", {
       method: "POST",
       headers: {
@@ -55,13 +57,14 @@ export default function CreateAccount( {setCurrentPage} ) {
       .then((data) => {
         alert(data.message);
         // if the account was created successfully, redirect to the sign in page
-        if(data.message === "Account Created"){
-          setCurrentPage('signIn');
+        if (data.message === "Account Created") {
+          setCurrentPage("signIn");
         }
-    });
+      });
   }
 
-  function clickSubmit() { // this function is called when the button is clicked
+  function clickSubmit() {
+    // this function is called when the button is clicked
     submitRef.current.click();
   }
 
@@ -69,7 +72,11 @@ export default function CreateAccount( {setCurrentPage} ) {
     <>
       <div className="animate-componentFade">
         <SectionTitle text="Create Account"></SectionTitle>
-        <form className="flex justify-center flex-col w-[950px] lg:w-[90%] md:w-[400px] xsm:w-[80%] xxsm:w-[85%] mr-auto ml-auto text-darkBlue" onSubmit={submitForm}>
+        {/* flex justify-center flex-col w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] mr-auto ml-auto */}
+        <form
+          className="flex justify-center flex-col w-[950px] lg:w-[90%] md:w-[400px] xsm:w-[80%] xxsm:w-[85%] mr-auto ml-auto text-darkBlue"
+          onSubmit={submitForm}
+        >
           <div className="flex justify-center md:flex-col gap-[50px] md:gap-[10px]">
             <div className="w-[45%] md:w-[100%] flex flex-col justify-center items-center relative mt-[20px]">
               <p className="text-center font-[Nunito] font-[600] text-[18px] lg:text-[16px] sm:text-[14px] mb-[10px]">
@@ -99,74 +106,25 @@ export default function CreateAccount( {setCurrentPage} ) {
               />
             </div>
 
-            <div className="flex flex-col w-[45%] md:w-[100%] justify-center items-center mt-[20px]">
-              <p className="text-center font-[Nunito] font-[600] text-[18px] lg:text-[16px] sm:text-[14px] mb-[10px]">
-                Enter Your Club Email
-              </p>
-              <input
-                required
-                type="email"
-                placeholder="something@(my)yosemite.edu"
-                className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
-         border-darkBlue font-[600] tracking-wide text-[18px]
-         lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-         xsm:text-[13px] xxsm:text-[12px] xxsm:px-4"
-              ></input>
-            </div>
+            <FormInput title="Club Email" type="email" placeholder="MJC Club Email" autoFocus={true} sideBySide></FormInput>
           </div>
 
           <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
-            <div className="w-[45%] md:w-[100%] flex flex-col justify-center items-center relative mt-[20px]">
-              <p
-                className="text-center font-[Nunito] font-[600] text-[18px] 
-          mb-[10px] lg:text-[16px] sm:text-[14px]"
-              >
-                Create a Club Password
-              </p>
-              <div className="relative w-[100%] flex justify-center items-center">
-                <input
-                  required
-                  type={passwordVisible ? "text" : "password"}
-                  placeholder="Must be at least 8 characters"
-                  className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
-          border-darkBlue font-[600] tracking-wide text-[18px]
-          lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-          xsm:text-[14px] xxsm:text-[12px] xxsm:px-4"
-                ></input>
-                <FontAwesomeIcon
-                  icon={passwordVisible ? faEye : faEyeSlash}
-                  className="cursor-pointer text-[18px] lg:text-[16px] z-10 absolute top-[18px] right-[20px] 
-                  md:top-[16px] xsm:text-[16px] xsm:top-[14px] xsm:right-[20px]"
-                  onClick={togglePasswordVisibility}
-                />
-              </div>
-            </div>
-
-            <div className="w-[45%] md:w-[100%] flex flex-col justify-center items-center relative mt-[20px]">
-              <p
-                className="text-center font-[Nunito] font-[600] text-[18px] 
-          mb-[10px] lg:text-[16px] sm:text-[14px]"
-              >
-                Confirm Club Password
-              </p>
-              <input
-                required
-                placeholder="Must match your club password"
-                type="password"
-                className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
-          border-darkBlue font-[600] tracking-wide text-[18px]
-          lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px] 
-          xsm:text-[14px] xxsm:text-[12px] xxsm:px-4"
-              ></input>
-              <input type="submit" className="hidden" ref={submitRef}></input> {/* this is the hidden submit button */}
-            </div>
+            <FormInput title="Club Password" type="password" placeholder="MJC Club Password" sideBySide></FormInput>
+            <FormInput title="Confirm Password" type="password" placeholder="Confirm Password" sideBySide></FormInput>
           </div>
 
+          <input type="submit" className="hidden" ref={submitRef}></input>{" "}
+              {/* this is the hidden submit button */}
+
           <div className="flex justify-center mt-[30px] sm:mt-[20px] font-[Nunito] text-lightBlue underline underline-offset-4">
-            <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
-            onClick={() => setCurrentPage('signIn')}
-            >Already Have an Account? Sign In</p>
-        </div>
+            <p
+              className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
+              onClick={() => setCurrentPage("signIn")}
+            >
+              Already Have an Account? Sign In
+            </p>
+          </div>
         </form>
 
         <div className="flex justify-center items-center mt-[40px] md:mt-[30px]">

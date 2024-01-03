@@ -9,13 +9,14 @@ export default function FormInput({
   type = "text",
   placeholder = "",
   autoFocus = false,
+  sideBySide = false,
 }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
   };
   return (
-    <div className="flex flex-col justify-center items-center mt-[20px] sm:mt-[10px]">
+    <div className= {sideBySide ?  'flex flex-col w-[45%] md:w-[100%] justify-center items-center mt-[20px]' : 'flex flex-col justify-center items-center mt-[20px] sm:mt-[10px]'}>
       <p className="text-center text-darkBlue font-[Nunito] font-[600] tracking-wide text-[18px] mb-[10px] xsm:text-[16px]">
         {title}
       </p>

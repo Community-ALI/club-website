@@ -44,8 +44,8 @@ export default function SignIn( {setCurrentPage}) {
   return (
     <div className="animate-componentFade">
       <SectionTitle text="Club Sign In"></SectionTitle>
-
       <form className="flex justify-center flex-col w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] mr-auto ml-auto" onSubmit={submitForm}>
+        
         <FormInput title="Club Email" type="email" placeholder="MJC Club Email" autoFocus={true}></FormInput>
         <FormInput title="Club Password" type="password" placeholder="MJC Club Password"></FormInput>
 
@@ -55,6 +55,7 @@ export default function SignIn( {setCurrentPage}) {
             <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease" onClick={forgotPassword}
             >Forgot Password?</p>
         </div>
+        
         {/* invisible submit button */}
         <input type="submit" className="hidden" ref={submitRef}></input>
       </form>
