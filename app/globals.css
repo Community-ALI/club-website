@@ -38,3 +38,11 @@ nav
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
 }
+
+#club-application-page hr{
+margin-top: 32px;
+}
+
+#club-application-page p{
+  color: #4D4D4D;
+}
