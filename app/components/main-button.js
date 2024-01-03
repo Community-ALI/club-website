@@ -1,4 +1,4 @@
-export default function MainButton({ text }) {
+export default function MainButton({ text, onClick = () => { } }) {
   return (
     <>
       <button
@@ -6,6 +6,7 @@ export default function MainButton({ text }) {
        bg-lightBlue hover:bg-darkBlue rounded-[80px] tracking-widest
        ease-in-out duration-200 lg:scale-[.9] md:scale-[.8]
        xsm:px-[60px] xsm:text-[18px] whitespace-nowrap w-[450px]"
+      onClick={onClick}
       >
         {text}
       </button>

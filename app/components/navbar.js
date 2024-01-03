@@ -29,6 +29,14 @@ export default function Navbar({ setCurrentPage }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    // This code runs only on the client side
+    const storedToken = localStorage.getItem('token');
+    setToken(storedToken);
+  }, []);
+
   return (
     <>
       {isMobile ? (
@@ -105,11 +113,12 @@ export default function Navbar({ setCurrentPage }) {
            hover:border-orange ease-in-out duration-300
            bg-opacity-0 font-[700]"
            onClick={() => {
+            localStorage.removeItem('token'); // remove the token from local storage
             setCurrentPage('signIn');
             closeMobileMenu();
           }}
           >
-            Sign In
+            {token ? 'Sign Out' : 'Sign In'}
           </div>
         </nav>
       ) : (
@@ -160,8 +169,12 @@ export default function Navbar({ setCurrentPage }) {
               className="hover:text-darkBlue hover:bg-orange whitespace-nowrap
            hover:border-orange ease-in-out duration-300 px-[20px] py-[5px] 
            bg-opacity-0 rounded-[20px] border-2 border-white font-[700] lg:px-[15px] lg:py-[3px]"
-           onClick={() => setCurrentPage('signIn')}>
-              Sign In
+           onClick={() => {
+            localStorage.removeItem('token'); // remove the token from local storage
+            setCurrentPage('signIn');
+          }
+           }>
+              {token ? 'Sign Out' : 'Sign In'}
             </li>
           </ul>
         </nav>
