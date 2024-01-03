@@ -15,6 +15,7 @@ module.exports = {
       lightGray: "#C1C1C1",   // Line dividers of application
       offWhite: "#F9F9F9",     // Background color of application 
       white: "#FFFFFF",       // Background color of input fields
+      veryLightGray: "#EBEBEC", // Background color of some sections
     },
 
     screens: {
