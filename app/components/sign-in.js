@@ -38,12 +38,14 @@ export default function SignIn( {setCurrentPage}) {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert(data.message);
         // if the account was created successfully, redirect to the sign in page
         if(data.message === "Success"){
           console.log(data.token);
           localStorage.setItem('token', data.token);
           setCurrentPage('home');
+        }
+        else {
+          alert(data.message);
         }
     });
   };
