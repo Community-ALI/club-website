@@ -1,19 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import SectionTitle from "../reusable-components/section-title";
 import MainButton from "../reusable-components/main-button";
 import FormInput from "../reusable-components/form-input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { ClubOptions } from "./clubs";
-import { Form } from "react-router-dom";
 
 export default function CreateAccount({ setCurrentPage }) {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const togglePasswordVisibility = () => {
-    setPasswordVisible((prev) => !prev);
-  };
   // set up a ref for the form
   const submitRef = useRef(null);
 
