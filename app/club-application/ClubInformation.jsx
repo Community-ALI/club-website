@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import asmjc_pic_remembreance_day from "@pictures/asmjc_pic_remembrance_day.png";
 import Image from "next/image";
+import ClubApplicationTextField from "./ClubApplicationTextField";
+import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
+import ClubApplicationRadioField from "./ClubApplicationRadioField";
 
 const ClubInformation = () => {
   const [ClubInformation, setClubInformation] = useState({
@@ -22,7 +25,7 @@ const ClubInformation = () => {
     <form onSubmit={handleSubmit}>
       <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" />
       <div className="p-12">
-        <ClubApplicationSection sectionTitle="CLUB INFORMATION" />
+        <ClubApplicationHeaderSection sectionTitle="CLUB INFORMATION" />
         <div className="px-8">
           <div>
             <p>
@@ -107,60 +110,5 @@ const ClubInformation = () => {
     </form>
   );
 };
-
-function ClubApplicationSection(props) {
-  const { sectionTitle } = props;
-
-  return (
-    <div className="bg-offWhite">
-      <h1 className="text-darkBlue">Registration Packet</h1>
-      <h2 className="text-lightBlue mb-8">{sectionTitle}</h2>
-      <hr className="border-darkBlue border-[3px]" />
-    </div>
-  );
-}
-
-function ClubApplicationTextField(props) {
-  const { label, subtext, value, onChange } = props;
-
-  return (
-    <div className="flex flex-col gap-2 mt-8 flex-1">
-      <label className="text-lightBlue font-bold text-lg">{label}</label>
-      <p>{subtext}</p>
-      <input
-        type="text"
-        className="h-[40px] max-w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF"
-        value={value}
-        onChange={onChange}
-      />
-    </div>
-  );
-}
-
-function ClubApplicationRadioField(props) {
-  const { label, subtext, onChange, options, checkedValue } = props;
-
-  return (
-    <div className="flex flex-col gap-2 mt-8">
-      <h4 className="text-lightBlue font-bold text-lg">{label}</h4>
-      <p>{subtext}</p>
-      <div className="flex gap-16 mt-8">
-        {options.map((option, index) => {
-          return (
-            <div key={index}>
-              <input
-                type="radio"
-                value={option}
-                onChange={onChange}
-                checked={checkedValue === option}
-              />
-              <label>{option}</label>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 export default ClubInformation;
