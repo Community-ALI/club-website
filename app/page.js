@@ -8,6 +8,7 @@ import SignIn from "./components/sign-in";
 import CreateAccount from "./components/create-account";
 import ContactInfo from "./components/contact-info";
 import TechSupport from "./components/tech-support";
+import ForgotPassword from "./components/forgot-password";
 
 export default function LandingPage() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -23,6 +24,7 @@ export default function LandingPage() {
         {currentPage === "createAccount" && <CreateAccount setCurrentPage={setCurrentPage}/>}
         {currentPage === "contact" && <ContactInfo/>}
         {currentPage === "techSupport" && <TechSupport></TechSupport>}
+        {currentPage === "forgotPassword" && <ForgotPassword setCurrentPage={setCurrentPage}/>}
       </main>
       <Deadline></Deadline>
     </div>

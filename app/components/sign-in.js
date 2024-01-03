@@ -50,6 +50,10 @@ export default function SignIn( {setCurrentPage}) {
     });
   };
 
+  function forgotPassword() {
+    setCurrentPage('forgotPassword');
+  };
+
   return (
     <div className="animate-componentFade">
       <SectionTitle text="Club Sign In"></SectionTitle>
@@ -101,7 +105,7 @@ export default function SignIn( {setCurrentPage}) {
         <div className="flex justify-between mt-[30px] font-[Nunito] text-lightBlue underline underline-offset-4">
             <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease" 
             onClick={() => setCurrentPage('createAccount')}>Create New Account</p>
-            <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
+            <p className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease" onClick={forgotPassword}
             >Forgot Password?</p>
         </div>
         {/* invisible submit button */}
