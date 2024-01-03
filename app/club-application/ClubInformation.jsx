@@ -4,6 +4,7 @@ import Image from "next/image";
 import ClubApplicationTextField from "./ClubApplicationTextField";
 import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import ClubApplicationRadioField from "./ClubApplicationRadioField";
+import SaveAndContinueButton from "./ClubApplicationSaveAndContinue";
 
 const ClubInformation = () => {
   const [ClubInformation, setClubInformation] = useState({
@@ -104,8 +105,9 @@ const ClubInformation = () => {
           />
         </div>
       </div>
-      <div className="px-20">
+      <div className="px-20 pb-12">
         <hr />
+        <SaveAndContinueButton />
       </div>
     </form>
   );
