@@ -9,6 +9,7 @@ import CreateAccount from "./landing-tabs/create-account";
 import ContactInfo from "./landing-tabs/contact-info";
 import TechSupport from "./landing-tabs/tech-support";
 import ForgotPassword from "./landing-tabs/forgot-password";
+import ResetPassword from "./landing-tabs/reset-password";
 
 export default function LandingPage() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -49,6 +50,7 @@ export default function LandingPage() {
         {currentPage === "contact" && <ContactInfo />}
         {currentPage === "techSupport" && <TechSupport />}
         {currentPage === "forgotPassword" && <ForgotPassword setCurrentPage={handlePageChange} />}
+        {currentPage === "resetPassword" && <ResetPassword setCurrentPage={handlePageChange} />}
       </main>
       <Deadline></Deadline>
     </div>

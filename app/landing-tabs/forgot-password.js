@@ -4,7 +4,7 @@ import FormInput from "../reusable-components/form-input";
 import SectionTitle from "../reusable-components/section-title";
 import MainButton from "../reusable-components/main-button";
 
-export default function PasswordReset() {
+export default function ForgotPassword() {
   const submitRef = useRef(null);
 
   function clickSubmit() {
