@@ -107,7 +107,7 @@ const ClubInformation = () => {
       </div>
       <div className="px-20 pb-12">
         <hr />
-        <RoundedButton innerHTML="Save and Continue" variant={1} />
+        <RoundedButton innerHTML="Save and Continue" variant={0} />
       </div>
     </form>
   );

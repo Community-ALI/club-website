@@ -19,7 +19,7 @@ export default function ClubAdvisors() {
 
   return (
     <div className="p-12">
-      <ClubApplicationHeaderSection title="Club Advisors" />
+      <ClubApplicationHeaderSection sectionTitle="Club Advisors" />
       <div className="pt-8">
         <p>
           Only one advisor is required for a club to be active. An advisor must
@@ -42,16 +42,19 @@ export default function ClubAdvisors() {
           );
         })}
       </div>
-      <RoundedButton
-        innerHTML="Another Advisor"
-        variant={0}
-        onClick={() =>
-          setClubAdvisors([
-            ...clubAdvisors,
-            { name: "", email: "", phoneNumber: "" },
-          ])
-        }
-      />
+      <div className="flex gap-[31px]">
+          <RoundedButton
+            innerHTML="Another Advisor"
+            variant={0}
+            onClick={() =>
+              setClubAdvisors([
+                ...clubAdvisors,
+                { name: "", email: "", phoneNumber: "" },
+              ])
+            }
+          />
+          <RoundedButton innerHTML="Save and Continue" variant={0} />
+      </div>
     </div>
   );
 }
@@ -61,7 +64,7 @@ function ClubAdvisorField(props) {
 
   return (
     <div className="">
-      <h2>{`CLUB ADVISOR #${advisorIndex + 1}`}</h2>
+      <h2 className="mt-8">{`CLUB ADVISOR #${advisorIndex + 1}`}</h2>
       <div className="flex items-center flex-wrap">
         <ClubApplicationTextField
           label="Full Name"

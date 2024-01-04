@@ -7,7 +7,7 @@ export default function ClubApplicationTextField(props) {
       <p>{subtext}</p>
       <input
         type="text"
-        className="h-[40px] max-w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF"
+        className="h-[40px] w-[350px] border-solid border-[1px] border-lightGray bg-#FFFFFF"
         value={value}
         onChange={onChange}
       />

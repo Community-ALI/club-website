@@ -32,9 +32,9 @@ export default function ClubAgreementPage() {
   return (
     <div
       id="club-application-page"
-      className="flex justify-center pt-[220px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
+      className="flex justify-center py-[220px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
     >
-      <div className="bg-offWhite w-[900px]">
+      <div className="bg-offWhite w-[900px] h-fit">
         {sections[currentSection].form}
       </div>
       <div className="w-[350px]">
