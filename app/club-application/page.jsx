@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import ClubInformation from "./ClubInformation";
-import Navbar from "../components/navbar";
+import Navbar from "../reusable-components/navbar";
 
 const sections = [
   {
