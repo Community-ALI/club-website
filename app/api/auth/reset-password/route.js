@@ -6,12 +6,21 @@ export async function POST(request) {
     const token = body.token;
     const email = body.email;
     const newPassword = body.password;
-
     try {
-        // Verify the token and check expiration
-        const result = await sql`SELECT * FROM USERS WHERE Email = ${email} AND Password_reset_token = ${token} AND Password_reset_token_expiration > CURRENT_TIMESTAMP`;
-        if (result.count === 0) {
-            return new Response(JSON.stringify({ message: "Invalid or expired token" }), {
+        console.log('attempting to reset password for ' + email + ' with token ' + token)
+        // Check if the token is valid
+        const result = await sql`SELECT * FROM USERS WHERE Email = ${email} AND Password_reset_token = ${token}`;
+
+        if (result.rowCount === 0 || result.rowCount === undefined) {
+            return new Response(JSON.stringify({ message: "Invalid token" }), {
+                headers: { 'Content-Type': 'application/json' },
+                status: 400
+            });
+        }
+        // check if the token is expired
+        const currentTime = new Date();
+        if (currentTime > result.rows[0].password_reset_token_expiration) {
+            return new Response(JSON.stringify({ message: "Expired token" }), {
                 headers: { 'Content-Type': 'application/json' },
                 status: 400
             });

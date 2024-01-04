@@ -14,7 +14,6 @@ export async function POST(request) {
                 headers: { 'Content-Type': 'application/json' }
             });
         }
-        console.log(result.rows[0].password);
         // Compare the provided password with the hashed password
         const isValidPassword = await bcrypt.compare(body.password, result.rows[0].password);
         if (!isValidPassword) {
@@ -22,7 +21,6 @@ export async function POST(request) {
                 headers: { 'Content-Type': 'application/json' }
             });
         }
-
         // User is valid, create a JWT token
         const token = jwt.sign({ email: body.email }, JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
 
