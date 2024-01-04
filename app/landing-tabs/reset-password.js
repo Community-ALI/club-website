@@ -48,9 +48,9 @@ export default function PasswordReset() {
       .then((response) => response.json())
       .then((data) => {
         alert(data.message);
-        // if the password was reset successfully, redirect to the sign in page
-        if (data.message === "Password Reset") {
-          window.location.href = "/sign-in";
+        // if the password was reset successfully, reload the page and remove the token and email from the url
+        if (data.message === "Password updated successfully") {
+          window.location.href = window.location.href.split("?")[0] + "#signIn";
         }
       });
   }
