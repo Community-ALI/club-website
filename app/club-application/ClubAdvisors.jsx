@@ -1,5 +1,7 @@
 import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import ClubApplicationTextField from "./ClubApplicationTextField";
+import { useState } from "react";
+import RoundedButton from "@components/RoundedButton";
 
 export default function ClubAdvisors() {
   const [clubAdvisors, setClubAdvisors] = useState([
@@ -28,7 +30,28 @@ export default function ClubAdvisors() {
         </p>
         <hr />
       </div>
-      <div></div>
+      <div>
+        {clubAdvisors.map((advisor, index) => {
+          return (
+            <ClubAdvisorField
+              advisorIndex={index}
+              setClubAdvisors={setClubAdvisors}
+              clubAdvisors={clubAdvisors}
+              key={index}
+            />
+          );
+        })}
+      </div>
+      <RoundedButton
+        innerHTML="Another Advisor"
+        variant={0}
+        onClick={() =>
+          setClubAdvisors([
+            ...clubAdvisors,
+            { name: "", email: "", phoneNumber: "" },
+          ])
+        }
+      />
     </div>
   );
 }
@@ -44,39 +67,51 @@ function ClubAdvisorField(props) {
           label="Full Name"
           value={clubAdvisors[advisorIndex].name}
           onChange={(e) =>
-            setClubAdvisors({
-              ...clubAdvisors,
-              [advisorIndex]: {
-                ...clubAdvisors[advisorIndex],
-                name: e.target.value,
-              },
-            })
+            setClubAdvisors(
+              clubAdvisors.map((advisor, index) => {
+                if (index == advisorIndex) {
+                  return {
+                    ...advisor,
+                    name: e.target.value,
+                  };
+                }
+                return advisor;
+              })
+            )
           }
         />
         <ClubApplicationTextField
           label="School Email"
           value={clubAdvisors[advisorIndex].email}
           onChange={(e) =>
-            setClubAdvisors({
-              ...clubAdvisors,
-              [advisorIndex]: {
-                ...clubAdvisors[advisorIndex],
-                email: e.target.value,
-              },
-            })
+            setClubAdvisors(
+              clubAdvisors.map((advisor, index) => {
+                if (index == advisorIndex) {
+                  return {
+                    ...advisor,
+                    email: e.target.value,
+                  };
+                }
+                return advisor;
+              })
+            )
           }
         />
         <ClubApplicationTextField
           label="Phone Number"
           value={clubAdvisors[advisorIndex].phoneNumber}
           onChange={(e) =>
-            setClubAdvisors({
-              ...clubAdvisors,
-              [advisorIndex]: {
-                ...clubAdvisors[advisorIndex],
-                phoneNumber: e.target.value,
-              },
-            })
+            setClubAdvisors(
+              clubAdvisors.map((advisor, index) => {
+                if (index == advisorIndex) {
+                  return {
+                    ...advisor,
+                    phoneNumber: e.target.value,
+                  };
+                }
+                return advisor;
+              })
+            )
           }
         />
       </div>

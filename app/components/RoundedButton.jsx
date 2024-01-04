@@ -26,10 +26,9 @@ export default function SaveAndContinueButton(props) {
     }
   ];
 
-
   return (
     <div className="mt-8">
-      <button className={`${variants[variant].backgroundColor} ${variants[variant].backgroundColor} font-bold px-8 py-4 rounded-full`}> onClick={onClick}
+      <button onClick={onClick} className={`${variants[variant].backgroundColor} ${variants[variant].textColor} font-bold px-8 py-4 rounded-full`}> 
         {innerHTML}
       </button>
     </div>
