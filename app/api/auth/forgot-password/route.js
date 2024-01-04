@@ -34,7 +34,7 @@ export async function POST(request) {
         }
         // Email exists, send a password reset email
         const token = await generateRandomToken(32); 
-        sendEmail(body.email, "Password Reset", `Click this link to reset your password: ${process.env.URL}/reset-password/${body.email}?token=${token}`);
+        sendEmail(body.email, "Password Reset", `Click this link to reset your password: ${process.env.URL}#resetPassword?token=${token}&email=${body.email}`);
         // make the token expire in 1 hour
         const expireTime = new Date();
         expireTime.setHours(expireTime.getHours() + 1);

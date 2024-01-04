@@ -10,9 +10,14 @@ export default function ForgotPassword() {
   function clickSubmit() {
     submitRef.current.click();
   };
+  // a state variable to prevent the user from submitting the form multiple times
+  const [submitted, setSubmitted] = React.useState(false);
 
   function submitForm(e) {
     e.preventDefault();
+    // if the form has already been submitted, don't submit it again
+    if (submitted) return;
+    setSubmitted(true);
     fetch("/api/auth/forgot-password", {
       method: "POST",
       headers: {
