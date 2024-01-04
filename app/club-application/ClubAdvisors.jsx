@@ -28,6 +28,7 @@ export default function ClubAdvisors() {
         </p>
         <hr />
       </div>
+      <div></div>
     </div>
   );
 }
