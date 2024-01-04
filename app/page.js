@@ -22,14 +22,14 @@ export default function LandingPage() {
 
   // Effect to handle URL hash on page load
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
+    const hash = window.location.hash.replace("#", "").split("?")[0];
     if (hash) setCurrentPage(hash);
   }, []);
 
   // Effect to handle URL hash change
   useEffect(() => {
     const handleHashChange = () => {
-      const newHash = window.location.hash.replace("#", "");
+      const newHash = window.location.hash.replace("#", "").split("?")[0];
       setCurrentPage(newHash);
     };
 
