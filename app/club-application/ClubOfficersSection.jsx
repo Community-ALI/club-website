@@ -56,7 +56,7 @@ export default function ClubOfficersSection() {
   const gradeLevels = ["Freshman", "Sophomore", "Junior", "Senior"];
 
   return (
-    <div className="p-12">
+    <div className="py-12">
       <ClubApplicationHeaderSection sectionTitle="Club Officers" />
       <p className="pt-8">
         The following are the officers for the club. Each officer must be a
@@ -99,21 +99,23 @@ function OfficerField(props) {
   return (
     <div>
       {!isRequired ? (
-        <ClubApplicationRadioField
-          label={`Do you have a ${clubOfficers[officerIndex].role}?`}
-          subtext="This position is not required but is recommended"
-          value={showOfficerField ? "Yes" : "No"}
-          onChange={(e) => setShowOfficerField(e.target.value === "Yes")}
-          options={["Yes", "No"]}
-          checkedValue={showOfficerField ? "Yes" : "No"}
-        />
+        <div className="pb-8 px-12">
+          <ClubApplicationRadioField
+            label={`Do you have a ${clubOfficers[officerIndex].role}?`}
+            subtext="This position is not required but is recommended"
+            value={showOfficerField ? "Yes" : "No"}
+            onChange={(e) => setShowOfficerField(e.target.value === "Yes")}
+            options={["Yes", "No"]}
+            checkedValue={showOfficerField ? "Yes" : "No"}
+          />
+        </div>
       ) : (
         <></>
       )}
 
       {showOfficerField ? (
-        <div>
-          <h2 className="mt-8">{clubOfficers[officerIndex].role}</h2>
+        <div className={`py-8 px-12 ${!isRequired ? "bg-veryLightGray" : ""}`}>
+          <h2>{clubOfficers[officerIndex].role}</h2>
 
           <div className="px-8">
             <ClubApplicationTextField
