@@ -1,21 +1,26 @@
 import jwt from 'jsonwebtoken';
 import { sql } from "@vercel/postgres";
+import bcrypt from 'bcrypt';
 
 const JWT_SECRET = 'your_secret_key'; // Replace with a secure key
 
 export async function POST(request) {
     const body = await request.json();
     try {
-        const result = await sql`SELECT * FROM USERS WHERE Email = ${body.email} AND Password = ${body.password}`;
+        // Fetch the user's hashed password from the database
+        const result = await sql`SELECT * FROM USERS WHERE Email = ${body.email}`;
         if (result.count === 0) {
-            const data = { message: "Email or password incorrect" };
-            return new Response(JSON.stringify(data), {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+            return new Response(JSON.stringify({ message: "Email or password incorrect" }), {
+                headers: { 'Content-Type': 'application/json' }
             });
         }
-
+        // Compare the provided password with the hashed password
+        const isValidPassword = await bcrypt.compare(body.password, result.rows[0].password);
+        if (!isValidPassword) {
+            return new Response(JSON.stringify({ message: "Email or password incorrect" }), {
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
         // User is valid, create a JWT token
         const token = jwt.sign({ email: body.email }, JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
 
@@ -26,12 +31,10 @@ export async function POST(request) {
             }
         });
     } catch (err) {
-        console.log(err);
-        const data = { message: "Internal server error" };
-        return new Response(JSON.stringify(data), {
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        console.error(err);
+        return new Response(JSON.stringify({ message: "Internal server error" }), {
+            headers: { 'Content-Type': 'application/json' },
+            status: 500
         });
     }
 }
