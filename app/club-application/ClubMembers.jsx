@@ -43,7 +43,7 @@ export default function ClubAdvisors() {
       <div className="flex gap-[31px]">
         <RoundedButton
           innerHTML="Another Advisor"
-          variant={0}
+          variant={1}
           onClick={() =>
             setClubMembers([
               ...clubMembers,
