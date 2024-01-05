@@ -3,6 +3,7 @@ import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import ClubApplicationTextField from "./ClubApplicationTextField";
 import ClubApplicationSelectField from "./ClubApplicationSelectField";
 import ClubApplicationRadioField from "./ClubApplicationRadioField";
+import RounudedButton from "@components/RoundedButton";
 
 export default function ClubOfficersSection() {
   const [clubOfficers, setClubOfficers] = useState([
@@ -75,6 +76,10 @@ export default function ClubOfficersSection() {
           />
         );
       })}
+      <hr />
+      <div className="mt-8 px-12">
+        <RounudedButton innerHTML="Save and Continue" variant={0} />
+      </div>
     </div>
   );
 }
