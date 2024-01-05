@@ -1,9 +1,9 @@
 'use client';
 import React, { useState, useEffect } from "react";
-import Navbar from "./reusable-components/navbar";
+import Navbar from "./components/navbar";
 import Home from "./landing-tabs/home";
-import Title from "./reusable-components/title";
-import Deadline from "./reusable-components/deadline";
+import Title from "./components/title";
+import Deadline from "./components/deadline";
 import SignIn from "./landing-tabs/sign-in";
 import CreateAccount from "./landing-tabs/create-account";
 import ContactInfo from "./landing-tabs/contact-info";
@@ -12,7 +12,7 @@ import ForgotPassword from "./landing-tabs/forgot-password";
 import ResetPassword from "./landing-tabs/reset-password";
 
 export default function LandingPage() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState("");
 
   // Function to update the current page and the URL hash
   const handlePageChange = (newPage) => {
@@ -23,6 +23,8 @@ export default function LandingPage() {
   // Effect to handle URL hash on page load
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
+    if (hash === "") setCurrentPage("home");
+    else
     if (hash) setCurrentPage(hash);
   }, []);
 

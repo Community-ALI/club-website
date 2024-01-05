@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef} from "react";
-import SectionTitle from "../reusable-components/section-title";
-import MainButton from "../reusable-components/main-button";
-import FormInput from "../reusable-components/form-input";
+import SectionTitle from "../components/section-title";
+import MainButton from "../components/main-button";
+import FormInput from "../components/form-input";
 
 export default function SignIn( {setCurrentPage}) {
   const submitRef = useRef(null);
@@ -29,7 +29,11 @@ export default function SignIn( {setCurrentPage}) {
         if(data.message === "Success"){
           console.log(data.token);
           localStorage.setItem('token', data.token);
-          setCurrentPage('home');
+          let currentUrl = window.location.href; // get the current URL
+          // remove the hash from the URL
+          currentUrl = currentUrl.replace("#signIn", "");
+          // redirect to the current URL
+          window.location.href = currentUrl;
         }
         else {
           alert(data.message);
