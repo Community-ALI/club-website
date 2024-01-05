@@ -3,6 +3,7 @@ import { useState } from "react";
 import ClubInformation from "./ClubInformation";
 import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
+import ClubMembers from "./ClubMembers";
 
 const sections = [
   {
@@ -19,6 +20,7 @@ const sections = [
   },
   {
     title: "CLUB MEMBER ROSTER",
+    form: <ClubMembers />,
   },
   {
     title: "CLUB AGREEMENT",
