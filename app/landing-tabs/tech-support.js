@@ -1,5 +1,5 @@
-import SectionTitle from "../reusable-components/section-title";
-import MainButton from "../reusable-components/main-button";
+import SectionTitle from "../components/section-title";
+import MainButton from "../components/main-button";
 
 const InputField = ( {title, type, placeholder} ) => (
   <div className="w-full">

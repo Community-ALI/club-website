@@ -1,4 +1,4 @@
-import SectionTitle from "../reusable-components/section-title";
+import SectionTitle from "../components/section-title";
 
 const ContactBox = ({ title, image, name, phone, email, emailto }) => (
   <div

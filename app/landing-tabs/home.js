@@ -1,5 +1,5 @@
-import MainButton from "../reusable-components/main-button";
-import SectionTitle from "../reusable-components/section-title";
+import MainButton from "../components/main-button";
+import SectionTitle from "../components/section-title";
 
 export default function Home() {
   return (

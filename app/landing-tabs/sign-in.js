@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef} from "react";
-import SectionTitle from "../reusable-components/section-title";
-import MainButton from "../reusable-components/main-button";
-import FormInput from "../reusable-components/form-input";
+import SectionTitle from "../components/section-title";
+import MainButton from "../components/main-button";
+import FormInput from "../components/form-input";
 
 export default function SignIn( {setCurrentPage}) {
   const submitRef = useRef(null);
