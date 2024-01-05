@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import ClubApplicationTextField from "./ClubApplicationTextField";
+import ClubApplicationSelectField from "./ClubApplicationSelectField";
 
 export default function ClubOfficersSection() {
   const [clubOfficers, setClubOfficers] = useState([
@@ -14,22 +15,23 @@ export default function ClubOfficersSection() {
     },
   ]);
 
+  const gradeLevels = ["Freshman", "Sophomore", "Junior", "Senior"];
+
   return (
     <div>
       <ClubApplicationHeaderSection sectionTitle="Club Officers" />
-      <div>
         <p>
           The following are the officers for the club. Each officer must be a
           currently enrolled student at Modesto Junior College.
         </p>
         <hr />
-      </div>
+        <OfficerField officerIndex={0} setClubOfficers={setClubOfficers} clubOfficers={clubOfficers} gradeLevels={gradeLevels} />
     </div>
   );
 }
 
 function OfficerField(props) {
-  const { officerIndex, setClubOfficers, clubOfficers } = props;
+  const { officerIndex, setClubOfficers, clubOfficers, gradeLevels } = props;
   function setOfficerField(field, value) {
     setClubOfficers(
       clubOfficers.map((officer, index) =>
@@ -51,7 +53,6 @@ function OfficerField(props) {
         label="School Email"
         value={clubOfficers[officerIndex].email}
         onChange={(e) => setOfficerField("email", e.target.value)}
-        
       />
 
       <ClubApplicationTextField
@@ -66,7 +67,12 @@ function OfficerField(props) {
         onChange={(e) => setOfficerField("major", e.target.value)}
       />
 
-      
+      <ClubApplicationSelectField
+        label="Grade Level"
+        value={clubOfficers[officerIndex].gradeLevel}
+        onChange={(e) => setOfficerField("gradeLevel", e.target.value)}
+        options={gradeLevels}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ClubInformation from "./ClubInformation";
 import ClubAdvisors from "./ClubAdvisors";
+import ClubOfficers from "./ClubOfficersSection";
 
 const sections = [
   {
@@ -14,6 +15,7 @@ const sections = [
   },
   {
     title: "CLUB OFFICERS",
+    form: <ClubOfficers />,
   },
   {
     title: "CLUB MEMBER ROSTER",
