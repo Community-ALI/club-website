@@ -58,7 +58,7 @@ export default function ClubOfficersSection() {
   return (
     <div className="py-12">
       <ClubApplicationHeaderSection sectionTitle="Club Officers" />
-      <p className="pt-8">
+      <p className="pt-8 px-12">
         The following are the officers for the club. Each officer must be a
         currently enrolled student at Modesto Junior College.
       </p>
