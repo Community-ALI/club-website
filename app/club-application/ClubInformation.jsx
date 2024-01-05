@@ -6,20 +6,29 @@ import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import ClubApplicationRadioField from "./ClubApplicationRadioField";
 import RoundedButton from "@components/RoundedButton";
 
-const ClubInformation = () => {
+const ClubInformation = (props) => {
+  const { club, setClub } = props;
+
   const [ClubInformation, setClubInformation] = useState({
-    clubName: "",
-    meetingDaysAndTime: "",
-    meetingLocation: "",
-    buildingAndRoomNumber: "",
-    zoomLink: "",
+    clubName: club.clubName,
+    meetingDaysAndTime: club.meetingDaysAndTime,
+    meetingLocation: club.meetingLocation,
+    buildingAndRoomNumber: club.buildingAndRoomNumber,
+    zoomLink: club.zoomLink,
   });
 
   const meetingLocationOptions = ["In Person", "Online/Zoom", "Both"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
+    setClub({
+      ...club,
+      clubName: ClubInformation.clubName,
+      meetingDaysAndTime: ClubInformation.meetingDaysAndTime,
+      meetingLocation: ClubInformation.meetingLocation,
+      buildingAndRoomNumber: ClubInformation.buildingAndRoomNumber,
+      zoomLink: ClubInformation.zoomLink,
+    });
   };
 
   return (
@@ -107,7 +116,11 @@ const ClubInformation = () => {
       </div>
       <div className="px-20 pb-12">
         <hr />
-        <RoundedButton innerHTML="Save and Continue" variant={0} />
+        <RoundedButton
+          innerHTML="Save and Continue"
+          variant={0}
+          onClick={handleSubmit}
+        />
       </div>
     </form>
   );
