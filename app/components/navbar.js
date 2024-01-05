@@ -116,6 +116,8 @@ export default function Navbar({ setCurrentPage }) {
             localStorage.removeItem('token'); // remove the token from local storage
             setCurrentPage('signIn');
             closeMobileMenu();
+            // reload the page to update the navbar
+            setToken(null);
           }}
           >
             {token ? 'Sign Out' : 'Sign In'}
@@ -172,6 +174,7 @@ export default function Navbar({ setCurrentPage }) {
            onClick={() => {
             localStorage.removeItem('token'); // remove the token from local storage
             setCurrentPage('signIn');
+            setToken(null);
           }
            }>
               {token ? 'Sign Out' : 'Sign In'}

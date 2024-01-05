@@ -29,7 +29,11 @@ export default function SignIn( {setCurrentPage}) {
         if(data.message === "Success"){
           console.log(data.token);
           localStorage.setItem('token', data.token);
-          setCurrentPage('home');
+          let currentUrl = window.location.href; // get the current URL
+          // remove the hash from the URL
+          currentUrl = currentUrl.replace("#signIn", "");
+          // redirect to the current URL
+          window.location.href = currentUrl;
         }
         else {
           alert(data.message);
