@@ -4,6 +4,7 @@ import ClubInformation from "./ClubInformation";
 import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
+import ClubAgreemet from "./ClubAgreement";
 
 const sections = [
   {
@@ -24,6 +25,7 @@ const sections = [
   },
   {
     title: "CLUB AGREEMENT",
+    form: <ClubAgreemet />,
   },
   {
     title: "SUBMIT APPLICATION",

@@ -2,7 +2,7 @@ export default function ClubApplicationTextField(props) {
   const { label, subtext, value, onChange } = props;
 
   return (
-    <div className="flex flex-col gap-2 mt-8 flex-1">
+    <div className="flex flex-col gap-2 mt-8">
       <label className="text-lightBlue font-bold text-lg">{label}</label>
       <p>{subtext}</p>
       <input
