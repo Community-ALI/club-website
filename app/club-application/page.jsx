@@ -5,34 +5,76 @@ import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
-
-const sections = [
-  {
-    title: "CLUB INFORMATION",
-    form: <ClubInformation />,
-  },
-  {
-    title: "CLUB ADVISORS",
-    form: <ClubAdvisors />,
-  },
-  {
-    title: "CLUB OFFICERS",
-    form: <ClubOfficers />,
-  },
-  {
-    title: "CLUB MEMBER ROSTER",
-    form: <ClubMembers />,
-  },
-  {
-    title: "CLUB AGREEMENT",
-    form: <ClubAgreemet />,
-  },
-  {
-    title: "SUBMIT APPLICATION",
-  },
-];
+import SubmitApplication from "./SubmitApplication";
 
 export default function ClubAgreementPage() {
+  const [club, setClub] = useState({
+    clubInformation: {
+      clubName: "",
+      meetingDaysAndTime: "",
+      meetingLocation: "",
+      buildingAndRoomNumber: "",
+      zoomLink: "",
+    }
+  });
+
+  const [sections, setSections] = useState([
+    {
+      title: "CLUB INFORMATION",
+      form: <ClubInformation club={club} setClub={handleClubChange} />,
+    },
+    {
+      title: "CLUB ADVISORS",
+      form: <ClubAdvisors />,
+    },
+    {
+      title: "CLUB OFFICERS",
+      form: <ClubOfficers />,
+    },
+    {
+      title: "CLUB MEMBER ROSTER",
+      form: <ClubMembers />,
+    },
+    {
+      title: "CLUB AGREEMENT",
+      form: <ClubAgreemet />,
+    },
+    {
+      title: "SUBMIT APPLICATION",
+      form: <SubmitApplication form={club} />,
+    },
+  ]);
+
+  function handleClubChange(newClub) {
+    setClub(newClub);
+    setSections([
+      {
+        title: "CLUB INFORMATION",
+        form: <ClubInformation club={newClub} setClub={handleClubChange} />,
+      },
+      {
+        title: "CLUB ADVISORS",
+        form: <ClubAdvisors />,
+      },
+      {
+        title: "CLUB OFFICERS",
+        form: <ClubOfficers />,
+      },
+      {
+        title: "CLUB MEMBER ROSTER",
+        form: <ClubMembers />,
+      },
+      {
+        title: "CLUB AGREEMENT",
+        form: <ClubAgreemet />,
+      },
+      {
+        title: "SUBMIT APPLICATION",
+        form: <SubmitApplication form={newClub} />,
+      },
+    ])
+  };
+
   const [currentSection, setCurrentSection] = useState(0);
   return (
     <div
@@ -50,8 +92,7 @@ export default function ClubAgreementPage() {
           </div>
           {sections.map((section, index) => {
             const bgColor = index != 5 ? "bg-veryLightGray" : "bg-while";
-            const selectionColor =
-              index != 5 ? "bg-lightGray" : "bg-lightBlue";
+            const selectionColor = index != 5 ? "bg-lightGray" : "bg-lightBlue";
             return (
               <button
                 className={`hover:cursor-pointer h-[60px] w-full 
