@@ -10,24 +10,19 @@ const ClubInformation = (props) => {
   const { club, setClub } = props;
 
   const [ClubInformation, setClubInformation] = useState({
-    clubName: club.clubName,
-    meetingDaysAndTime: club.meetingDaysAndTime,
-    meetingLocation: club.meetingLocation,
-    buildingAndRoomNumber: club.buildingAndRoomNumber,
-    zoomLink: club.zoomLink,
+    clubName: club.clubName || "",
+    meetingDaysAndTime: club.meetingDaysAndTime || "",
+    meetingLocation: club.meetingLocation || "",
+    buildingAndRoomNumber: club.buildingAndRoomNumber || "",
+    zoomLink: club.zoomLink || "",
   });
 
   const meetingLocationOptions = ["In Person", "Online/Zoom", "Both"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setClub({
-      ...club,
-      clubName: ClubInformation.clubName,
-      meetingDaysAndTime: ClubInformation.meetingDaysAndTime,
-      meetingLocation: ClubInformation.meetingLocation,
-      buildingAndRoomNumber: ClubInformation.buildingAndRoomNumber,
-      zoomLink: ClubInformation.zoomLink,
+    setClub({ 
+      ...club, clubInformation: ClubInformation
     });
   };
 

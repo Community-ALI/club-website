@@ -5,20 +5,23 @@ import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
+import SubmitApplication from "./SubmitApplication";
 
 export default function ClubAgreementPage() {
   const [club, setClub] = useState({
-    clubName: "",
-    meetingDaysAndTime: "",
-    meetingLocation: "",
-    buildingAndRoomNumber: "",
-    zoomLink: "",
+    clubInformation: {
+      clubName: "",
+      meetingDaysAndTime: "",
+      meetingLocation: "",
+      buildingAndRoomNumber: "",
+      zoomLink: "",
+    }
   });
 
   const [sections, setSections] = useState([
     {
       title: "CLUB INFORMATION",
-      form: <ClubInformation club={club} setClub={setClub} />,
+      form: <ClubInformation club={club} setClub={handleClubChange} />,
     },
     {
       title: "CLUB ADVISORS",
@@ -38,8 +41,39 @@ export default function ClubAgreementPage() {
     },
     {
       title: "SUBMIT APPLICATION",
+      form: <SubmitApplication form={club} />,
     },
   ]);
+
+  function handleClubChange(newClub) {
+    setClub(newClub);
+    setSections([
+      {
+        title: "CLUB INFORMATION",
+        form: <ClubInformation club={newClub} setClub={handleClubChange} />,
+      },
+      {
+        title: "CLUB ADVISORS",
+        form: <ClubAdvisors />,
+      },
+      {
+        title: "CLUB OFFICERS",
+        form: <ClubOfficers />,
+      },
+      {
+        title: "CLUB MEMBER ROSTER",
+        form: <ClubMembers />,
+      },
+      {
+        title: "CLUB AGREEMENT",
+        form: <ClubAgreemet />,
+      },
+      {
+        title: "SUBMIT APPLICATION",
+        form: <SubmitApplication form={newClub} />,
+      },
+    ])
+  };
 
   const [currentSection, setCurrentSection] = useState(0);
   return (
