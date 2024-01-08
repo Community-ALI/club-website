@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { sql } from "@vercel/postgres";
 import bcrypt from 'bcrypt';
 
-const JWT_SECRET = 'your_secret_key'; // Replace with a secure key
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function POST(request) {
     const body = await request.json();
