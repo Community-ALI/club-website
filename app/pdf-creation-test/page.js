@@ -98,8 +98,10 @@ export default function PDFCreationTestPage() {
         <>
             <div className="text-darkBlue">
                 <button onClick={generatePDF}>Generate PDF</button>
-                <div id="pdf">
-                    <PdfComponent title="Test Title" text="Test Text" />
+                <div className='hidden'>
+                    <div id="pdf">
+                        <PdfComponent title="Test Title" text="Test Text" />
+                    </div>
                 </div>
             </div>
         </>
