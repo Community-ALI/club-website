@@ -6,6 +6,7 @@ import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
+import Navbar from "../components/navbar";
 
 export default function ClubAgreementPage() {
   const [club, setClub] = useState({
@@ -77,17 +78,18 @@ export default function ClubAgreementPage() {
 
   const [currentSection, setCurrentSection] = useState(0);
   return (
-    <div
+    <>
+    <Navbar></Navbar>
+        <div
       id="club-application-page"
-      className="flex justify-center py-[220px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
+      className="flex justify-center pb-[220px] pt-[80px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
     >
-      <div className="bg-offWhite w-[900px] h-fit">
+      <div className="bg-offWhite w-[850px] h-fit">
         {sections[currentSection].form}
       </div>
-      <div className="w-[350px]">
+      <div className="w-[300px]">
         <div className="bg-offWhite">
-          <div className="bg-darkBlue flex items-center text-white w-full pl-12 h-[61px]">
-            {/* TODO: Add arrow icon */}
+          <div className="bg-darkBlue flex items-center text-white w-full pl-10 h-[61px]">
             <h2>REGISTRATION PACKET</h2>
           </div>
           {sections.map((section, index) => {
@@ -100,7 +102,7 @@ export default function ClubAgreementPage() {
                 key={index}
                 onClick={() => setCurrentSection(index)}
               >
-                <h2 className="pl-12 text-left">{section.title}</h2>
+                <h2 className="pl-10 text-left">{section.title}</h2>
               </button>
             );
           })}
@@ -108,5 +110,7 @@ export default function ClubAgreementPage() {
         <div className="bg-offWhite"></div>
       </div>
     </div>
+    </>
+
   );
 }
