@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { sql } from "@vercel/postgres";
 import bcrypt from 'bcrypt';
 
-const JWT_SECRET = 'your_secret_key'; // Replace with a secure key
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function POST(request) {
     const body = await request.json();
@@ -21,8 +21,9 @@ export async function POST(request) {
                 headers: { 'Content-Type': 'application/json' }
             });
         }
-        // User is valid, create a JWT token
-        const token = jwt.sign({ email: body.email }, JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
+        // User is valid, create a JWT token using the user's ID
+        const user = result.rows[0];
+        const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
 
         const data = { message: "Success", token: token };
         return new Response(JSON.stringify(data), {
