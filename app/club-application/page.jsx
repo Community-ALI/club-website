@@ -6,6 +6,7 @@ import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
+import NavbarForApplication from "../components/navbar-for-application";
 
 export default function ClubAgreementPage() {
   const [club, setClub] = useState({
@@ -77,30 +78,31 @@ export default function ClubAgreementPage() {
 
   const [currentSection, setCurrentSection] = useState(0);
   return (
-    <div
+    <>
+    <NavbarForApplication></NavbarForApplication>
+        <div
       id="club-application-page"
-      className="flex justify-center py-[220px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
+      className="flex justify-center pb-[220px] pt-[80px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
     >
-      <div className="bg-offWhite w-[900px] h-fit">
+      <div className="bg-offWhite w-[850px] h-fit">
         {sections[currentSection].form}
       </div>
-      <div className="w-[350px]">
+      <div className="w-[300px] text-[15px]">
         <div className="bg-offWhite">
-          <div className="bg-darkBlue flex items-center text-white w-full pl-12 h-[61px]">
-            {/* TODO: Add arrow icon */}
-            <h2>REGISTRATION PACKET</h2>
+          <div className="bg-darkBlue flex items-center text-white w-full pl-8 h-[61px]">
+            <h1 className="tracking-wider">REGISTRATION PACKET</h1>
           </div>
           {sections.map((section, index) => {
             const bgColor = index != 5 ? "bg-veryLightGray" : "bg-while";
             const selectionColor = index != 5 ? "bg-lightGray" : "bg-lightBlue";
             return (
               <button
-                className={`hover:cursor-pointer h-[60px] w-full 
+                className={`hover:cursor-pointer h-[60px] w-full border-b-darkGray border-b-[1px]
               ${currentSection != index ? bgColor : selectionColor}`}
                 key={index}
                 onClick={() => setCurrentSection(index)}
               >
-                <h2 className="pl-12 text-left">{section.title}</h2>
+                <h2 className="pl-8 text-left">{section.title}</h2>
               </button>
             );
           })}
@@ -108,5 +110,7 @@ export default function ClubAgreementPage() {
         <div className="bg-offWhite"></div>
       </div>
     </div>
+    </>
+
   );
 }

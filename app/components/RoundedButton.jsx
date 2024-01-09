@@ -7,24 +7,28 @@ export default function SaveAndContinueButton(props) {
       backgroundColor: "bg-lightBlue",
       textColor: "text-white",
       borderColor: "border-none",
+      hoverBackgroundColor: "hover:bg-darkBlue",
     },
     {
       name: "outline",
       backgroundColor: "bg-transparent",
       textColor: "text-lightBlue",
       borderColor: "border-lightBlue border-[2px]",
+      hoverBackgroundColor: "hover:text-darkBlue hover:border-darkBlue",
     },
     {
       name: "disabled",
       backgroundColor: "bg-gray-400",
       textColor: "text-white",
       borderColor: "border-none",
+      hoverBackgroundColor: "",
     },
     {
       name: "white-outline",
       backgroundColor: "bg-transparent",
       textColor: "text-white",
       borderColor: "border-white border-[2px]",
+      hoverBackgroundColor: "hover:bg-white hover:text-darkBlue",
     },
   ];
 
@@ -32,7 +36,7 @@ export default function SaveAndContinueButton(props) {
     <div className="mt-8">
       <button
         onClick={onClick}
-        className={`${variants[variant].backgroundColor} ${variants[variant].textColor} ${variants[variant].borderColor} font-bold px-8 py-4 rounded-full`}
+        className={`${variants[variant].backgroundColor} ${variants[variant].textColor} ${variants[variant].borderColor} ${variants[variant].hoverBackgroundColor} tracking-widest text-[12px] px-8 py-3 rounded-full duration-200 ease`}
       >
         {innerHTML}
       </button>

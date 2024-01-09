@@ -3,9 +3,9 @@ import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 export default function SubmitApplication(props) {
   const { form } = props;
   return (
-    <div className="py-12">
+    <div className="p-12">
       <ClubApplicationHeaderSection title="SUBMIT APPLICATION" />
-      <p className="px-12">
+      <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3">
         Before you submit your application, please take a moment to carefully
         review all the information you have provided. Make sure that every
         detail is accurate and complete, as you will not be able to make any
@@ -14,9 +14,9 @@ export default function SubmitApplication(props) {
         of your application.{" "}
       </p>
       <hr />
-      <div className="flex justify-between px-12 my-8">
+      <div className="flex justify-between my-8">
         <h2>FOR SPRING SEMESTER 2024</h2>
-        <a className="text-lightBlue" href="https://youtu.be/dQw4w9WgXcQ">
+        <a className="text-lightBlue font-[Nunito] text-[14px] underline underline-offset-4" href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
           Click here to receive a copy
         </a>
       </div>
@@ -34,7 +34,7 @@ function ReviewSection(props) {
     return spacedSentence.charAt(0).toUpperCase() + spacedSentence.slice(1);
   }
   return (
-    <div className="mx-12 border-solid border-[2px] p-12 border-lightGray">
+    <div className="border-solid border-[2px] p-12 border-lightGray">
       <h1 className="mb-12 text-[20px]">{formatCamelCase(title).toUpperCase()}</h1>
       {Object.entries(form).map(([key, value]) => (
         <div key={key} className="flex border-b-2 border-solid border-lightGray py-2">

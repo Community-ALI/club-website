@@ -26,13 +26,13 @@ export default function ClubAgreemet() {
   }
 
   return (
-    <div className="py-12">
+    <div className="p-12">
       <ClubApplicationHeaderSection sectionTitle="Club Agreement" />
       <ClubAgreementText />
-      <div className="px-12">
+      <div>
         {clubAgreementSignatures.map((signature, index) => {
           return (
-            <div className="flex flex-wrap gap-[60px] justify-center" key={index}>
+            <div className="flex flex-wrap gap-[60px] justify-start px-3" key={index}>
               <ClubApplicationTextField
                 label={clubAgreementSignatures[index].role + " Signature"}
                 onChange={(e) => ChangeSignatureField("signature", index, e)}
@@ -42,8 +42,8 @@ export default function ClubAgreemet() {
           );
         })}
       </div>
-        <hr />
-        <div className="px-12">
+        <hr className="border-lightGray border-[.5px] mt-[50px]"></hr>
+        <div>
             <RoundedButton innerHTML="Save and Continue" variant={0} />
         </div>
       </div>
@@ -52,73 +52,65 @@ export default function ClubAgreemet() {
 
 function ClubAgreementText() {
   return (
-    <div className="px-12 mt-8">
+    <div className="px-3 mt-8 font-[Nunito]">
       <p>
-        The membership of the MJC Business Club has agreed to abide by the
-        Inter-Club Council’s Standing Orders and the ASMJC Constitution and
+        The membership of the <b>INSERT CLUB NAME</b> has agreed to abide by the
+        Inter-Club {"Council's"} Standing Orders and the ASMJC Constitution and
         Bylaws.
-      </p>
+      </p> 
+      <br></br>
 
       <p>
         We are aware of and agree and abide by the following rights, privileges,
         and responsibilities:
       </p>
-
-      <ol>
-        <li>
+      <br></br>
+      <b>
           <p>
-            We must attend all Inter Club Council Meetings. If we are absent
-            from three consecutive meetings, our active status shall be
+            1. We must attend all Inter Club Council Meetings. If we are absent
+            from one consecutive meeting, our active status shall be
             suspended and our funds will be frozen. Meetings are held the second
-            Friday of the month from 1pm-2:30 pm in the East Campus Fireside
-            Lounge. With exception of March 10th which will be from 3pm-4:30pm.
-            (mandatory) (change this)
+            Friday of the month from 1-2pm in the East Campus Student Center on Feb 9th, March 8th, and April 12th.
           </p>
-        </li>
-        <br />
-        <li>
+        <br></br>
           <p>
-            If our club is inactive for two consecutive semesters, all club
+            2. If our club is inactive for two consecutive semesters, all club
             funds and assets shall be absorbed into the ASMJC club development
             fund.
           </p>
-        </li>
-        <br />
-        <li>
+          <br></br>
           <p>
-            We shall ensure that all records pertaining to our club, including
+            3. We shall ensure that all records pertaining to our club, including
             but not limited to our Constitution and Bylaws, Officer Roster, and
             Membership Roster will be kept updated and we shall promptly inform
             the Club Coordinator of any changes.
           </p>
-        </li>
-        <br />
-        <li>
+          <br></br>
           <p>
-            All club funds shall be kept in an on-campus account in the Business
+            4. All club funds shall be kept in an on-campus account in the Business
             Office under the support of ASMJC.
           </p>
-        </li>
-        <br />
-        <li>
+          <br></br>
+
           <p>
-            We must have an active Advisor who attends all club functions and
+            5. We must have an active Advisor who attends all club functions and
             verifies officer eligibility.
           </p>
-        </li>
-        <br />
-        <li>
+
+          <br></br>
+
           <p>
-            Club officers must maintain a 2.0 grade point average or higher to
+            6. Club officers must maintain a 2.0 grade point average or higher to
             hold office.
           </p>
-        </li>
-        <br />
-        <li>
-          <p>Club officers must be enrolled in 5 units to hold office.</p>
-        </li>
-        <br />
-      </ol>
+
+          <br></br>
+
+          <p>7. Club officers must be enrolled in 5 units to hold office.</p>
+
+          <br></br>
+          </b>
+
     </div>
   );
 }

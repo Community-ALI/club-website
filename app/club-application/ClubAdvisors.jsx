@@ -2,6 +2,8 @@ import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import ClubApplicationTextField from "./ClubApplicationTextField";
 import { useState } from "react";
 import RoundedButton from "@components/RoundedButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 
 export default function ClubAdvisors() {
   const [clubAdvisors, setClubAdvisors] = useState([
@@ -9,26 +11,27 @@ export default function ClubAdvisors() {
       name: "",
       email: "",
       phoneNumber: "",
-    },
-    {
-      name: "",
-      email: "",
-      phoneNumber: "",
+      employeeTitle: "",
     },
   ]);
+
+  const removeAdvisor = (indexToRemove) => {
+    setClubAdvisors(clubAdvisors.filter((_, index) => index !== indexToRemove));
+  };
+
 
   return (
     <div className="p-12">
       <ClubApplicationHeaderSection sectionTitle="Club Advisors" />
-      <div className="pt-8">
-        <p>
+      <div>
+        <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3">
           Only one advisor is required for a club to be active. An advisor must
           attend ALL club functions, including: meetings, activities, and trips.
           They must also sign off on all club functions, including: meetings,
           activities, and trips to ensure that all of the above items have been
           met or addressed.
         </p>
-        <hr />
+        <hr className="border-lightGray border-[.5px] mt-[20px]"></hr>
       </div>
       <div>
         {clubAdvisors.map((advisor, index) => {
@@ -37,15 +40,16 @@ export default function ClubAdvisors() {
               advisorIndex={index}
               setClubAdvisors={setClubAdvisors}
               clubAdvisors={clubAdvisors}
+              removeAdvisor={removeAdvisor}
               key={index}
             />
           );
         })}
       </div>
-      <div className="flex gap-[31px]">
+      <div className="flex gap-[60px]">
           <RoundedButton
-            innerHTML="Another Advisor"
-            variant={0}
+            innerHTML="Add Advisor"
+            variant={1}
             onClick={() =>
               setClubAdvisors([
                 ...clubAdvisors,
@@ -60,12 +64,21 @@ export default function ClubAdvisors() {
 }
 
 function ClubAdvisorField(props) {
-  const { advisorIndex, setClubAdvisors, clubAdvisors } = props;
+  const { advisorIndex, setClubAdvisors, clubAdvisors} = props;
 
   return (
-    <div className="">
-      <h2 className="mt-8">{`CLUB ADVISOR #${advisorIndex + 1}`}</h2>
-      <div className="flex items-center flex-wrap">
+    <div className="relative">
+      {advisorIndex !== 0 && (
+        <div className="absolute top-0 right-0">
+          <FontAwesomeIcon 
+            icon={faCircleMinus} 
+            className="cursor-pointer text-[20px] text-[#ff2200]" 
+            onClick={() => props.removeAdvisor(advisorIndex)} 
+          />
+        </div>
+      )}
+      <h2 className="mt-9 px-3">{`CLUB ADVISOR #${advisorIndex + 1}`}</h2>
+      <div className="flex items-center flex-wrap gap-x-[80px] px-3">
         <ClubApplicationTextField
           label="Full Name"
           value={clubAdvisors[advisorIndex].name}
@@ -117,9 +130,25 @@ function ClubAdvisorField(props) {
             )
           }
         />
+        <ClubApplicationTextField
+          label="Employee Title"
+          value={clubAdvisors[advisorIndex].email}
+          onChange={(e) =>
+            setClubAdvisors(
+              clubAdvisors.map((advisor, index) => {
+                if (index == advisorIndex) {
+                  return {
+                    ...advisor,
+                    email: e.target.value,
+                  };
+                }
+                return advisor;
+              })
+            )
+          }
+        />
       </div>
-
-      <hr />
+      <hr className="border-lightGray border-[.5px] mt-[50px]"></hr>
     </div>
   );
 }

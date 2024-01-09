@@ -11,6 +11,17 @@ export default function ClubOfficersSection() {
       role: "Club President",
       name: "",
       email: "",
+      wNumber: "",
+      phoneNumber: "",
+      major: "",
+      gradeLevel: "",
+      isRequired: true,
+    },
+    {
+      role: "ICC Representative",
+      name: "",
+      email: "",
+      wNumber: "",
       phoneNumber: "",
       major: "",
       gradeLevel: "",
@@ -20,6 +31,7 @@ export default function ClubOfficersSection() {
       role: "Club Vice President",
       name: "",
       email: "",
+      wNumber: "",
       phoneNumber: "",
       major: "",
       gradeLevel: "",
@@ -29,6 +41,7 @@ export default function ClubOfficersSection() {
       role: "Club Secretary",
       name: "",
       email: "",
+      wNumber: "",
       phoneNumber: "",
       major: "",
       gradeLevel: "",
@@ -38,6 +51,7 @@ export default function ClubOfficersSection() {
       role: "Club Treasurer",
       name: "",
       email: "",
+      wNumber: "",
       phoneNumber: "",
       major: "",
       gradeLevel: "",
@@ -47,6 +61,7 @@ export default function ClubOfficersSection() {
       role: "Club Social Media Manager",
       name: "",
       email: "",
+      wNumber: "",
       phoneNumber: "",
       major: "",
       gradeLevel: "",
@@ -54,16 +69,16 @@ export default function ClubOfficersSection() {
     },
   ]);
 
-  const gradeLevels = ["Freshman", "Sophomore", "Junior", "Senior"];
+  const gradeLevels = ["Freshman (1st Year)", "Sophomore (2nd Year)", "Junior (3rd Year)", "Senior (4th Year)", "5+ Years"];
 
   return (
-    <div className="py-12">
+    <div className="p-12">
       <ClubApplicationHeaderSection sectionTitle="Club Officers" />
-      <p className="pt-8 px-12">
-        The following are the officers for the club. Each officer must be a
-        currently enrolled student at Modesto Junior College.
+      <p className="px-3 mt-[20px] mb-[30px] font-[Nunito] text-[15px]">
+        The following are the officers for the club. For a club to be active, a Club President and an Inter-Club Council Representative is required. 
+        These roles can only be assigned to current MJC students and all club officers are required a minimum GPA of 2.0
       </p>
-      <hr />
+      <hr className="border-lightGray border-[.5px] mb-9"></hr>
       {clubOfficers.map((officer, index) => {
         return (
           <OfficerField
@@ -76,8 +91,7 @@ export default function ClubOfficersSection() {
           />
         );
       })}
-      <hr />
-      <div className="mt-8 px-12">
+      <div className="mt-8">
         <RounudedButton innerHTML="Save and Continue" variant={0} />
       </div>
     </div>
@@ -102,9 +116,9 @@ function OfficerField(props) {
   }
 
   return (
-    <div>
+    <div className="">
       {!isRequired ? (
-        <div className="pb-8 px-12">
+        <div className="pb-8">
           <ClubApplicationRadioField
             label={`Do you have a ${clubOfficers[officerIndex].role}?`}
             subtext="This position is not required but is recommended"
@@ -119,10 +133,10 @@ function OfficerField(props) {
       )}
 
       {showOfficerField ? (
-        <div className={`py-8 px-12 ${!isRequired ? "bg-veryLightGray" : ""}`}>
-          <h2>{clubOfficers[officerIndex].role}</h2>
+        <div className={`${!isRequired ? "mt-5" : ""}`}>
+          <h2 className="px-3">{clubOfficers[officerIndex].role}</h2>
 
-          <div className="px-8">
+          <div className="flex flex-wrap gap-x-[80px] px-3">
             <ClubApplicationTextField
               label="Full Name"
               value={clubOfficers[officerIndex].name}
@@ -132,6 +146,11 @@ function OfficerField(props) {
               label="School Email"
               value={clubOfficers[officerIndex].email}
               onChange={(e) => setOfficerField("email", e.target.value)}
+            />
+            <ClubApplicationTextField
+              label="W Number"
+              value={clubOfficers[officerIndex].name}
+              onChange={(e) => setOfficerField("name", e.target.value)}
             />
             <ClubApplicationTextField
               label="Phone Number"
@@ -150,9 +169,12 @@ function OfficerField(props) {
               options={gradeLevels}
             />
           </div>
+          <hr className="border-lightGray border-[.5px] my-[40px]"></hr>
         </div>
       ) : (
-        <> </>
+        <>
+          <hr className="border-lightGray border-[.5px] my-5"></hr>
+         </>
       )}
     </div>
   );
