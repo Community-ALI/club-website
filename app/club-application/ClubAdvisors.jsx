@@ -9,11 +9,9 @@ export default function ClubAdvisors(props) {
   const {club, updateClub} = props;
 
   function handleSubmit() {
-    // add the advisors to the club object
     club.clubAdvisors = clubAdvisors;
     updateClub(club);
     console.log(club);
-    // as a test, get the JSON for the club object and print it to the console
     console.log(club.getJSON());
     props.goToNextSection();
   }
@@ -58,7 +56,7 @@ export default function ClubAdvisors(props) {
             onClick={() =>
               setClubAdvisors([
                 ...clubAdvisors,
-                { name: "", email: "", phoneNumber: "" },
+                { name: "", email: "", phoneNumber: "", title: ""},
               ])
             }
           />
@@ -140,14 +138,14 @@ function ClubAdvisorField(props) {
         />
         <ClubApplicationTextField
           label="Employee Title"
-          value={clubAdvisors[advisorIndex].email}
+          value={clubAdvisors[advisorIndex].title}
           onChange={(e) =>
             setClubAdvisors(
               clubAdvisors.map((advisor, index) => {
                 if (index == advisorIndex) {
                   return {
                     ...advisor,
-                    email: e.target.value,
+                    title: e.target.value,
                   };
                 }
                 return advisor;

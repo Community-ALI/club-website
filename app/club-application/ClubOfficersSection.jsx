@@ -100,8 +100,8 @@ function OfficerField(props) {
             />
             <ClubApplicationTextField
               label="W Number"
-              value={clubOfficers[officerIndex].name}
-              onChange={(e) => setOfficerField("name", e.target.value)}
+              value={clubOfficers[officerIndex].wNumber}
+              onChange={(e) => setOfficerField("wNumber", e.target.value)}
             />
             <ClubApplicationTextField
               label="Phone Number"
