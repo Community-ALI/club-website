@@ -2,6 +2,8 @@ import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import ClubApplicationTextField from "./ClubApplicationTextField";
 import { useState } from "react";
 import RoundedButton from "@components/RoundedButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 
 export default function ClubAdvisors() {
   const [clubMembers, setClubMembers] = useState([
@@ -15,18 +17,37 @@ export default function ClubAdvisors() {
       email: "",
       wNumber: "",
     },
+    {
+      name: "",
+      email: "",
+      wNumber: "",
+    },
+    {
+      name: "",
+      email: "",
+      wNumber: "",
+    },
+    {
+      name: "",
+      email: "",
+      wNumber: "",
+    },
   ]);
+
+  const removeMembers = (indexToRemove) => {
+    setClubMembers(clubMembers.filter((_, index) => index !== indexToRemove));
+  };
 
   return (
     <div className="p-12">
       <ClubApplicationHeaderSection sectionTitle="Club Members Roster" />
-      <div className="pt-8">
-        <p>
+      <div>
+        <p className="px-3 mt-[20px] mb-[30px] font-[Nunito] text-[15px]">
           A minimum of 5 club members are required for a club to be active.
-          Every club member that is not a club officer must be a current MJC
-          student enrolled in at least one unit for the current semester.
+          Every club member must be a current MJC student enrolled in at least one unit for the current semester.
+          <span className="font-bold"> IMPORTANT:</span> Please include the club officers in the member roster list below.
         </p>
-        <hr />
+        <hr className="border-lightGray border-[.5px]"></hr>
       </div>
       <div>
         {clubMembers.map((advisor, index) => {
@@ -36,13 +57,14 @@ export default function ClubAdvisors() {
               setClubAdvisors={setClubMembers}
               clubAdvisors={clubMembers}
               key={index}
+              removeMembers={removeMembers}
             />
           );
         })}
       </div>
-      <div className="flex gap-[31px]">
+      <div className="flex gap-[60px]">
         <RoundedButton
-          innerHTML="Another Advisor"
+          innerHTML="Add Member"
           variant={1}
           onClick={() =>
             setClubMembers([
@@ -61,9 +83,18 @@ function ClubAdvisorField(props) {
   const { advisorIndex, setClubAdvisors, clubAdvisors } = props;
 
   return (
-    <div className="">
-      <h2 className="mt-8">{`CLUB Member #${advisorIndex + 1}`}</h2>
-      <div className="flex items-center flex-wrap">
+    <div className="relative">
+        {advisorIndex > 4 && (
+        <div className="absolute top-0 right-0">
+          <FontAwesomeIcon 
+            icon={faCircleMinus} 
+            className="cursor-pointer text-[20px] text-[#ff2200]" 
+            onClick={() => props.removeMembers(advisorIndex)} 
+          />
+        </div>
+      )}
+      <h2 className="mt-8 px-3">{`CLUB Member #${advisorIndex + 1}`}</h2>
+      <div className="flex items-center flex-wrap gap-x-[80px] px-3">
         <ClubApplicationTextField
           label="Full Name"
           value={clubAdvisors[advisorIndex].name}
@@ -116,8 +147,7 @@ function ClubAdvisorField(props) {
           }
         />
       </div>
-
-      <hr />
+      <hr className="border-lightGray border-[.5px] mt-[50px]"></hr>
     </div>
   );
 }
