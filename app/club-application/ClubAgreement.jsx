@@ -40,7 +40,11 @@ export default function ClubAgreemet(props) {
       </div>
         <hr className="border-lightGray border-[.5px] mt-[50px]"></hr>
         <div>
-            <RoundedButton innerHTML="Save and Continue" variant={0} onClick={() => handleSubmit()} />
+            <RoundedButton 
+            innerHTML="Save and Continue" 
+            variant={0} 
+            onClick={props.goToNextSection}
+            />
         </div>
       </div>
   );

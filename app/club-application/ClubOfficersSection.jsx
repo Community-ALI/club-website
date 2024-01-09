@@ -39,7 +39,10 @@ export default function ClubOfficersSection(props) {
         );
       })}
       <div className="mt-8">
-        <RounudedButton innerHTML="Save and Continue" variant={0} onClick={() => handleSubmit()} />
+        <RounudedButton 
+        innerHTML="Save and Continue" 
+        variant={0} 
+        onClick={props.goToNextSection}/>
       </div>
     </div>
   );

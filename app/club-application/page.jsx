@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ClubInformation from "./ClubInformation";
 import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
@@ -297,7 +297,32 @@ export default function ClubAgreementPage() {
       });
   }
 
-  const [club, setClub] = useState(new ClubApplication());
+    const [club, setClub] = useState(new ClubApplication());
+
+    const containerRef = useRef(null);
+
+    const handleSectionClick = (index) => {
+      setCurrentSection(index);
+      containerRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+
+    // const goToNextSection = () => {
+    //   setCurrentSection((prevSection) => 
+    //     prevSection < sections.length - 1 ? prevSection + 1 : prevSection
+    //   );
+    // };
+
+    const goToNextSection = () => {
+      setCurrentSection((prevSection) => {
+        const newSection = prevSection < sections.length - 1 ? prevSection + 1 : prevSection;
+        // Scroll to the top of the container when moving to the next section
+        if (containerRef.current) {
+          containerRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+        return newSection;
+      });
+    };
+
 
   // Function to update the club state
   function updateClub(newClubData) {
@@ -315,23 +340,23 @@ export default function ClubAgreementPage() {
   const sections = [
     {
       title: "CLUB INFORMATION",
-      form: <ClubInformation club={club} updateClub={updateClub} />,
+      form: <ClubInformation club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "CLUB ADVISORS",
-      form: <ClubAdvisors club={club} updateClub={updateClub} />,
+      form: <ClubAdvisors club={club} updateClub={updateClub} goToNextSection={goToNextSection}/>,
     },
     {
       title: "CLUB OFFICERS",
-      form: <ClubOfficers club={club} updateClub={updateClub} />,
+      form: <ClubOfficers club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "CLUB MEMBER ROSTER",
-      form: <ClubMembers club={club} updateClub={updateClub} />,
+      form: <ClubMembers club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "CLUB AGREEMENT",
-      form: <ClubAgreemet club={club} updateClub={updateClub} />,
+      form: <ClubAgreemet club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "SUBMIT APPLICATION",
@@ -341,7 +366,7 @@ export default function ClubAgreementPage() {
 
   const [currentSection, setCurrentSection] = useState(0);
     return (
-      <>
+      <div ref={containerRef}>
       <NavbarForApplication></NavbarForApplication>
       <div
         id="club-application-page"
@@ -369,7 +394,8 @@ export default function ClubAgreementPage() {
                     className={`hover:cursor-pointer h-[55px] w-full border-t-darkGray border-t-[1px]
                   ${currentSection != index ? bgColor : selectionColor}`}
                     key={index}
-                    onClick={() => setCurrentSection(index)}
+                    // onClick={() => setCurrentSection(index)}
+                    onClick={() => handleSectionClick(index)}
                   >
                     <h1 className={`pl-6 text-left ${textColor}`}>{section.title}</h1>
                   </button>
@@ -393,7 +419,6 @@ export default function ClubAgreementPage() {
           </div>
         </div>
       </div>
-      </>
-
+      </div>
     );
   }
