@@ -25,6 +25,7 @@ const defaultClubOfficers = [
     major: "",
     gradeLevel: "",
     isRequired: true,
+    isUsed: true,
   },
   {
     role: "ICC Representative",
@@ -35,6 +36,7 @@ const defaultClubOfficers = [
     major: "",
     gradeLevel: "",
     isRequired: true,
+    isUsed: true,
   },
   {
     role: "Club Vice President",
@@ -45,6 +47,7 @@ const defaultClubOfficers = [
     major: "",
     gradeLevel: "",
     isRequired: false,
+    isUsed: false,
   },
   {
     role: "Club Secretary",
@@ -55,6 +58,7 @@ const defaultClubOfficers = [
     major: "",
     gradeLevel: "",
     isRequired: false,
+    isUsed: false,
   },
   {
     role: "Club Treasurer",
@@ -65,6 +69,7 @@ const defaultClubOfficers = [
     major: "",
     gradeLevel: "",
     isRequired: false,
+    isUsed: false,
   },
   {
     role: "Club Social Media Manager",
@@ -75,6 +80,7 @@ const defaultClubOfficers = [
     major: "",
     gradeLevel: "",
     isRequired: false,
+    isUsed: false,
   },
 ];
 
@@ -238,44 +244,8 @@ class ClubMember {
 export default function ClubAgreementPage() {
   function submitDraft() {
     console.log("submit draft");
-    const testJson = {
-      clubName: "Chess Club",
-      meetingDaysTimes: "Fridays at 5 PM",
-      meetingLocation: "Room 101",
-      buildingRoomNumber: "Building A, Room 101",
-      zoomLink: "https://zoom.us/j/123456789",
-      clubPresidentSignature: "John Doe",
-      dateOfPresidentSignature: "2024-01-15",
-      clubAdvisorSignature: "Jane Smith",
-      dateOfAdvisorSignature: "2024-01-16",
-      advisors: [
-        {
-          advisorID: 1,
-          name: "Advisor Name",
-          email: "advisor@example.com",
-          phoneNumber: "123-456-7890",
-        },
-      ],
-      officers: [
-        {
-          officerID: 1,
-          name: "Officer Name",
-          email: "officer@example.com",
-          phoneNumber: "234-567-8901",
-          position: "President",
-          major: "Computer Science",
-          gradeLevel: "Senior",
-        },
-      ],
-      members: [
-        {
-          memberID: 1,
-          name: "Member Name",
-          email: "member@example.com",
-          wNumber: "W1234567",
-        },
-      ],
-    };
+    // get the JSON for the club object
+    const clubJSON = club.getJSON();
     // get the token from local storage to be used in the request header
     const token = localStorage.getItem("token");
     // send a POST request to the server with the JSON data
@@ -285,7 +255,7 @@ export default function ClubAgreementPage() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(testJson),
+      body: JSON.stringify(clubJSON),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -334,7 +304,7 @@ export default function ClubAgreementPage() {
     },
     {
       title: "SUBMIT APPLICATION",
-      form: <SubmitApplication form={club} updateClub={updateClub} />,
+      form: <SubmitApplication club={club} submitDraft={submitDraft} />,
     },
   ];
 

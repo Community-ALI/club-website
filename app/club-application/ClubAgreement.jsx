@@ -9,8 +9,8 @@ export default function ClubAgreemet(props) {
 
   function ChangeSignatureField(field, index, e) {
     setClubAgreementSignatures(
-      clubAgreementSignatures.map((signature, signatureIndex) =>
-        signatureIndex === index ? signature : e.target.value
+      clubAgreementSignatures.map((signature, i) =>
+        i === index ? { ...signature, [field]: e.target.value } : signature
       )
     );
   }
