@@ -1,6 +1,6 @@
 'use client';
 import PdfComponent from './pdfComponent';
-import ContactInfo from '../landing-tabs/contact-info';
+
 export default function PDFCreationTestPage() {
     
     function getUniqueSelector(element) {

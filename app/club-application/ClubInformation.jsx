@@ -7,24 +7,20 @@ import ClubApplicationRadioField from "./ClubApplicationRadioField";
 import RoundedButton from "@components/RoundedButton";
 
 const ClubInformation = (props) => {
-  const { club, setClub} = props;
+  const { club, updateClub } = props;
 
-  const [ClubInformation, setClubInformation] = useState({
-    clubName: club.clubName || "",
-    meetingDaysAndTime: club.meetingDaysAndTime || "",
-    meetingLocation: club.meetingLocation || "",
-    buildingAndRoomNumber: club.buildingAndRoomNumber || "",
-    zoomLink: club.zoomLink || "",
-  });
+  const [ClubInformation, setClubInformation] = useState(club.clubInformation);
 
   const meetingLocationOptions = ["In Person", "Online/Zoom", "Both"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setClub({ 
-      ...club, 
-      clubInformation: ClubInformation
-    });
+    // update the club object
+    club.clubInformation = ClubInformation;
+    updateClub(club);
+    console.log(club);
+    // as a test, get the JSON for the club object and print it to the console
+    console.log(club.getJSON());
   };
 
   return (
