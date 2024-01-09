@@ -13,6 +13,7 @@ export default function ClubOfficersSection(props) {
     // update the club object
     club.clubOfficers = clubOfficers;
     updateClub(club);
+    props.goToNextSection();
   }
 
 
@@ -42,7 +43,7 @@ export default function ClubOfficersSection(props) {
         <RounudedButton 
         innerHTML="Save and Continue" 
         variant={0} 
-        onClick={props.goToNextSection}/>
+        onClick={handleSubmit}/>
       </div>
     </div>
   );

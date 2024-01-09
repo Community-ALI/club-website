@@ -17,6 +17,7 @@ export default function ClubAdvisors(props) {
     // add the members to the club object
     club.clubMembers = clubMembers;
     updateClub(club);
+    props.goToNextSection();
   }
 
   return (
@@ -57,7 +58,7 @@ export default function ClubAdvisors(props) {
         <RoundedButton 
         innerHTML="Save and Continue" 
         variant={0} 
-        onClick={props.goToNextSection}
+        onClick={handleSubmit}
         />
       </div>
     </div>

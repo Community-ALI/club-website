@@ -19,6 +19,7 @@ export default function ClubAgreemet(props) {
     // update the club object
     club.clubAgreement = clubAgreementSignatures;
     updateClub(club);
+    props.goToNextSection();
   }
 
   return (
@@ -43,7 +44,7 @@ export default function ClubAgreemet(props) {
             <RoundedButton 
             innerHTML="Save and Continue" 
             variant={0} 
-            onClick={props.goToNextSection}
+            onClick={handleSubmit}
             />
         </div>
       </div>
