@@ -55,9 +55,9 @@ function ClubAgreementText() {
     <div className="px-3 mt-8 font-[Nunito]">
       <p>
         The membership of the <b>INSERT CLUB NAME</b> has agreed to abide by the
-        Inter-Club Council’s Standing Orders and the ASMJC Constitution and
+        Inter-Club {"Council's"} Standing Orders and the ASMJC Constitution and
         Bylaws.
-      </p>
+      </p> 
       <br></br>
 
       <p>
@@ -68,11 +68,9 @@ function ClubAgreementText() {
       <b>
           <p>
             1. We must attend all Inter Club Council Meetings. If we are absent
-            from three consecutive meetings, our active status shall be
+            from one consecutive meeting, our active status shall be
             suspended and our funds will be frozen. Meetings are held the second
-            Friday of the month from 1pm-2:30 pm in the East Campus Fireside
-            Lounge. With exception of March 10th which will be from 3pm-4:30pm.
-            (mandatory) (change this)
+            Friday of the month from 1-2pm in the East Campus Student Center on Feb 9th, March 8th, and April 12th.
           </p>
         <br></br>
           <p>

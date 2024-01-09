@@ -21,7 +21,9 @@ export default function Home() {
         campus event.
       </p>
       <div className="flex justify-center items-center mt-[80px] lg:mt-[60px] xsm:mt-[40px]">
-        <MainButton text="Start Application"></MainButton>
+        <a href="/club-application">
+          <MainButton text="Start Application"></MainButton>
+        </a>
       </div>
     </div>
   );

@@ -18,6 +18,16 @@ export default function ClubOfficersSection() {
       isRequired: true,
     },
     {
+      role: "ICC Representative",
+      name: "",
+      email: "",
+      wNumber: "",
+      phoneNumber: "",
+      major: "",
+      gradeLevel: "",
+      isRequired: true,
+    },
+    {
       role: "Club Vice President",
       name: "",
       email: "",

@@ -6,7 +6,7 @@ import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
-import Navbar from "../components/navbar";
+import NavbarForApplication from "../components/navbar-for-application";
 
 export default function ClubAgreementPage() {
   const [club, setClub] = useState({
@@ -79,7 +79,7 @@ export default function ClubAgreementPage() {
   const [currentSection, setCurrentSection] = useState(0);
   return (
     <>
-    <Navbar></Navbar>
+    <NavbarForApplication></NavbarForApplication>
         <div
       id="club-application-page"
       className="flex justify-center pb-[220px] pt-[80px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
@@ -97,7 +97,7 @@ export default function ClubAgreementPage() {
             const selectionColor = index != 5 ? "bg-lightGray" : "bg-lightBlue";
             return (
               <button
-                className={`hover:cursor-pointer h-[60px] w-full 
+                className={`hover:cursor-pointer h-[60px] w-full border-b-darkGray border-b-[1px]
               ${currentSection != index ? bgColor : selectionColor}`}
                 key={index}
                 onClick={() => setCurrentSection(index)}
