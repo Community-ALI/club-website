@@ -6,6 +6,7 @@ import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
+import NavbarForApplication from "../components/navbar-for-application";
 
 const defaultClubAdvisors = [
   {
@@ -351,11 +352,11 @@ export default function ClubAgreementPage() {
           {sections[currentSection].form}
         </div>
         
-        <div className="flex flex-col gap-y-12">
+        <div className="flex flex-col gap-y-10 sticky top-5 h-fit z-10">
 
-          <div className="w-[280px] text-[15px] sticky top-5 z-10 h-fit">
+          <div className="w-[280px] text-[15px] h-fit">
             <div>
-              <div className="bg-darkBlue flex items-center text-white w-full pl-6 h-[61px]">
+              <div className="bg-darkBlue flex items-center text-white w-full pl-6 h-[55px]">
                 <h1 className="tracking-wider">REGISTRATION PACKET</h1>
               </div>
               {sections.map((section, index) => {
@@ -365,7 +366,7 @@ export default function ClubAgreementPage() {
                 const textColor = isSubmitApplication ? "text-offWhite" : "text-lightBlue"; 
                 return (
                   <button
-                    className={`hover:cursor-pointer h-[60px] w-full border-t-darkGray border-t-[1px]
+                    className={`hover:cursor-pointer h-[55px] w-full border-t-darkGray border-t-[1px]
                   ${currentSection != index ? bgColor : selectionColor}`}
                     key={index}
                     onClick={() => setCurrentSection(index)}
@@ -378,8 +379,17 @@ export default function ClubAgreementPage() {
             <div className="bg-offWhite"></div>
           </div>
 
-          <div className="w-[280px] text-[15px] sticky top-5 z-10 h-[200px] bg-darkBlue">
+          <div className="w-[280px] text-[15px] h-[190px] bg-offWhite flex flex-col gap-y-6 p-6">
+              <div className="flex flex-col">
+                <h1 className="text-darkBlue tracking-wide">Application Deadline</h1>
+                <p className="font-[Nunito] text-[15px]">Thursday, January 25th 2024</p>
+              </div>
 
+              <div className="flex flex-col">
+                <h1 className="text-lightBlue mb-1">Need Help?</h1>
+                <p className="font-[Nunito] text-[15px] mb-1">Email: espinozaa@yosemite.edu</p>
+                <p className="font-[Nunito] text-[15px]">Phone: 209-575-6479</p>
+              </div>
           </div>
         </div>
       </div>
