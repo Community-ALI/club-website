@@ -1,7 +1,50 @@
 import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 
 export default function SubmitApplication(props) {
-  const { form } = props;
+  const { club } = props;
+  // turn the club into a form
+  const clubInformation = club.clubInformation;
+  let clubAdvisors = club.clubAdvisors;
+  // only get the name, email, and phone number
+  clubAdvisors = clubAdvisors.map((advisor) => {
+    return {
+      name: advisor.name,
+      email: advisor.email,
+      phoneNumber: advisor.phoneNumber,
+    };
+  });
+  let clubOfficers = club.clubOfficers;
+  // only get the role, name, email, wNumber, phoneNumber, major, and gradeLevel
+  clubOfficers = clubOfficers.map((officer) => {
+    return {
+      role: officer.role,
+      name: officer.name,
+      email: officer.email,
+      wNumber: officer.wNumber,
+      phoneNumber: officer.phoneNumber,
+      major: officer.major,
+      gradeLevel: officer.gradeLevel,
+    };
+  });
+  let clubMembers = club.clubMembers;
+  // only get the name, email, and wNumber
+  clubMembers = clubMembers.map((member) => {
+    return {
+      name: member.name,
+      email: member.email,
+      wNumber: member.wNumber,
+    };
+  });
+  
+  const clubAgreement = club.clubAgreement;
+  let form = {
+    clubInformation: clubInformation,
+    clubAdvisors: clubAdvisors,
+    clubOfficers: clubOfficers,
+    clubMembers: clubMembers,  
+    clubAgreement: clubAgreement,
+  }
+
   return (
     <div className="p-12">
       <ClubApplicationHeaderSection title="SUBMIT APPLICATION" />
@@ -20,24 +63,87 @@ export default function SubmitApplication(props) {
           Click here to receive a copy
         </a>
       </div>
-      {Object.entries(form).map(([key, value]) => (
-        <ReviewSection key={key} title={key} form={value} />
-      ))}
+      {/* the form section */}
+      <ReviewSection key={1} title={"Club Information"} subtitle = "" form={form.clubInformation} />
+      <ReviewSection key={2} title={"Club Advisors"} subtitle = "Advisor" form={form.clubAdvisors} />
+      <ReviewSection key={3} title={"Club Officers"} subtitle = "Officer" form={form.clubOfficers} />
+      <ReviewSection key={4} title={"Club Members"} subtitle = "Member" form={form.clubMembers} />
+      <AgreementSection key={5} title={"Club Agreement"} form={form.clubAgreement} /> 
+      {/* sorry about messing up the reusability. On a time crunch. */}
     </div>
   );
 }
 
 function ReviewSection(props) {
-  const { title, form } = props;
-  function formatCamelCase(input) {
-    const spacedSentence = input.replace(/([a-z])([A-Z])/g, '$1 $2');
-    return spacedSentence.charAt(0).toUpperCase() + spacedSentence.slice(1);
+  const { title, subtitle, form } = props;
+  // check if form is an array
+  if (Array.isArray(form)) {
+    console.log('array detected');
+    return (
+      <div className="border-solid border-[2px] p-12 border-lightGray">
+        <h1 className="mb-12 text-[20px]">{formatCamelCase(title).toUpperCase()}</h1>
+        {form.map((item, index) => (
+          <div key={index} className="flex flex-col border-solid border-lightGray py-2">
+            <h3 className="text-[#4D4D4D]">{subtitle.toUpperCase()} #{index + 1}</h3>        
+            {/* map through each item in the array */}
+            {Object.entries(item).map(([key, value]) => (
+              <div key={key} className="flex border-b-2 border-solid border-lightGray py-2">        
+              <p className="flex-1">{formatCamelCase(key)}</p>
+              <p className="flex-1">{formatCamelCase(value)}</p>
+            </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    );
   }
+  function formatCamelCase(input) {
+    try{
+      const spacedSentence = input.replace(/([a-z])([A-Z])/g, '$1 $2');
+      return spacedSentence.charAt(0).toUpperCase() + spacedSentence.slice(1);
+    }
+    catch{
+      return input;
+    }
+  }
+
   return (
     <div className="border-solid border-[2px] p-12 border-lightGray">
       <h1 className="mb-12 text-[20px]">{formatCamelCase(title).toUpperCase()}</h1>
       {Object.entries(form).map(([key, value]) => (
-        <div key={key} className="flex border-b-2 border-solid border-lightGray py-2">
+        <div key={key} className="flex border-b-2 border-solid border-lightGray py-2">        
+          <p className="flex-1">{formatCamelCase(key)}</p>
+          <p className="flex-1">{formatCamelCase(value)}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AgreementSection(props) {
+  const { title, form } = props;
+  console.log(form)
+  // FIXME: use proper formatting rather than 5 spaces
+  const newForm = {
+    clubPresidentSignature: form[0].signature + "     " + form[0].date,
+    clubAdvisorSignature: form[1].signature + "     " + form[1].date,
+  }
+  function formatCamelCase(input) {
+    try{
+      const spacedSentence = input.replace(/([a-z])([A-Z])/g, '$1 $2');
+      return spacedSentence.charAt(0).toUpperCase() + spacedSentence.slice(1);
+    }
+    catch{
+      console.error("Error formatting camel case");
+      return input;
+    }
+  }
+
+  return ( 
+    <div className="border-solid border-[2px] p-12 border-lightGray">
+      <h1 className="mb-12 text-[20px]">{formatCamelCase(title).toUpperCase()}</h1>
+      {Object.entries(newForm).map(([key, value]) => (
+        <div key={key} className="flex border-b-2 border-solid border-lightGray py-2">        
           <p className="flex-1">{formatCamelCase(key)}</p>
           <p className="flex-1">{formatCamelCase(value)}</p>
         </div>
