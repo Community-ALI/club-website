@@ -209,23 +209,23 @@ export default function ClubAgreementPage() {
     },
     {
       title: "CLUB ADVISORS",
-      form: <ClubAdvisors club={club} />,
+      form: <ClubAdvisors club={club} updateClub={updateClub} />,
     },
     {
       title: "CLUB OFFICERS",
-      form: <ClubOfficers club={club} />,
+      form: <ClubOfficers club={club} updateClub={updateClub} />,
     },
     {
       title: "CLUB MEMBER ROSTER",
-      form: <ClubMembers club={club} />,
+      form: <ClubMembers club={club} updateClub={updateClub} />,
     },
     {
       title: "CLUB AGREEMENT",
-      form: <ClubAgreemet club={club} />,
+      form: <ClubAgreemet club={club} updateClub={updateClub} />,
     },
     {
       title: "SUBMIT APPLICATION",
-      form: <SubmitApplication form={club} />,
+      form: <SubmitApplication form={club} updateClub={updateClub} />,
     },
   ];
 

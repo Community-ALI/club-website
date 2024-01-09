@@ -5,15 +5,19 @@ import RoundedButton from "@components/RoundedButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 
-export default function ClubAdvisors() {
-  const [clubAdvisors, setClubAdvisors] = useState([
-    {
-      name: "",
-      email: "",
-      phoneNumber: "",
-      employeeTitle: "",
-    },
-  ]);
+export default function ClubAdvisors(props) {
+  const {club, updateClub} = props;
+
+  function handleSubmit() {
+    // add the advisors to the club object
+    club.clubAdvisors = clubAdvisors;
+    updateClub(club);
+    console.log(club);
+    // as a test, get the JSON for the club object and print it to the console
+    console.log(club.getJSON());
+  }
+
+  const [clubAdvisors, setClubAdvisors] = useState(club.clubAdvisors);
 
   const removeAdvisor = (indexToRemove) => {
     setClubAdvisors(clubAdvisors.filter((_, index) => index !== indexToRemove));
@@ -57,7 +61,7 @@ export default function ClubAdvisors() {
               ])
             }
           />
-          <RoundedButton innerHTML="Save and Continue" variant={0} />
+          <RoundedButton innerHTML="Save and Continue" variant={0} onClick={() => handleSubmit()}/>
       </div>
     </div>
   );
