@@ -18,9 +18,7 @@ const ClubInformation = (props) => {
     // update the club object
     club.clubInformation = ClubInformation;
     updateClub(club);
-    console.log(club);
-    // as a test, get the JSON for the club object and print it to the console
-    console.log(club.getJSON());
+    props.goToNextSection();
   };
 
   return (
@@ -115,7 +113,7 @@ const ClubInformation = (props) => {
         <RoundedButton
           innerHTML="Save and Continue"
           variant={0}
-          onClick={props.goToNextSection}
+          onClick={handleSubmit}
         />
       </div>
     </form>

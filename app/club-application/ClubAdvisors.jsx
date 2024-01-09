@@ -15,6 +15,7 @@ export default function ClubAdvisors(props) {
     console.log(club);
     // as a test, get the JSON for the club object and print it to the console
     console.log(club.getJSON());
+    props.goToNextSection();
   }
 
   const [clubAdvisors, setClubAdvisors] = useState(club.clubAdvisors);
@@ -64,7 +65,7 @@ export default function ClubAdvisors(props) {
           <RoundedButton 
           innerHTML="Save and Continue" 
           variant={0} 
-          onClick={props.goToNextSection}/>
+          onClick={handleSubmit}/>
       </div>
     </div>
   );
