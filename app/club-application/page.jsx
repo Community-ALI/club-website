@@ -90,7 +90,7 @@ export default function ClubAgreementPage() {
       <div className="w-[300px] text-[15px]">
         <div className="bg-offWhite">
           <div className="bg-darkBlue flex items-center text-white w-full pl-8 h-[61px]">
-            <h1>REGISTRATION PACKET</h1>
+            <h1 className="tracking-wider">REGISTRATION PACKET</h1>
           </div>
           {sections.map((section, index) => {
             const bgColor = index != 5 ? "bg-veryLightGray" : "bg-while";

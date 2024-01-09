@@ -45,7 +45,7 @@ export default function ClubAdvisors() {
         <p className="px-3 mt-[20px] mb-[30px] font-[Nunito] text-[15px]">
           A minimum of 5 club members are required for a club to be active.
           Every club member must be a current MJC student enrolled in at least one unit for the current semester.
-          <span className="font-bold"> IMPORTANT:</span> Please include the club officers in the member list below.
+          <span className="font-bold"> IMPORTANT:</span> Please include the club officers in the member roster list below.
         </p>
         <hr className="border-lightGray border-[.5px]"></hr>
       </div>
