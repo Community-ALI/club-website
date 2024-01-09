@@ -1,4 +1,5 @@
 function MyComponent({ title, text }) {
+  
   return (
     <div>
       <h1

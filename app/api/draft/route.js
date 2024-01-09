@@ -6,43 +6,39 @@ const JWT_SECRET = process.env.JWT_SECRET;
 // get the draft object from the database
 export async function GET() {
   // check the headers for the JWT token
-  const token = request.headers.get("Authorization");
-  if (!token) {
+  const tokenHeader = request.headers.get("Authorization");
+  // remove the 'Bearer ' prefix from the token
+  if (!tokenHeader) {
     return new Response(JSON.stringify({ message: "Unauthorized" }), {
       headers: { "Content-Type": "application/json" },
       status: 401,
     });
   }
-  // verify the JWT token
+  // extract the token from the header
+  const token = tokenHeader.split(" ")[1];
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.id;
+    if (!userId) {
+      return new Response(JSON.stringify({ message: "Unauthorized" }), {
+        headers: { "Content-Type": "application/json" },
+        status: 401,
+      });
+    }
     // fetch the draft object from the database
-    const drafts =
-      await sql`SELECT * FROM ClubDraft WHERE UserId = ${decoded.userId}`;
-    if (drafts.count === 0) {
+    const result = await sql`SELECT * FROM ClubDraft WHERE UserId = ${userId}`;
+    if (result.count === 0) {
       return new Response(JSON.stringify({ message: "Draft not found" }), {
         headers: { "Content-Type": "application/json" },
         status: 404,
       });
     }
-    const draft = drafts.fields[0];
-    // Fetch related data
-    const advisors =
-      await sql`SELECT * FROM ClubAdvisors WHERE ClubID = ${draft.ClubID}`;
-    const officers =
-      await sql`SELECT * FROM ClubOfficers WHERE ClubID = ${draft.ClubID}`;
-    const members =
-      await sql`SELECT * FROM ClubMembers WHERE ClubID = ${draft.ClubID}`;
-
-    const data = {
-      message: "Success",
-      draft: {
-        ...draft,
-        advisors: advisors.fields,
-        officers: officers.fields,
-        members: members.fields,
-      },
-    };
+    const draft = result.rows[0];
+    // fetch the advisors, officers, and members from the database
+    const advisors = await sql`SELECT * FROM ClubAdvisors WHERE ClubID = ${draft.clubid}`;
+    const officers = await sql`SELECT * FROM ClubOfficers WHERE ClubID = ${draft.clubid}`;
+    const members = await sql`SELECT * FROM ClubMembers WHERE ClubID = ${draft.clubid}`;
+    const data = { ...draft, advisors, officers, members };
     return new Response(JSON.stringify(data), {
       headers: { "Content-Type": "application/json" },
     });
