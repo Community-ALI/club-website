@@ -54,7 +54,7 @@ function ClubAgreementText() {
   return (
     <div className="px-3 mt-8 font-[Nunito]">
       <p>
-        The membership of the <b>INSERT CLUB NAME</b> has agreed to abide by the
+        The membership of our club and its officers has agreed to abide by the
         Inter-Club {"Council's"} Standing Orders and the ASMJC Constitution and
         Bylaws.
       </p> 

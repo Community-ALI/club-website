@@ -7,7 +7,7 @@ import ClubApplicationRadioField from "./ClubApplicationRadioField";
 import RoundedButton from "@components/RoundedButton";
 
 const ClubInformation = (props) => {
-  const { club, setClub } = props;
+  const { club, setClub} = props;
 
   const [ClubInformation, setClubInformation] = useState({
     clubName: club.clubName || "",
@@ -22,7 +22,8 @@ const ClubInformation = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setClub({ 
-      ...club, clubInformation: ClubInformation
+      ...club, 
+      clubInformation: ClubInformation
     });
   };
 
@@ -98,7 +99,6 @@ const ClubInformation = (props) => {
             />
           </div>
         ) : null}
-
         {ClubInformation.meetingLocation === "Online/Zoom" || ClubInformation.meetingLocation === "Both" ? (
           <div>
             <ClubApplicationTextField
