@@ -3,19 +3,9 @@ import ClubApplicationTextField from "./ClubApplicationTextField";
 import { useState } from "react";
 import RoundedButton from "@components/RoundedButton";
 
-export default function ClubAgreemet() {
-  const [clubAgreementSignatures, setClubAgreementSignatures] = useState([
-    {
-      role: "Club President",
-      signature: "",
-      date: "",
-    },
-    {
-      role: "Club Advisor",
-      signature: "",
-      date: "",
-    },
-  ]);
+export default function ClubAgreemet(props) {
+  const {club, updateClub} = props;
+  const [clubAgreementSignatures, setClubAgreementSignatures] = useState(club.clubAgreement);
 
   function ChangeSignatureField(field, index, e) {
     setClubAgreementSignatures(
@@ -23,6 +13,12 @@ export default function ClubAgreemet() {
         signatureIndex === index ? signature : e.target.value
       )
     );
+  }
+
+  function handleSubmit() {
+    // update the club object
+    club.clubAgreement = clubAgreementSignatures;
+    updateClub(club);
   }
 
   return (
@@ -44,7 +40,7 @@ export default function ClubAgreemet() {
       </div>
         <hr className="border-lightGray border-[.5px] mt-[50px]"></hr>
         <div>
-            <RoundedButton innerHTML="Save and Continue" variant={0} />
+            <RoundedButton innerHTML="Save and Continue" variant={0} onClick={() => handleSubmit()} />
         </div>
       </div>
   );

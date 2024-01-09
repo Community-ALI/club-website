@@ -5,69 +5,16 @@ import ClubApplicationSelectField from "./ClubApplicationSelectField";
 import ClubApplicationRadioField from "./ClubApplicationRadioField";
 import RounudedButton from "@components/RoundedButton";
 
-export default function ClubOfficersSection() {
-  const [clubOfficers, setClubOfficers] = useState([
-    {
-      role: "Club President",
-      name: "",
-      email: "",
-      wNumber: "",
-      phoneNumber: "",
-      major: "",
-      gradeLevel: "",
-      isRequired: true,
-    },
-    {
-      role: "ICC Representative",
-      name: "",
-      email: "",
-      wNumber: "",
-      phoneNumber: "",
-      major: "",
-      gradeLevel: "",
-      isRequired: true,
-    },
-    {
-      role: "Club Vice President",
-      name: "",
-      email: "",
-      wNumber: "",
-      phoneNumber: "",
-      major: "",
-      gradeLevel: "",
-      isRequired: false,
-    },
-    {
-      role: "Club Secretary",
-      name: "",
-      email: "",
-      wNumber: "",
-      phoneNumber: "",
-      major: "",
-      gradeLevel: "",
-      isRequired: false,
-    },
-    {
-      role: "Club Treasurer",
-      name: "",
-      email: "",
-      wNumber: "",
-      phoneNumber: "",
-      major: "",
-      gradeLevel: "",
-      isRequired: false,
-    },
-    {
-      role: "Club Social Media Manager",
-      name: "",
-      email: "",
-      wNumber: "",
-      phoneNumber: "",
-      major: "",
-      gradeLevel: "",
-      isRequired: false,
-    },
-  ]);
+export default function ClubOfficersSection(props) {
+  const {club, updateClub} = props;
+  const [clubOfficers, setClubOfficers] = useState(club.clubOfficers);
+  // function to handle the submit button
+  function handleSubmit() {
+    // update the club object
+    club.clubOfficers = clubOfficers;
+    updateClub(club);
+  }
+
 
   const gradeLevels = ["Freshman (1st Year)", "Sophomore (2nd Year)", "Junior (3rd Year)", "Senior (4th Year)", "5+ Years"];
 
@@ -92,7 +39,7 @@ export default function ClubOfficersSection() {
         );
       })}
       <div className="mt-8">
-        <RounudedButton innerHTML="Save and Continue" variant={0} />
+        <RounudedButton innerHTML="Save and Continue" variant={0} onClick={() => handleSubmit()} />
       </div>
     </div>
   );

@@ -7,8 +7,122 @@ import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
 
+const defaultClubAdvisors = [
+  {
+    name: "",
+    email: "",
+    phoneNumber: "",
+  },
+];
+
+const defaultClubOfficers = [
+  {
+    role: "Club President",
+    name: "",
+    email: "",
+    wNumber: "",
+    phoneNumber: "",
+    major: "",
+    gradeLevel: "",
+    isRequired: true,
+  },
+  {
+    role: "ICC Representative",
+    name: "",
+    email: "",
+    wNumber: "",
+    phoneNumber: "",
+    major: "",
+    gradeLevel: "",
+    isRequired: true,
+  },
+  {
+    role: "Club Vice President",
+    name: "",
+    email: "",
+    wNumber: "",
+    phoneNumber: "",
+    major: "",
+    gradeLevel: "",
+    isRequired: false,
+  },
+  {
+    role: "Club Secretary",
+    name: "",
+    email: "",
+    wNumber: "",
+    phoneNumber: "",
+    major: "",
+    gradeLevel: "",
+    isRequired: false,
+  },
+  {
+    role: "Club Treasurer",
+    name: "",
+    email: "",
+    wNumber: "",
+    phoneNumber: "",
+    major: "",
+    gradeLevel: "",
+    isRequired: false,
+  },
+  {
+    role: "Club Social Media Manager",
+    name: "",
+    email: "",
+    wNumber: "",
+    phoneNumber: "",
+    major: "",
+    gradeLevel: "",
+    isRequired: false,
+  },
+];
+
+const defaultMembers = [
+  {
+    name: "",
+    email: "",
+    wNumber: "",
+  },
+  {
+    name: "",
+    email: "",
+    wNumber: "",
+  },
+  {
+    name: "",
+    email: "",
+    wNumber: "",
+  },
+  {
+    name: "",
+    email: "",
+    wNumber: "",
+  },
+  {
+    name: "",
+    email: "",
+    wNumber: "",
+  },
+];
+
+const defaultClubAgreement = 
+  [
+    {
+      role: "Club President",
+      signature: "",
+      date: "",
+    },
+    {
+      role: "Club Advisor",
+      signature: "",
+      date: "",
+    },
+  ];
+
 // create a class for club applications
 class ClubApplication {
+
   constructor() {
     this.clubInformation = {
       clubName: "",
@@ -17,15 +131,10 @@ class ClubApplication {
       buildingAndRoomNumber: "",
       zoomLink: "",
     };
-    this.clubAdvisors = [];
-    this.clubOfficers = [];
-    this.clubMembers = [];
-    this.clubAgreement = {
-      clubPresidentSignature: "",
-      dateOfPresidentSignature: "",
-      clubAdvisorSignature: "",
-      dateOfAdvisorSignature: "",
-    };
+    this.clubAdvisors = defaultClubAdvisors;
+    this.clubOfficers = defaultClubOfficers;
+    this.clubMembers = defaultMembers;
+    this.clubAgreement = defaultClubAgreement;
   }
   addAdvisor(advisor) {
     this.clubAdvisors.push(advisor);
