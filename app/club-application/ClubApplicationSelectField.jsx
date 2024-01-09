@@ -6,10 +6,11 @@ export default function ClubApplicationSelectField(props) {
       <label className="text-lightBlue font-[Nunito] font-[800] text-[16px]">{label}</label>
       <p>{subtext}</p>
       <select
-        className="h-[40px] w-[300px] px-[10px] py-[5px] text-[14px] border-solid border-[1px] border-lightGray bg-#FFFFFF"
+        className="h-[40px] w-[300px] font-[Nunito] px-[10px] py-[5px] text-[14px] border-solid border-[1px] bg-veryLightGray border-lightGray bg-#FFFFFF"
         value={value}
         onChange={onChange}
       >
+      <option disabled value=""> Select Grade Level </option>
         {options.map((option, index) => {
           return (
             <option key={index} value={option}>

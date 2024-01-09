@@ -83,29 +83,36 @@ const ClubInformation = (props) => {
           </div>
         </div>
       </div>
-      <div className="bg-veryLightGray px-12 mt-8 pb-12">
-        <div className="flex px-3 gap-[80px]">
-          <ClubApplicationTextField
-            label="Building and Room Number"
-            value={ClubInformation.buildingAndRoomNumber}
-            onChange={(e) =>
-              setClubInformation({
-                ...ClubInformation,
-                buildingAndRoomNumber: e.target.value,
-              })
-            }
-          />
-          <ClubApplicationTextField
-            label="Zoom Link"
-            value={ClubInformation.zoomLink}
-            onChange={(e) =>
-              setClubInformation({
-                ...ClubInformation,
-                zoomLink: e.target.value,
-              })
-            }
-          />
-        </div>
+      <div className="pr-12 pl-[62px] flex gap-[80px]">
+        {ClubInformation.meetingLocation === "In Person" || ClubInformation.meetingLocation === "Both" ? (
+          <div>
+            <ClubApplicationTextField
+              label="Building and Room Number"
+              value={ClubInformation.buildingAndRoomNumber}
+              onChange={(e) =>
+                setClubInformation({
+                  ...ClubInformation,
+                  buildingAndRoomNumber: e.target.value,
+                })
+              }
+            />
+          </div>
+        ) : null}
+
+        {ClubInformation.meetingLocation === "Online/Zoom" || ClubInformation.meetingLocation === "Both" ? (
+          <div>
+            <ClubApplicationTextField
+              label="Zoom Link"
+              value={ClubInformation.zoomLink}
+              onChange={(e) =>
+                setClubInformation({
+                  ...ClubInformation,
+                  zoomLink: e.target.value,
+                })
+              }
+            />
+          </div>
+        ) : null}
       </div>
       <div className="px-[50px] pb-[50px]">
       <hr className="border-lightGray border-[.5px] mt-[40px]"></hr>

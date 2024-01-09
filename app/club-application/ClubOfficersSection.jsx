@@ -59,7 +59,7 @@ export default function ClubOfficersSection() {
     },
   ]);
 
-  const gradeLevels = ["Freshman (1st Year)", "Sophomore (2nd Year)", "Junior (3rd Year)", "Senior (4th Year)", "4+ Years"];
+  const gradeLevels = ["Freshman (1st Year)", "Sophomore (2nd Year)", "Junior (3rd Year)", "Senior (4th Year)", "5+ Years"];
 
   return (
     <div className="p-12">

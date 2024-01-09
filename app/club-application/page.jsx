@@ -87,10 +87,10 @@ export default function ClubAgreementPage() {
       <div className="bg-offWhite w-[850px] h-fit">
         {sections[currentSection].form}
       </div>
-      <div className="w-[300px]">
+      <div className="w-[300px] text-[15px]">
         <div className="bg-offWhite">
-          <div className="bg-darkBlue flex items-center text-white w-full pl-10 h-[61px]">
-            <h2>REGISTRATION PACKET</h2>
+          <div className="bg-darkBlue flex items-center text-white w-full pl-8 h-[61px]">
+            <h1>REGISTRATION PACKET</h1>
           </div>
           {sections.map((section, index) => {
             const bgColor = index != 5 ? "bg-veryLightGray" : "bg-while";
@@ -102,7 +102,7 @@ export default function ClubAgreementPage() {
                 key={index}
                 onClick={() => setCurrentSection(index)}
               >
-                <h2 className="pl-10 text-left">{section.title}</h2>
+                <h2 className="pl-8 text-left">{section.title}</h2>
               </button>
             );
           })}

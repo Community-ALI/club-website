@@ -15,7 +15,7 @@ export default function ClubApplicationRadioField(props) {
                 onChange={onChange}
                 checked={checkedValue === option}
               />
-              <label className="font-[Nunito] pl-2 text-[#4D4D4D] text-[14px] tracking-wider">{option}</label>
+              <label className="font-[Nunito] pl-2 text-[#000000] text-[14px] tracking-wider">{option}</label>
             </div>
           );
         })}
