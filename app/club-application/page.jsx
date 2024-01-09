@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ClubInformation from "./ClubInformation";
 import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
+import NavbarForApplication from "../components/navbar-for-application";
 
 const defaultClubAdvisors = [
   {
@@ -266,7 +267,32 @@ export default function ClubAgreementPage() {
       });
   }
 
-  const [club, setClub] = useState(new ClubApplication());
+    const [club, setClub] = useState(new ClubApplication());
+
+    const containerRef = useRef(null);
+
+    const handleSectionClick = (index) => {
+      setCurrentSection(index);
+      containerRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+
+    // const goToNextSection = () => {
+    //   setCurrentSection((prevSection) => 
+    //     prevSection < sections.length - 1 ? prevSection + 1 : prevSection
+    //   );
+    // };
+
+    const goToNextSection = () => {
+      setCurrentSection((prevSection) => {
+        const newSection = prevSection < sections.length - 1 ? prevSection + 1 : prevSection;
+        // Scroll to the top of the container when moving to the next section
+        if (containerRef.current) {
+          containerRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+        return newSection;
+      });
+    };
+
 
   // Function to update the club state
   function updateClub(newClubData) {
@@ -284,23 +310,23 @@ export default function ClubAgreementPage() {
   const sections = [
     {
       title: "CLUB INFORMATION",
-      form: <ClubInformation club={club} updateClub={updateClub} />,
+      form: <ClubInformation club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "CLUB ADVISORS",
-      form: <ClubAdvisors club={club} updateClub={updateClub} />,
+      form: <ClubAdvisors club={club} updateClub={updateClub} goToNextSection={goToNextSection}/>,
     },
     {
       title: "CLUB OFFICERS",
-      form: <ClubOfficers club={club} updateClub={updateClub} />,
+      form: <ClubOfficers club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "CLUB MEMBER ROSTER",
-      form: <ClubMembers club={club} updateClub={updateClub} />,
+      form: <ClubMembers club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "CLUB AGREEMENT",
-      form: <ClubAgreemet club={club} updateClub={updateClub} />,
+      form: <ClubAgreemet club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
     },
     {
       title: "SUBMIT APPLICATION",
@@ -309,39 +335,60 @@ export default function ClubAgreementPage() {
   ];
 
   const [currentSection, setCurrentSection] = useState(0);
-  
-  return (
-    <div
-      id="club-application-page"
-      className="flex justify-center py-[220px] min-h-screen h-full bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
-    >
-
-      <div className="bg-offWhite w-[900px] h-fit">
-        {sections[currentSection].form}
-      </div>
-      <div className="w-[350px]">
-        <div className="bg-offWhite">
-          <div className="bg-darkBlue flex items-center text-white w-full pl-12 h-[61px]">
-            {/* TODO: Add arrow icon */}
-            <h2>REGISTRATION PACKET</h2>
-          </div>
-          {sections.map((section, index) => {
-            const bgColor = index != 5 ? "bg-veryLightGray" : "bg-while";
-            const selectionColor = index != 5 ? "bg-lightGray" : "bg-lightBlue";
-            return (
-              <button
-                className={`hover:cursor-pointer h-[60px] w-full 
-              ${currentSection != index ? bgColor : selectionColor}`}
-                key={index}
-                onClick={() => setCurrentSection(index)}
-              >
-                <h2 className="pl-12 text-left">{section.title}</h2>
-              </button>
-            );
-          })}
+    return (
+      <div ref={containerRef}>
+      <NavbarForApplication></NavbarForApplication>
+      <div
+        id="club-application-page"
+        className="flex justify-center pb-[220px] pt-[60px] min-h-screen h-full 
+        bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
+      >
+        <div className="bg-offWhite w-[850px] h-fit">
+          {sections[currentSection].form}
         </div>
-        <div className="bg-offWhite"></div>
+        
+        <div className="flex flex-col gap-y-10 sticky top-5 h-fit z-10">
+
+          <div className="w-[280px] text-[15px] h-fit">
+            <div>
+              <div className="bg-darkBlue flex items-center text-white w-full pl-6 h-[55px]">
+                <h1 className="tracking-wider">REGISTRATION PACKET</h1>
+              </div>
+              {sections.map((section, index) => {
+                const bgColor = index != 5 ? "bg-veryLightGray" : "bg-white";
+                const selectionColor = index != 5 ? "bg-lightGray" : "bg-lightBlue";
+                const isSubmitApplication = section.title === "SUBMIT APPLICATION" && index === currentSection;
+                const textColor = isSubmitApplication ? "text-offWhite" : "text-lightBlue"; 
+                return (
+                  <button
+                    className={`hover:cursor-pointer h-[55px] w-full border-t-darkGray border-t-[1px]
+                  ${currentSection != index ? bgColor : selectionColor}`}
+                    key={index}
+                    // onClick={() => setCurrentSection(index)}
+                    onClick={() => handleSectionClick(index)}
+                  >
+                    <h1 className={`pl-6 text-left ${textColor}`}>{section.title}</h1>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="bg-offWhite"></div>
+          </div>
+
+          <div className="w-[280px] text-[15px] h-[190px] bg-offWhite flex flex-col gap-y-6 p-6">
+              <div className="flex flex-col">
+                <h1 className="text-darkBlue tracking-wide">Application Deadline</h1>
+                <p className="font-[Nunito] text-[15px]">Thursday, January 25th 2024</p>
+              </div>
+
+              <div className="flex flex-col">
+                <h1 className="text-lightBlue mb-1">Need Help?</h1>
+                <p className="font-[Nunito] text-[15px] mb-1">Email: espinozaa@yosemite.edu</p>
+                <p className="font-[Nunito] text-[15px]">Phone: 209-575-6479</p>
+              </div>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-}
+      </div>
+    );
+  }

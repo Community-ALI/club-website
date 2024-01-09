@@ -61,7 +61,10 @@ export default function ClubAdvisors(props) {
               ])
             }
           />
-          <RoundedButton innerHTML="Save and Continue" variant={0} onClick={() => handleSubmit()}/>
+          <RoundedButton 
+          innerHTML="Save and Continue" 
+          variant={0} 
+          onClick={props.goToNextSection}/>
       </div>
     </div>
   );

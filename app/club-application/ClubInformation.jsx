@@ -95,7 +95,6 @@ const ClubInformation = (props) => {
             />
           </div>
         ) : null}
-
         {ClubInformation.meetingLocation === "Online/Zoom" || ClubInformation.meetingLocation === "Both" ? (
           <div>
             <ClubApplicationTextField
@@ -116,7 +115,7 @@ const ClubInformation = (props) => {
         <RoundedButton
           innerHTML="Save and Continue"
           variant={0}
-          onClick={handleSubmit}
+          onClick={props.goToNextSection}
         />
       </div>
     </form>
