@@ -7,6 +7,9 @@ import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
 import NavbarForApplication from "../components/navbar-for-application";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle} from "@fortawesome/free-solid-svg-icons";
+import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { defaultClubAdvisors, defaultClubOfficers, defaultMembers, defaultClubAgreement } from "./defaultClubData";
 
 // create a class for club applications
@@ -91,6 +94,37 @@ class ClubApplication {
   }
 }
 
+function SectionButton(props) {
+  const { section, index, currentSection, handleSectionClick } = props;
+  const bgColor = index != 5 ? "bg-veryLightGray" : "bg-white";
+  const selectionColor =
+    index != 5 ? "bg-lightGray" : "bg-lightBlue";
+    const isSubmitApplication =
+                  section.title === "SUBMIT APPLICATION" &&
+                  index === currentSection;
+                const textColor = isSubmitApplication
+                  ? "text-offWhite"
+                  : "text-lightBlue";
+  return (
+    <button
+      className={`hover:cursor-pointer h-[55px] w-full border-t-darkGray border-t-[1px] flex items-center ${
+        currentSection !== index ? bgColor : selectionColor
+      }`}
+      key={index}
+      onClick={() => handleSectionClick(index)}>
+      <h1 className={`pl-6 text-left ${textColor}`}>{section.title}</h1>
+      {/* if the progress is 0 the checkmark is invisible, if between 1-99 it is yellow, if 100 it is green */}
+      {/* also it is a full circle if completed, half circle if not */}
+      <div className="ml-auto">
+        <FontAwesomeIcon
+          icon={section.progress === 100 ? faCircle : faCircleHalfStroke}
+          className={`text-[20px] mr-6 ${section.progress > 0 ? "visible" : "invisible"} ${section.progress < 100 ? "text-[#FFD700]" : "text-[#32CD32]"}`}
+        />
+      </div>
+    </button>
+  );
+}
+
 export default function ClubAgreementPage() {
   function submitDraft() {
     console.log("submit draft");
@@ -135,6 +169,10 @@ export default function ClubAgreementPage() {
         return newSection;
       });
     };
+  
+  function calculateProgress(sectionIndex, club) { // this function calculates the progress of the application
+    // the progress is calculated by the number of required fields that have been filled out
+  }
 
 
   // Function to update the club state
@@ -150,32 +188,39 @@ export default function ClubAgreementPage() {
     setClub(updatedClub);
   }
 
-  const sections = [
+  const [sections, setSections] = useState([ 
     {
       title: "CLUB INFORMATION",
       form: <ClubInformation club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
+      progress: 0,
     },
     {
       title: "CLUB ADVISORS",
       form: <ClubAdvisors club={club} updateClub={updateClub} goToNextSection={goToNextSection}/>,
+      progress: 0,
     },
     {
       title: "CLUB OFFICERS",
       form: <ClubOfficers club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
+      progress: 0,
     },
     {
       title: "CLUB MEMBER ROSTER",
       form: <ClubMembers club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
+      progress: 0,
     },
     {
       title: "CLUB AGREEMENT",
       form: <ClubAgreemet club={club} updateClub={updateClub} goToNextSection={goToNextSection} />,
+      progress: 0,
     },
     {
       title: "SUBMIT APPLICATION",
       form: <SubmitApplication club={club} submitDraft={submitDraft} />,
+      progress: 0,
     },
-  ];
+  ]);
+
 
   const [currentSection, setCurrentSection] = useState(0);
     return (
@@ -198,20 +243,9 @@ export default function ClubAgreementPage() {
                 <h1 className="tracking-wider">REGISTRATION PACKET</h1>
               </div>
               {sections.map((section, index) => {
-                const bgColor = index != 5 ? "bg-veryLightGray" : "bg-white";
-                const selectionColor = index != 5 ? "bg-lightGray" : "bg-lightBlue";
-                const isSubmitApplication = section.title === "SUBMIT APPLICATION" && index === currentSection;
-                const textColor = isSubmitApplication ? "text-offWhite" : "text-lightBlue"; 
+                
                 return (
-                  <button
-                    className={`hover:cursor-pointer h-[55px] w-full border-t-darkGray border-t-[1px]
-                  ${currentSection != index ? bgColor : selectionColor}`}
-                    key={index}
-                    // onClick={() => setCurrentSection(index)}
-                    onClick={() => handleSectionClick(index)}
-                  >
-                    <h1 className={`pl-6 text-left ${textColor}`}>{section.title}</h1>
-                  </button>
+                  <SectionButton section={section} index={index} currentSection={currentSection} handleSectionClick={handleSectionClick} />
                 );
               })}
             </div>
