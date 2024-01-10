@@ -7,125 +7,7 @@ import ClubMembers from "./ClubMembers";
 import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
 import NavbarForApplication from "../components/navbar-for-application";
-
-const defaultClubAdvisors = [
-  {
-    name: "",
-    email: "",
-    phoneNumber: "",
-  },
-];
-
-const defaultClubOfficers = [
-  {
-    role: "Club President",
-    name: "",
-    email: "",
-    wNumber: "",
-    phoneNumber: "",
-    major: "",
-    gradeLevel: "",
-    isRequired: true,
-    isUsed: true,
-  },
-  {
-    role: "ICC Representative",
-    name: "",
-    email: "",
-    wNumber: "",
-    phoneNumber: "",
-    major: "",
-    gradeLevel: "",
-    isRequired: true,
-    isUsed: true,
-  },
-  {
-    role: "Club Vice President",
-    name: "",
-    email: "",
-    wNumber: "",
-    phoneNumber: "",
-    major: "",
-    gradeLevel: "",
-    isRequired: false,
-    isUsed: false,
-  },
-  {
-    role: "Club Secretary",
-    name: "",
-    email: "",
-    wNumber: "",
-    phoneNumber: "",
-    major: "",
-    gradeLevel: "",
-    isRequired: false,
-    isUsed: false,
-  },
-  {
-    role: "Club Treasurer",
-    name: "",
-    email: "",
-    wNumber: "",
-    phoneNumber: "",
-    major: "",
-    gradeLevel: "",
-    isRequired: false,
-    isUsed: false,
-  },
-  {
-    role: "Club Social Media Manager",
-    name: "",
-    email: "",
-    wNumber: "",
-    phoneNumber: "",
-    major: "",
-    gradeLevel: "",
-    isRequired: false,
-    isUsed: false,
-  },
-];
-
-const defaultMembers = [
-  {
-    name: "",
-    email: "",
-    wNumber: "",
-  },
-  {
-    name: "",
-    email: "",
-    wNumber: "",
-  },
-  {
-    name: "",
-    email: "",
-    wNumber: "",
-  },
-  {
-    name: "",
-    email: "",
-    wNumber: "",
-  },
-  {
-    name: "",
-    email: "",
-    wNumber: "",
-  },
-];
-
-const defaultClubAgreement = 
-  [
-    {
-      role: "Club President",
-      signature: "",
-      date: "",
-    },
-    {
-      role: "Club Advisor",
-      signature: "",
-      date: "",
-    },
-  ];
+import { defaultClubAdvisors, defaultClubOfficers, defaultMembers, defaultClubAgreement } from "./defaultClubData";
 
 // create a class for club applications
 class ClubApplication {
@@ -209,39 +91,6 @@ class ClubApplication {
   }
 }
 
-// create a class for club advisors
-class ClubAdvisor {
-  constructor() {
-    this.advisorID = 0;
-    this.name = "";
-    this.email = "";
-    this.phoneNumber = "";
-  }
-}
-
-// create a class for club officers
-class ClubOfficer {
-  constructor() {
-    this.officerID = 0;
-    this.name = "";
-    this.email = "";
-    this.phoneNumber = "";
-    this.position = "";
-    this.major = "";
-    this.gradeLevel = "";
-  }
-}
-
-// create a class for club members
-class ClubMember {
-  constructor() {
-    this.memberID = 0;
-    this.name = "";
-    this.email = "";
-    this.wNumber = "";
-  }
-}
-
 export default function ClubAgreementPage() {
   function submitDraft() {
     console.log("submit draft");
@@ -275,12 +124,6 @@ export default function ClubAgreementPage() {
       setCurrentSection(index);
       containerRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
     }
-
-    // const goToNextSection = () => {
-    //   setCurrentSection((prevSection) => 
-    //     prevSection < sections.length - 1 ? prevSection + 1 : prevSection
-    //   );
-    // };
 
     const goToNextSection = () => {
       setCurrentSection((prevSection) => {
