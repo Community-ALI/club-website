@@ -14,7 +14,7 @@ export default function ClubAgreemet(props) {
       )
     );
   }
-
+  
   function handleSubmit() {
     // update the club object
     club.clubAgreement = clubAgreementSignatures;

@@ -97,11 +97,68 @@ function checkClubOfficers (clubData) {
     return completionPercentage;
 }
 
+const numberOfRequiredMembers = 5;
+const requiredClubMembers = [
+    new RequiredDatapoint("name", "text", "not empty"),
+    new RequiredDatapoint("email", "text", "not empty"),
+    new RequiredDatapoint("wNumber", "text", "not empty"),
+];
+
+function checkClubMembers (clubData) {
+    const members = clubData.clubMembers;
+    console.log(members);
+    // members is an array of objects.  It can be any size, but it must have at least one object.
+    // Each object must have the following properties: name, email, wNumber
+    if (members.length < numberOfRequiredMembers) {
+        return 0;
+    }
+    let filledFieldCount = 0;
+    const requiredFieldCount = requiredClubMembers.length * members.length;
+    for (let i = 0; i < members.length; i++) {
+        for (let j = 0; j < requiredClubMembers.length; j++) {
+            if (requiredClubMembers[j].check(members[i][requiredClubMembers[j].name])) {
+                filledFieldCount++;
+            }
+        }
+    }
+    let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
+    console.log("Members: " + completionPercentage);
+    return completionPercentage;
+}
+
+const numberOfRequiredClubAgreements = 2;
+const requiredClubAgreement = [
+    new RequiredDatapoint("signature", "text", "not empty"),
+    new RequiredDatapoint("date", "text", "not empty"),
+];
+
+function checkClubAgreement (clubData) {
+    const agreements = clubData.clubAgreement;
+    // Each object must have the following properties: signature, date
+    if (agreements.length < numberOfRequiredClubAgreements) {
+        return 0;
+    }
+    let filledFieldCount = 0;
+    const requiredFieldCount = requiredClubAgreement.length * agreements.length;
+    for (let i = 0; i < agreements.length; i++) {
+        for (let j = 0; j < requiredClubAgreement.length; j++) {
+            if (requiredClubAgreement[j].check(agreements[i][requiredClubAgreement[j].name])) {
+                filledFieldCount++;
+            }
+        }
+    }
+    let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
+    console.log("Agreements: " + completionPercentage);
+    return completionPercentage;
+}
+
 export default function updateCompletionPercentage (clubData, sections, setSections) {
     // for each section, set the completion percentage
     let newSections = sections;
     newSections[0].progress = checkClubInformation(clubData);
     newSections[1].progress = checkClubAdvisors(clubData);
     newSections[2].progress = checkClubOfficers(clubData);
+    newSections[3].progress = checkClubMembers(clubData);
+    newSections[4].progress = checkClubAgreement(clubData);
     setSections(newSections);
 }
