@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle} from "@fortawesome/free-solid-svg-icons";
 import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { defaultClubAdvisors, defaultClubOfficers, defaultMembers, defaultClubAgreement } from "./defaultClubData";
+import updateCompletionPercentage from "./requiredData";
 
 // create a class for club applications
 class ClubApplication {
@@ -186,6 +187,11 @@ export default function ClubAgreementPage() {
     updatedClub.clubAgreement = newClubData.clubAgreement;
     // Update the club state
     setClub(updatedClub);
+    // Calculate the progress of the application
+    console.log("updated club", updatedClub);
+    console.log("sections", sections);
+    updateCompletionPercentage(updatedClub, sections, setSections);
+    
   }
 
   const [sections, setSections] = useState([ 
