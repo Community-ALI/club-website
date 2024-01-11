@@ -9,11 +9,9 @@ export default function ClubAdvisors(props) {
   const {club, updateClub} = props;
 
   function handleSubmit() {
-    // add the advisors to the club object
     club.clubAdvisors = clubAdvisors;
     updateClub(club);
     console.log(club);
-    // as a test, get the JSON for the club object and print it to the console
     console.log(club.getJSON());
     props.goToNextSection();
   }
@@ -26,10 +24,10 @@ export default function ClubAdvisors(props) {
 
 
   return (
-    <div className="p-12">
+    <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection sectionTitle="Club Advisors" />
       <div>
-        <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3">
+        <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3 xsm:text-[14px]">
           Only one advisor is required for a club to be active. An advisor must
           attend ALL club functions, including: meetings, activities, and trips.
           They must also sign off on all club functions, including: meetings,
@@ -51,14 +49,14 @@ export default function ClubAdvisors(props) {
           );
         })}
       </div>
-      <div className="flex gap-[60px]">
+      <div className="flex gap-x-[60px] gap-y-0 sm:flex-col">
           <RoundedButton
             innerHTML="Add Advisor"
             variant={1}
             onClick={() =>
               setClubAdvisors([
                 ...clubAdvisors,
-                { name: "", email: "", phoneNumber: "" },
+                { name: "", email: "", phoneNumber: "", title: ""},
               ])
             }
           />
@@ -140,14 +138,14 @@ function ClubAdvisorField(props) {
         />
         <ClubApplicationTextField
           label="Employee Title"
-          value={clubAdvisors[advisorIndex].email}
+          value={clubAdvisors[advisorIndex].title}
           onChange={(e) =>
             setClubAdvisors(
               clubAdvisors.map((advisor, index) => {
                 if (index == advisorIndex) {
                   return {
                     ...advisor,
-                    email: e.target.value,
+                    title: e.target.value,
                   };
                 }
                 return advisor;

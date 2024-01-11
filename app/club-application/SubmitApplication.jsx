@@ -46,9 +46,9 @@ export default function SubmitApplication(props) {
   }
 
   return (
-    <div className="p-12">
+    <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection title="SUBMIT APPLICATION" />
-      <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3">
+      <p className="font-[Nunito] text-[15px] sm:text-[14px] xxsm:text-[13px] mt-[20px] mb-[30px] px-3">
         Before you submit your application, please take a moment to carefully
         review all the information you have provided. Make sure that every
         detail is accurate and complete, as you will not be able to make any
@@ -57,9 +57,10 @@ export default function SubmitApplication(props) {
         of your application.{" "}
       </p>
       <hr />
-      <div className="flex justify-between my-8">
+      <div className="flex justify-between my-8 gap-x-8 sm:flex-col gap-y-4">
         <h2>FOR SPRING SEMESTER 2024</h2>
-        <a className="text-lightBlue font-[Nunito] text-[14px] underline underline-offset-4" href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+        <a className="text-lightBlue font-[Nunito] text-[14px] underline underline-offset-4" 
+        href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
           Click here to receive a copy
         </a>
       </div>

@@ -36,7 +36,7 @@ export default function SaveAndContinueButton(props) {
     <div className="mt-8">
       <button
         onClick={onClick}
-        className={`${variants[variant].backgroundColor} ${variants[variant].textColor} ${variants[variant].borderColor} ${variants[variant].hoverBackgroundColor} tracking-widest text-[12px] px-8 py-3 rounded-full duration-200 ease`}
+        className={`${variants[variant].backgroundColor} ${variants[variant].textColor} ${variants[variant].borderColor} ${variants[variant].hoverBackgroundColor} tracking-widest text-[12px] xsm:text-[11px] px-8 xsm:px-6 py-3 rounded-full duration-200 ease`}
       >
         {innerHTML}
       </button>
