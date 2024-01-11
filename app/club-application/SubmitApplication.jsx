@@ -81,7 +81,7 @@ function ReviewSection(props) {
   if (Array.isArray(form)) {
     console.log('array detected');
     return (
-      <div className="border-solid border-[2px] p-12 border-lightGray">
+      <div className="border-solid border-[2px] px-12 py-12 md:px-[30px] xsm:px-[20px] border-lightGray">
         <h1 className="mb-12 text-[20px]">{formatCamelCase(title).toUpperCase()}</h1>
         {form.map((item, index) => (
           <div key={index} className="flex flex-col border-solid border-lightGray py-2">
@@ -109,7 +109,7 @@ function ReviewSection(props) {
   }
 
   return (
-    <div className="border-solid border-[2px] p-12 border-lightGray">
+    <div className="border-solid border-[2px] px-12 py-12 md:px-[30px] xsm:px-[20px] border-lightGray">
       <h1 className="mb-12 text-[20px]">{formatCamelCase(title).toUpperCase()}</h1>
       {Object.entries(form).map(([key, value]) => (
         <div key={key} className="flex border-b-2 border-solid border-lightGray py-2">        
@@ -141,7 +141,7 @@ function AgreementSection(props) {
   }
 
   return ( 
-    <div className="border-solid border-[2px] p-12 border-lightGray">
+    <div className="border-solid border-[2px] px-12 py-12 md:px-[30px] xsm:px-[20px] border-lightGray">
       <h1 className="mb-12 text-[20px]">{formatCamelCase(title).toUpperCase()}</h1>
       {Object.entries(newForm).map(([key, value]) => (
         <div key={key} className="flex border-b-2 border-solid border-lightGray py-2">        
