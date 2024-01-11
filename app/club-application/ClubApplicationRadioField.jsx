@@ -5,7 +5,7 @@ export default function ClubApplicationRadioField(props) {
     <div className="flex flex-col gap-1 mt-8 px-3">
       <label className="text-lightBlue font-[Nunito] font-[800] text-[16px]">{label}</label>
       <p className="font-[Nunito] text-[14px] mb-[5px] tracking-wide">{subtext}</p>
-      <div className="flex gap-16 mt-5">
+      <div className="flex gap-x-16 gap-y-8 xsm:gap-y-6 mt-5 flex-wrap xxsm:flex-col">
         {options.map((option, index) => {
           const radioId = `radio-${option.replace(/\s+/g, '-')}-${index}`;
           return (

@@ -1,5 +1,6 @@
 "use client";
 import React, { Component, useState, useEffect } from "react";
+import ClubAgreementPage from "../club-application/page";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";

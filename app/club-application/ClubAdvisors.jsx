@@ -24,10 +24,10 @@ export default function ClubAdvisors(props) {
 
 
   return (
-    <div className="p-12">
+    <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection sectionTitle="Club Advisors" />
       <div>
-        <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3">
+        <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3 xsm:text-[14px]">
           Only one advisor is required for a club to be active. An advisor must
           attend ALL club functions, including: meetings, activities, and trips.
           They must also sign off on all club functions, including: meetings,
@@ -49,7 +49,7 @@ export default function ClubAdvisors(props) {
           );
         })}
       </div>
-      <div className="flex gap-[60px]">
+      <div className="flex gap-x-[60px] gap-y-0 sm:flex-col">
           <RoundedButton
             innerHTML="Add Advisor"
             variant={1}
