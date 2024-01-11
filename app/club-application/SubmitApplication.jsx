@@ -15,6 +15,9 @@ export default function SubmitApplication(props) {
   });
   let clubOfficers = club.clubOfficers;
   // only get the role, name, email, wNumber, phoneNumber, major, and gradeLevel
+  // remove any officers that are not used
+  clubOfficers = clubOfficers.filter((officer) => officer.isUsed);
+
   clubOfficers = clubOfficers.map((officer) => {
     return {
       role: officer.role,

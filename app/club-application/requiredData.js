@@ -7,7 +7,6 @@ class RequiredDatapoint {
   check (value) {
     if (this.type === "text") {
       if (this.condition === "not empty") {
-        console.log(value);
         return value !== "";
       }
     }
@@ -77,7 +76,6 @@ function checkClubOfficers (clubData) {
     const officers = clubData.clubOfficers.filter((officer) => {
         return officer.isUsed;
     });
-    console.log(officers);
     // officers is an array of objects.  It can be any size, but it must have at least one object.
     // Each object must have the following properties: name, email, phoneNumber, major, gradeLevel
     if (officers.length < numberOfRequiredOfficers) {
@@ -106,7 +104,6 @@ const requiredClubMembers = [
 
 function checkClubMembers (clubData) {
     const members = clubData.clubMembers;
-    console.log(members);
     // members is an array of objects.  It can be any size, but it must have at least one object.
     // Each object must have the following properties: name, email, wNumber
     if (members.length < numberOfRequiredMembers) {
