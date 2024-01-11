@@ -20,9 +20,9 @@ export default function ClubOfficersSection(props) {
   const gradeLevels = ["Freshman (1st Year)", "Sophomore (2nd Year)", "Junior (3rd Year)", "Senior (4th Year)", "5+ Years"];
 
   return (
-    <div className="p-12">
+    <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection sectionTitle="Club Officers" />
-      <p className="px-3 mt-[20px] mb-[30px] font-[Nunito] text-[15px]">
+      <p className="px-3 mt-[20px] mb-[30px] font-[Nunito] text-[15px] xsm:text-[14px]">
         The following are the officers for the club. For a club to be active, a Club President and an Inter-Club Council Representative is required. 
         These roles can only be assigned to current MJC students and all club officers are required a minimum GPA of 2.0
       </p>
@@ -110,8 +110,8 @@ function OfficerField(props) {
             />
             <ClubApplicationTextField
               label="W Number"
-              value={clubOfficers[officerIndex].name}
-              onChange={(e) => setOfficerField("name", e.target.value)}
+              value={clubOfficers[officerIndex].wNumber}
+              onChange={(e) => setOfficerField("wNumber", e.target.value)}
             />
             <ClubApplicationTextField
               label="Phone Number"

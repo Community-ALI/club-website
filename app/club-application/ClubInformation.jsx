@@ -25,10 +25,10 @@ const ClubInformation = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" />
-      <div className="px-[50px] py-[30px]">
+      <div className="px-[50px] md:px-[30px] xsm:px-[20px] py-[30px]">
         <ClubApplicationHeaderSection sectionTitle="CLUB INFORMATION" />
         <div>
-            <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3">
+            <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3 md:text-[14px] xsm:text-[14px]">
               The Associated Students of Modesto Junior College are responsible
               for the registration of all student clubs and organizations. To be
               considered as a new or returning club, this packet MUST be
@@ -38,7 +38,7 @@ const ClubInformation = (props) => {
             </p>
             <hr className="border-lightGray border-[.5px] mt-[20px]"></hr>
           <div>
-            <div className="flex items-center gap-[80px] px-3">
+            <div className="flex items-center gap-[80px] lg:gap-[40px] md:flex-col md:items-start md:gap-[0px] px-3">
               <ClubApplicationTextField
                 label="Club Name"
                 value={ClubInformation.clubName}
@@ -79,7 +79,7 @@ const ClubInformation = (props) => {
           </div>
         </div>
       </div>
-      <div className="pr-12 pl-[62px] flex gap-[80px]">
+      <div className="pr-12 pl-[62px] flex gap-[80px] lg:gap-[40px] md:flex-col md:gap-0 md:pl-[42px] xsm:pl-[32px]">
         {ClubInformation.meetingLocation === "In Person" || ClubInformation.meetingLocation === "Both" ? (
           <div>
             <ClubApplicationTextField
@@ -109,7 +109,7 @@ const ClubInformation = (props) => {
           </div>
         ) : null}
       </div>
-      <div className="px-[50px] pb-[50px]">
+      <div className="px-[50px] md:px-[30px] xsm:px-[20px] pb-[50px]">
       <hr className="border-lightGray border-[.5px] mt-[40px]"></hr>
         <RoundedButton
           innerHTML="Save and Continue"

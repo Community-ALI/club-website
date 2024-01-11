@@ -21,10 +21,10 @@ export default function ClubAdvisors(props) {
   }
 
   return (
-    <div className="p-12">
+    <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection sectionTitle="Club Members Roster" />
       <div>
-        <p className="px-3 mt-[20px] mb-[30px] font-[Nunito] text-[15px]">
+        <p className="px-3 mt-[20px] mb-[30px] font-[Nunito] text-[15px] xsm:text-[14px]">
           A minimum of 5 club members are required for a club to be active.
           Every club member must be a current MJC student enrolled in at least one unit for the current semester.
           <span className="font-bold"> IMPORTANT:</span> Please include the club officers in the member roster list below.
@@ -44,7 +44,7 @@ export default function ClubAdvisors(props) {
           );
         })}
       </div>
-      <div className="flex gap-[60px]">
+      <div className="flex gap-x-[60px] gap-y-0 sm:flex-col">
         <RoundedButton
           innerHTML="Add Member"
           variant={1}

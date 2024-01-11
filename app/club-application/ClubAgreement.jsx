@@ -23,13 +23,13 @@ export default function ClubAgreemet(props) {
   }
   
   return (
-    <div className="p-12">
+    <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection sectionTitle="Club Agreement" />
       <ClubAgreementText />
       <div>
         {clubAgreementSignatures.map((signature, index) => {
           return (
-            <div className="flex flex-wrap gap-[60px] justify-start px-3" key={index}>
+            <div className="flex flex-wrap gap-x-[60px] justify-start px-3" key={index}>
               <ClubApplicationTextField
                 label={clubAgreementSignatures[index].role + " Signature"}
                 onChange={(e) => ChangeSignatureField("signature", index, e)}
@@ -54,7 +54,7 @@ export default function ClubAgreemet(props) {
 
 function ClubAgreementText() {
   return (
-    <div className="px-3 mt-8 font-[Nunito]">
+    <div className="px-3 mt-8 font-[Nunito] sm:text-[15px] xsm:text-[14px]">
       <p>
         The membership of our club and its officers has agreed to abide by the
         Inter-Club {"Council's"} Standing Orders and the ASMJC Constitution and
