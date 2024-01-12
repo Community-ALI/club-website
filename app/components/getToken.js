@@ -4,6 +4,10 @@ function getToken() {
     // get the token from local storage
     const token = localStorage.getItem("token");
     const expireTime = localStorage.getItem("expireTime");
+    console.log("expireTime: " + expireTime);
+    // log the difference between the current time and the expire time
+    console.log("Current Time: " + Date.now());
+    console.log("Difference: " + (Date.now() - expireTime));
     // if the token is expired, remove it from local storage
     if (expireTime && Date.now() > expireTime) {
         console.log("Token Expired");

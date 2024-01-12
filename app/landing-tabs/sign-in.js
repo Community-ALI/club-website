@@ -3,6 +3,7 @@ import React, { useRef} from "react";
 import SectionTitle from "../components/section-title";
 import MainButton from "../components/main-button";
 import FormInput from "../components/form-input";
+import {getToken, setToken} from "../components/getToken";
 
 export default function SignIn( {setCurrentPage}) {
   const submitRef = useRef(null);
@@ -27,8 +28,7 @@ export default function SignIn( {setCurrentPage}) {
       .then((data) => {
         // if the account was created successfully, redirect to the sign in page
         if(data.message === "Success"){
-          console.log(data.token);
-          localStorage.setItem('token', data.token);
+          setToken(data);
           let currentUrl = window.location.href; // get the current URL
           // remove the hash from the URL
           currentUrl = currentUrl.replace("#signIn", "");

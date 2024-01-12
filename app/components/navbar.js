@@ -3,7 +3,7 @@ import React, { Component, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import {getToken, setToken} from "../components/getToken";  
+import {getToken, setToken} from "../components/getToken";
 
 const NavItem = ({ text, onClick, closeMenu}) => (
   <li className="hover:text-orange ease-out duration-200" onClick={() => { onClick && onClick(); closeMenu && closeMenu(); }}>{text}</li>
@@ -125,7 +125,7 @@ export default function Navbar({ setCurrentPage }) {
             setLoggedIn(false);
           }}
           >
-            {token ? 'Sign Out' : 'Sign In'}
+            {loggedIn ? 'Sign Out' : 'Sign In'}
           </div>
         </nav>
       ) : (
@@ -183,7 +183,7 @@ export default function Navbar({ setCurrentPage }) {
             setLoggedIn(false);
           }
            }>
-              {token ? 'Sign Out' : 'Sign In'}
+              {loggedIn ? 'Sign Out' : 'Sign In'}
             </li>
           </ul>
         </nav>
