@@ -115,7 +115,7 @@ export default function NavbarForApplication() {
           </a>
         </nav>
       ) : (
-        <nav className="bg-darkBlue h-[100px] lg:h-[90px] flex justify-between items-center relative px-[40px] lg:px-[20px]">
+        <nav className="bg-darkBlue h-[100px] xlg:h-[90px] lg:h-[80px] flex justify-between items-center relative px-[40px] xlg:px-[20px]">
           <div className="flex justify-center items-center gap-6 xlg:gap-4">
             <NavIcon
               href="https://www.mjc.edu/"
