@@ -55,7 +55,6 @@ export async function GET(request) {
       officers: officers.rows,
       members: members.rows,
     };
-    console.log(data);
     return new Response(JSON.stringify(data), {
       headers: { "Content-Type": "application/json" },
     });
@@ -165,7 +164,6 @@ export async function POST(request) {
       }
     }
     const data = { message: "Success"};
-    console.log(data);
     return new Response(JSON.stringify(data), {
       headers: { "Content-Type": "application/json" },
     });

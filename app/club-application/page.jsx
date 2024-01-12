@@ -13,6 +13,7 @@ import { faCircle} from "@fortawesome/free-solid-svg-icons";
 import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { ClubApplication } from "./ApplicationClass";
 import updateCompletionPercentage from "./requiredData";
+import {getToken, setToken} from '../components/getToken';
 
 
 function SectionButton(props) {
@@ -59,7 +60,7 @@ export default function ClubAgreementPage() {
   useEffect(() => {
     // a function to load the draft from the database
     async function loadDraft() {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       if (!token) {
         console.log("no token");
         return new ClubApplication();
@@ -124,8 +125,12 @@ export default function ClubAgreementPage() {
   function saveDraft(club) {
     // get the JSON for the club object
     const clubJSON = club.getJSON();
-    //get the token from local storage to be used in the request header
-    const token = localStorage.getItem("token");
+    //get the token
+    const token = getToken();
+    if (!token) {
+      alert("You must be logged in to save a draft");
+      return;
+    }
     // send a POST request to the server with the JSON data
     fetch("/api/draft", {
       method: "POST",
