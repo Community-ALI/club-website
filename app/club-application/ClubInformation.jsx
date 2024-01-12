@@ -62,19 +62,29 @@ const ClubInformation = (props) => {
               />
             </div>
             <hr className="border-lightGray border-[.5px] mt-[40px]"></hr>
+
             <ClubApplicationRadioField
               label="Meeting Location"
               subtext="Select the environment of your club meetings"
               value={ClubInformation.meetingLocation}
-              onChange={(e) =>
-                !setClubInformation({
-                  ...ClubInformation,
-                  meetingLocation: e.target.value,
-                })
-              }
+              onChange={(e) => {
+                const newMeetingLocation = e.target.value;
+                setClubInformation(prevState => {
+                  // Reset the irrelevant field based on the new meeting location
+                  const updatedState = { ...prevState, meetingLocation: newMeetingLocation };
+                  if (newMeetingLocation === "In Person" || newMeetingLocation === "Both") {
+                    updatedState.zoomLink = "";
+                  }
+                  if (newMeetingLocation === "Online/Zoom" || newMeetingLocation === "Both") {
+                    updatedState.buildingAndRoomNumber = "";
+                  }
+                  return updatedState;
+                });
+              }}
               options={meetingLocationOptions}
               checkedValue={ClubInformation.meetingLocation}
             />
+
           </div>
         </div>
       </div>
