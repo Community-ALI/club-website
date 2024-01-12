@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import SectionTitle from "../components/section-title";
 import MainButton from "../components/main-button";
 import FormInput from "../components/form-input";
@@ -9,6 +9,50 @@ import { ClubOptions } from "./clubs";
 export default function CreateAccount({ setCurrentPage }) {
   // set up a ref for the form
   const submitRef = useRef(null);
+  const [passwordRequriments, setPasswordRequirements] = useState([
+    "Password must be at least 6 characters long",
+    "Password must contain at least one capital letter",
+    "Password must contain at least one number",
+  ]);
+  const [fullfilledPasswordRequirements, setFullfilledPasswordRequirements] = useState([
+    false,
+    false,
+    false,
+  ])
+
+  function isFormValid() {
+    for (let i = 0; i < fullfilledPasswordRequirements.length; i++) {
+      if (!fullfilledPasswordRequirements[i]) {
+        return false;
+      }
+    }
+
+    let inputs = document.getElementsByTagName('input');
+    for(let i = 0; i < inputs.length; i++) {
+        if(inputs[i].value === '') {
+            alert('Please fill all the fields');
+            return false;
+        }
+    }
+    return true;
+  }
+
+  function checkPassword(password) {
+    // make sure the password is at least 8 characters, has a capital letter, and has a number
+    let fullfilledPasswordRequirements = [true, true, true];
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long");
+      fullfilledPasswordRequirements[0] = false;
+    }
+    if (!password.match(/[A-Z]/)) {
+      alert("Password must contain at least one capital letter");
+      fullfilledPasswordRequirements[1] = false;
+    }
+    if (!password.match(/[0-9]/)) {
+      alert("Password must contain at least one number");
+      fullfilledPasswordRequirements[2] = false;
+    }
+  }
 
   function submitForm(e) {
     e.preventDefault();
@@ -103,7 +147,10 @@ export default function CreateAccount({ setCurrentPage }) {
           </div>
 
           <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
-            <FormInput title="Club Password" type="password" placeholder="MJC Club Password" sideBySide></FormInput>
+            <div>
+              <FormInput title="Club Password" type="password" placeholder="MJC Club Password" sideBySide></FormInput>
+              <p></p>
+            </div>
             <FormInput title="Confirm Password" type="password" placeholder="Confirm Password" sideBySide></FormInput>
           </div>
 
@@ -122,7 +169,7 @@ export default function CreateAccount({ setCurrentPage }) {
 
         <div className="flex justify-center items-center mt-[40px] md:mt-[30px]">
           {/* when clicked, trigger the form to submit */}
-          <MainButton onClick={clickSubmit} text="Create Account"></MainButton>
+          <MainButton isDisabled={true} onClick={clickSubmit} text="Create Account"></MainButton>
         </div>
       </div>
     </>
