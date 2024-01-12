@@ -7,17 +7,17 @@ export default function ClubApplicationRadioField(props) {
       <p className="font-[Nunito] text-[14px] mb-[5px] tracking-wide">{subtext}</p>
       <div className="flex gap-x-16 gap-y-8 xsm:gap-y-6 mt-5 flex-wrap xxsm:flex-col">
         {options.map((option, index) => {
-          const radioId = `radio-${option.replace(/\s+/g, '-')}-${index}`;
+          const uniqueId = `${label.replace(/\s+/g, '')}-${option.replace(/\s+/g, '')}-${index}`; 
           return (
             <div key={index} className="flex items-center">
               <input
-              id={radioId}
                 type="radio"
                 value={option}
                 onChange={onChange}
                 checked={checkedValue === option}
+                id={uniqueId}
               />
-              <label htmlFor={radioId} className="font-[Nunito] pl-2 text-[#000000] text-[14px] tracking-wider">{option}</label>
+              <label htmlFor={uniqueId} className="font-[Nunito] pl-2 text-[#000000] text-[14px] tracking-wider">{option}</label>
             </div>
           );
         })}

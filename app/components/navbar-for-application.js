@@ -99,20 +99,20 @@ export default function NavbarForApplication() {
             />
           </div>
 
-          <div
+          <a
             className="hover:text-orange text-[white]
            hover:border-orange ease-in-out duration-300
            bg-opacity-0 font-[700]"
+           href="/#signIn"
             onClick={() => {
               localStorage.removeItem("token"); // remove the token from local storage
-              setCurrentPage("signIn");
               closeMobileMenu();
               // reload the page to update the navbar
               setToken(null);
             }}
           >
             {token ? "Sign Out" : "Sign In"}
-          </div>
+          </a>
         </nav>
       ) : (
         <nav className="bg-darkBlue h-[100px] lg:h-[90px] flex justify-between items-center relative px-[40px] lg:px-[20px]">

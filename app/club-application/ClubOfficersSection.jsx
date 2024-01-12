@@ -50,6 +50,7 @@ export default function ClubOfficersSection(props) {
 }
 
 function OfficerField(props) {
+  
   const {
     officerIndex,
     setClubOfficers,
@@ -58,13 +59,13 @@ function OfficerField(props) {
     isRequired,
   } = props;
   const [showOfficerField, setShowOfficerField] = useState(isRequired);
-  function setOfficerField(field, value) {
-    setClubOfficers(
-      clubOfficers.map((officer, index) =>
-        index === officerIndex ? { ...officer, [field]: value } : officer
-      )
-    );
-  }
+    function setOfficerField(field, value) {
+      setClubOfficers(
+        clubOfficers.map((officer, index) =>
+          index === officerIndex ? { ...officer, [field]: value, showOfficer: showOfficerField } : officer
+        )
+      );
+    }
 
   return (
     <div className="">
