@@ -99,7 +99,7 @@ export default function CreateAccount({ setCurrentPage }) {
               />
             </div>
 
-            <FormInput title="Club Email" type="email" placeholder="MJC Club Email" autoFocus={true} sideBySide></FormInput>
+            <FormInput title="Club Email" type="email" placeholder="MJC Club Email"sideBySide></FormInput>
           </div>
 
           <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
