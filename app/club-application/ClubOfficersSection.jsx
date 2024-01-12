@@ -51,6 +51,7 @@ export default function ClubOfficersSection(props) {
 }
 
 function OfficerField(props) {
+  
   const {
     officerIndex,
     setClubOfficers,
