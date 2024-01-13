@@ -8,7 +8,7 @@ export default function Home() {
       <p
         className="text-darkBlue text-center font-[Nunito] font-[600] w-[540px] 
         lg:w-[500px] md:w-[380px] mr-auto ml-auto mt-[30px] md:text-[14px] 
-        sm:text-[13px] xsm:text-[12px] xsm:w-[330px] xxsm:w-[300px]"
+        sm:text-[13px] xxsm:text-[12px] xsm:w-[340px] xxsm:w-[300px]"
       >
         Facilitating club success is the highest priority for Campus Life &
         Student Learning. With many clubs taking part in hundreds of activities
