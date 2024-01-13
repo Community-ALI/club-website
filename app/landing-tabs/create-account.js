@@ -159,7 +159,6 @@ export default function CreateAccount({ setCurrentPage }) {
             ></FormInput>
           </div>
           <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
-            <div>
               <FormInput
                 title="Club Password"
                 type="password"
@@ -169,8 +168,6 @@ export default function CreateAccount({ setCurrentPage }) {
                 }}
                 sideBySide
               ></FormInput>
-              <p></p>
-            </div>
             <FormInput
               title="Confirm Password"
               type="password"
