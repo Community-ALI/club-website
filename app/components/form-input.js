@@ -10,7 +10,9 @@ export default function FormInput({
   placeholder = "",
   autoFocus = false,
   sideBySide = false,
+  onchange = () => {},
 }) {
+  
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
@@ -26,6 +28,7 @@ export default function FormInput({
           type={type === "password" && passwordVisible ? "text" : type}
           autoFocus={autoFocus}
           placeholder={placeholder}
+          onChange={onchange}
           className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
           border-darkBlue text-darkBlue font-[600] tracking-wide text-[18px]
           lg:text-[16px] md:text-[15px] md:px-5 xsm:py-[10px]
