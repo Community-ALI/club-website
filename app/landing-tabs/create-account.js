@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import SectionTitle from "../components/section-title";
 import MainButton from "../components/main-button";
 import FormInput from "../components/form-input";
@@ -9,6 +9,55 @@ import { ClubOptions } from "./clubs";
 export default function CreateAccount({ setCurrentPage }) {
   // set up a ref for the form
   const submitRef = useRef(null);
+  const [passwordRequriments, setPasswordRequirements] = useState([
+    "Password must be at least 6 characters long",
+    "Password must contain at least one capital letter",
+    "Password must contain at least one number",
+  ]);
+  const [fullfilledPasswordRequirements, setFullfilledPasswordRequirements] =
+    useState([false, false, false, false]);
+  const [isFormFilled, setIsFormFilled] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    let _isFormFilled = true;
+    let inputs = document.getElementsByTagName("input");
+    // console.log(password, confirmPassword);
+    let _fullfilledPasswordRequirements = checkPassword(
+      password,
+      confirmPassword
+    );
+    for (let i = 0; i < _fullfilledPasswordRequirements.length; i++) {
+      if (!_fullfilledPasswordRequirements[i]) {
+        _isFormFilled = false;
+      }
+    }
+
+    setIsFormFilled(_isFormFilled);
+
+    function checkPassword(password, confirmPassword) {
+      let _fullfilledPasswordRequirements = [true, true, true, true];
+
+      if (password.length < 8) {
+        _fullfilledPasswordRequirements[0] = false;
+      }
+
+      if (!password.match(/[A-Z]/)) {
+        _fullfilledPasswordRequirements[1] = false;
+      }
+
+      if (!password.match(/[0-9]/)) {
+        _fullfilledPasswordRequirements[2] = false;
+      }
+      if (password !== confirmPassword) {
+        _fullfilledPasswordRequirements[3] = false;
+      }
+      // console.log(_fullfilledPasswordRequirements);
+      setFullfilledPasswordRequirements(_fullfilledPasswordRequirements);
+      return _fullfilledPasswordRequirements;
+    }
+  }, [password, confirmPassword]);
 
   function submitForm(e) {
     e.preventDefault();
@@ -99,17 +148,38 @@ export default function CreateAccount({ setCurrentPage }) {
               />
             </div>
 
-            <FormInput title="Club Email" type="email" placeholder="MJC Club Email" autoFocus={true} sideBySide></FormInput>
+            <FormInput
+              title="Club Email"
+              type="email"
+              placeholder="MJC Club Email"
+              autoFocus={true}
+              sideBySide
+            ></FormInput>
           </div>
-
           <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
-            <FormInput title="Club Password" type="password" placeholder="MJC Club Password" sideBySide></FormInput>
-            <FormInput title="Confirm Password" type="password" placeholder="Confirm Password" sideBySide></FormInput>
+            <FormInput
+              title="Club Password"
+              createAccount={true}
+              type="password"
+              placeholder="MJC Club Password"
+              onchange={(e) => {
+                setPassword(e.target.value);
+              }}
+              sideBySide
+            ></FormInput>
+            <FormInput
+              title="Confirm Password"
+              createAccount={true}
+              type="password"
+              placeholder="Confirm Password"
+              onchange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+              sideBySide
+            ></FormInput>
           </div>
-
           <input type="submit" className="hidden" ref={submitRef}></input>{" "}
-              {/* this is the hidden submit button */}
-
+          {/* this is the hidden submit button */}
           <div className="flex justify-center mt-[30px] sm:mt-[20px] font-[Nunito] text-lightBlue underline underline-offset-4">
             <p
               className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
@@ -120,9 +190,23 @@ export default function CreateAccount({ setCurrentPage }) {
           </div>
         </form>
 
-        <div className="flex justify-center items-center mt-[40px] md:mt-[30px]">
+        <div className="flex items-center flex-col mt-[40px] md:mt-[30px]">
           {/* when clicked, trigger the form to submit */}
-          <MainButton onClick={clickSubmit} text="Create Account"></MainButton>
+          <MainButton
+            isDisabled={!isFormFilled}
+            onClick={clickSubmit}
+            text="Create Account"
+          ></MainButton>
+
+          <p
+            className={`text-center text-[12px] ${
+              fullfilledPasswordRequirements[3]
+                ? "text-lightBlue"
+                : "text-orange"
+            } mt-[5px] xsm:text-[10px]`}
+          >
+            Passwords match
+          </p>
         </div>
       </div>
     </>

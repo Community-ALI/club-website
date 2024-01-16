@@ -1,12 +1,14 @@
-export default function MainButton({ text, onClick = () => {} }) {
+export default function MainButton({ isDisabled, text, onClick = () => {} }) {
   return (
     <>
       <button
-        className="text-offWhite text-[20px] py-[15px] md:py-[12px] xxsm:py-[10px]
-       bg-lightBlue hover:bg-darkBlue rounded-[80px] tracking-widest
-       ease-in-out duration-200 lg:text-[18px] md:text-[16px] xsm:text-[14px] 
-       lg:w-[420px] md:w-[380px] sm:w-[340px] xsm:w-[300px] xxsm:w-[280px] whitespace-nowrap w-[450px]"
+        className={`text-offWhite text-[20px] px-[100px] py-[15px]
+       ${isDisabled ? 'bg-gray' : 'bg-lightBlue hover:bg-darkBlue'} rounded-[80px] tracking-widest
+       ease-in-out duration-200 lg:scale-[.9] md:scale-[.8]
+       xsm:px-[60px] xsm:text-[18px] whitespace-nowrap w-[450px]
+       ${isDisabled ? 'disabled' : ''}`}
         onClick={onClick}
+        disabled={isDisabled}
       >
         {text}
       </button>
