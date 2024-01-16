@@ -23,7 +23,7 @@ export default function CreateAccount({ setCurrentPage }) {
   useEffect(() => {
     let _isFormFilled = true;
     let inputs = document.getElementsByTagName("input");
-    console.log(password, confirmPassword);
+    // console.log(password, confirmPassword);
     let _fullfilledPasswordRequirements = checkPassword(
       password,
       confirmPassword
@@ -54,7 +54,7 @@ export default function CreateAccount({ setCurrentPage }) {
     if (password !== confirmPassword) {
       _fullfilledPasswordRequirements[3] = false;
     }
-    console.log(_fullfilledPasswordRequirements);
+    // console.log(_fullfilledPasswordRequirements);
     setFullfilledPasswordRequirements(_fullfilledPasswordRequirements);
     return _fullfilledPasswordRequirements;
   }

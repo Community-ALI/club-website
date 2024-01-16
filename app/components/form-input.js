@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -18,15 +18,15 @@ export default function FormInput({
     setPasswordVisible((prev) => !prev);
   };
 
-  const [passwordRequriments, setPasswordRequirements] = useState([
-    "Password must be at least 6 characters long",
-    "Password must contain at least one capital letter",
-    "Password must contain at least one number",
+  const [fulfilledRequirements, setFulfilledRequirements] = useState([
+    false,
+    false,
+    false,
   ]);
-  const [fullfilledPasswordRequirements, setFullfilledPasswordRequirements] =
-    useState([false, false, false, false]);
 
-  const [fulfilledRequirements, setFulfilledRequirements] = useState([false, false, false]);
+  useEffect(() => {
+    setFulfilledRequirements(checkPassword(password));
+  }, [password]);
 
   function checkPassword(password, confirmPassword) {
     let _fullfilledPasswordRequirements = [true, true, true, true];
@@ -42,11 +42,8 @@ export default function FormInput({
     if (!password.match(/[0-9]/)) {
       _fullfilledPasswordRequirements[2] = false;
     }
-    if (password !== confirmPassword) {
-      _fullfilledPasswordRequirements[3] = false;
-    }
-    console.log(_fullfilledPasswordRequirements);
-    setFullfilledPasswordRequirements(_fullfilledPasswordRequirements);
+    console.log("fulfilledRequirements",_fullfilledPasswordRequirements);
+    setFulfilledRequirements(_fullfilledPasswordRequirements);
     return _fullfilledPasswordRequirements;
   }
   return (
@@ -68,7 +65,8 @@ export default function FormInput({
           placeholder={placeholder}
           onChange={(e) => {
             onchange(e);
-            setPassword(e.target.value);
+            if (type === "password")
+              setPassword(e.target.value);
           }}
           className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
           border-darkBlue text-darkBlue font-[600] tracking-wide text-[18px]
@@ -87,21 +85,21 @@ export default function FormInput({
         <div>
           <p
             className={`text-center text-[12px] ${
-              fulfilledRequirements[0] ? "text-gray-400" : "text-darkBlue"
+              fulfilledRequirements[0] ? "text-lightBlue" : "text-orange"
             } mt-[5px] xsm:text-[10px]`}
           >
             Password must be at least 8 characters long.
           </p>
           <p
             className={`text-center text-[12px] ${
-              fulfilledRequirements[1] ? "text-gray-400" : "text-darkBlue"
+              fulfilledRequirements[2] ? "text-lightBlue" : "text-orange"
             } mt-[5px] xsm:text-[10px]`}
           >
             Password must contain a number.
           </p>
           <p
             className={`text-center text-[12px] ${
-              fulfilledRequirements[2] ? "text-gray-400" : "text-darkBlue"
+              fulfilledRequirements[3] ? "text-lightBlue" : "text-orange"
             } mt-[5px] xsm:text-[10px]`}
           >
             Password must contain a special character.
