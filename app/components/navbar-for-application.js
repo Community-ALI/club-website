@@ -63,7 +63,7 @@ export default function NavbarForApplication() {
           >
             <ul
               className="flex flex-col items-center justify-center mt-[140px] gap-8
-            text-offWhite cursor-pointer text-[20px] xsm:text-[18px] animate-hamburgerFade"
+            text-offWhite cursor-pointer text-[20px] xsm:text-[18px] e-hamburgerFadeanimat"
             >
               <NavItem
                 text="Home"
