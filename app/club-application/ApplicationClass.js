@@ -3,6 +3,7 @@ const defaultClubAdvisors = [
       name: "",
       email: "",
       phoneNumber: "",
+      employeeTitle: "",
     },
   ];
   
@@ -142,10 +143,16 @@ class ClubApplication {
       buildingAndRoomNumber: json.buildingRoomNumber,
       zoomLink: json.zoomLink,
     };
-    this.clubAdvisors = json.advisors;
+    console.log(json.advisors);
+    this.clubAdvisors = defaultClubAdvisors;
+    for (let i = 0; i < json.advisors.length; i++) {
+      this.clubAdvisors[i].name = json.advisors[i].name;
+      this.clubAdvisors[i].email = json.advisors[i].email;
+      this.clubAdvisors[i].phoneNumber = json.advisors[i].phonenumber;
+      this.clubAdvisors[i].employeeTitle = json.advisors[i].employeetitle;
+    }
     this.clubOfficers = defaultClubOfficers;
     // fill in club officers
-    console.log(json.officers);
     for (let i = 0; i < json.officers.length; i++) {
       for (let j = 0; j < this.clubOfficers.length; j++) {
         if (json.officers[i].role === this.clubOfficers[j].role) {
@@ -190,6 +197,7 @@ class ClubApplication {
           name: advisor.name,
           email: advisor.email,
           phoneNumber: advisor.phoneNumber,
+          employeeTitle: advisor.employeeTitle,
         };
       }),
       officers: this.clubOfficers.map((officer) => {

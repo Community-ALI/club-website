@@ -136,12 +136,11 @@ export async function POST(request) {
       await sql`DELETE FROM ClubAdvisors WHERE ClubID = ${ClubID}`;
       for (const advisor of advisors) {
         await sql`
-                INSERT INTO ClubAdvisors (ClubID, Name, Email, PhoneNumber)
-                VALUES (${ClubID}, ${advisor.name}, ${advisor.email}, ${advisor.phoneNumber})
+                INSERT INTO ClubAdvisors (ClubID, Name, Email, PhoneNumber, EmployeeTitle)
+                VALUES (${ClubID}, ${advisor.name}, ${advisor.email}, ${advisor.phoneNumber}, ${advisor.employeeTitle})
             `;
       }
     }
-    console.log(officers)
     // Update officers
     if (officers && officers.length) {
       await sql`DELETE FROM ClubOfficers WHERE ClubID = ${ClubID}`;

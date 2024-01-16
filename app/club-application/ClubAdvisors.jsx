@@ -56,7 +56,7 @@ export default function ClubAdvisors(props) {
             onClick={() =>
               setClubAdvisors([
                 ...clubAdvisors,
-                { name: "", email: "", phoneNumber: "", title: ""},
+                { name: "", email: "", phoneNumber: "", employeeTitle: ""},
               ])
             }
           />
@@ -138,14 +138,14 @@ function ClubAdvisorField(props) {
         />
         <ClubApplicationTextField
           label="Employee Title"
-          value={clubAdvisors[advisorIndex].title}
+          value={clubAdvisors[advisorIndex].employeeTitle}
           onChange={(e) =>
             setClubAdvisors(
               clubAdvisors.map((advisor, index) => {
                 if (index == advisorIndex) {
                   return {
                     ...advisor,
-                    title: e.target.value,
+                    employeeTitle: e.target.value,
                   };
                 }
                 return advisor;
