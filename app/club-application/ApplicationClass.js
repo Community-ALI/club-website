@@ -173,6 +173,7 @@ class ClubApplication {
       this.clubMembers[i].email = json.members[i].email;
       this.clubMembers[i].wNumber = json.members[i].wnumber;
     }
+    console.log(json);
     this.clubAgreement = [
       {
         role: "Club President",
@@ -187,16 +188,17 @@ class ClubApplication {
     ];
   }
   getJSON() {
+    console.log(this.clubAgreement);
     return {
       clubName: this.clubInformation.clubName,
       meetingDaysTimes: this.clubInformation.meetingDaysAndTime,
       meetingLocation: this.clubInformation.meetingLocation,
       buildingRoomNumber: this.clubInformation.buildingAndRoomNumber,
       zoomLink: this.clubInformation.zoomLink,
-      clubPresidentSignature: this.clubAgreement.clubPresidentSignature,
-      dateOfPresidentSignature: this.clubAgreement.dateOfPresidentSignature,
-      clubAdvisorSignature: this.clubAgreement.clubAdvisorSignature,
-      dateOfAdvisorSignature: this.clubAgreement.dateOfAdvisorSignature,
+      clubPresidentSignature: this.clubAgreement[0].signature,
+      dateOfPresidentSignature: this.clubAgreement[0].date,
+      clubAdvisorSignature: this.clubAgreement[1].signature,
+      dateOfAdvisorSignature: this.clubAgreement[1].date,
       advisors: this.clubAdvisors.map((advisor) => {
         return {
           advisorID: advisor.advisorID,
