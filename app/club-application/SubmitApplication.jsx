@@ -1,4 +1,5 @@
 import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
+import { getCompletionPercentage } from "./requiredData";
 
 export default function SubmitApplication(props) {
   const { club } = props;
@@ -54,6 +55,17 @@ export default function SubmitApplication(props) {
     clubAgreement: clubAgreement,
   }
 
+  function finalSubmit() {
+    console.log("final submit");
+    // check that all the fields are filled out
+    if (getCompletionPercentage(club) !== 100) {
+      alert("Please fill out all the required fields before submitting your application.");
+      return;
+    }
+    alert("Your application has been submitted. Thank you for your time.")
+    
+  }
+
   return (
     <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection title="SUBMIT APPLICATION" />
@@ -79,7 +91,16 @@ export default function SubmitApplication(props) {
       <ReviewSection key={3} title={"Club Officers"} subtitle = "Officer" form={form.clubOfficers} />
       <ReviewSection key={4} title={"Club Members"} subtitle = "Member" form={form.clubMembers} />
       <AgreementSection key={5} title={"Club Agreement"} form={form.clubAgreement} /> 
-      {/* sorry about messing up the reusability. On a time crunch. */}
+
+      {/* the submit button */}
+      <div className="flex justify-end mt-8">
+        <button
+          className="rounded-full bg-lightBlue text-white font-[600] py-2 px-4 sm:px-6 md:px-8"
+          onClick={finalSubmit}
+        >
+          Submit Club Application
+        </button>
+      </div>
     </div>
   );
 }
