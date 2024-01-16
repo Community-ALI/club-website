@@ -5,7 +5,7 @@ import ClubInformation from "./ClubInformation";
 import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
-import ClubAgreemet from "./ClubAgreement";
+import ClubAgreemet from "./ClubAgreement"; 
 import SubmitApplication from "./SubmitApplication";
 import NavbarForApplication from "../components/navbar-for-application";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -137,6 +137,7 @@ export default function ClubAgreementPage() {
     // get the JSON for the club object
     const clubJSON = club.getJSON();
     //get the token
+    console.log("clubJSON", clubJSON);
     
     // send a POST request to the server with the JSON data
     fetch("/api/draft", {

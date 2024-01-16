@@ -130,7 +130,7 @@ export async function POST(request) {
     console.log("ClubID: " + ClubID);
     // Assuming body contains 'advisors', 'officers', and 'members' fields
     const { advisors, officers, members } = body;
-
+    console.log('clubJSON: ' + JSON.stringify(body));
     // Update advisors
     if (advisors && advisors.length) {
       await sql`DELETE FROM ClubAdvisors WHERE ClubID = ${ClubID}`;
@@ -141,14 +141,14 @@ export async function POST(request) {
             `;
       }
     }
-
+    console.log(officers)
     // Update officers
     if (officers && officers.length) {
       await sql`DELETE FROM ClubOfficers WHERE ClubID = ${ClubID}`;
       for (const officer of officers) {
         await sql`
-                INSERT INTO ClubOfficers (ClubID, Name, Email, PhoneNumber, Position, Major, GradeLevel)
-                VALUES (${ClubID}, ${officer.name}, ${officer.email}, ${officer.phoneNumber}, ${officer.position}, ${officer.major}, ${officer.gradeLevel})
+                INSERT INTO ClubOfficers (ClubID, Role, Name, Email, wNumber, PhoneNumber, Major, GradeLevel, IsUsed)
+                VALUES (${ClubID}, ${officer.role}, ${officer.name}, ${officer.email}, ${officer.wNumber}, ${officer.phoneNumber}, ${officer.major}, ${officer.gradeLevel}, ${officer.isUsed})
             `;
       }
     }

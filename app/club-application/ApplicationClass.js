@@ -143,7 +143,22 @@ class ClubApplication {
       zoomLink: json.zoomLink,
     };
     this.clubAdvisors = json.advisors;
-    this.clubOfficers = json.officers;
+    this.clubOfficers = defaultClubOfficers;
+    // fill in club officers
+    console.log(json.officers);
+    for (let i = 0; i < json.officers.length; i++) {
+      for (let j = 0; j < this.clubOfficers.length; j++) {
+        if (json.officers[i].role === this.clubOfficers[j].role) {
+          this.clubOfficers[j].name = json.officers[i].name;
+          this.clubOfficers[j].email = json.officers[i].email;
+          this.clubOfficers[j].wNumber = json.officers[i].wnumber;
+          this.clubOfficers[j].phoneNumber = json.officers[i].phonenumber;
+          this.clubOfficers[j].major = json.officers[i].major;
+          this.clubOfficers[j].gradeLevel = json.officers[i].gradeLevel || this.clubOfficers[j].gradeLevel;
+          this.clubOfficers[j].isUsed = json.officers[i].isused || this.clubOfficers[j].isRequired;
+        }
+      }
+    }
     this.clubMembers = json.members;
     this.clubAgreement = [
       {
@@ -180,12 +195,14 @@ class ClubApplication {
       officers: this.clubOfficers.map((officer) => {
         return {
           officerID: officer.officerID,
+          role: officer.role,
           name: officer.name,
           email: officer.email,
+          wNumber: officer.wNumber,
           phoneNumber: officer.phoneNumber,
-          position: officer.position,
           major: officer.major,
           gradeLevel: officer.gradeLevel,
+          isUsed: officer.isUsed,
         };
       }),
       members: this.clubMembers.map((member) => {
