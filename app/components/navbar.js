@@ -171,7 +171,7 @@ export default function Navbar({ setCurrentPage }) {
           ></img>
           <ul className="flex items-center gap-10 xlg:gap-7 lg:gap-5 text-offWhite cursor-pointer lg:text-[13px] xlg:text-[15px]">
             <NavItem text="Home" onClick={() => setCurrentPage('home')}></NavItem>
-            {token && <NavItem text="My Application"></NavItem>}
+            {/* {token && <NavItem text="My Application"></NavItem>} */}
             <NavItem text="Tech Support" onClick={() => setCurrentPage('techSupport')}></NavItem>
             <NavItem text="Contact" onClick={() => setCurrentPage('contact')}></NavItem>
             <li
