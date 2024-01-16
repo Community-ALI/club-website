@@ -63,7 +63,7 @@ export default function Navbar({ setCurrentPage }) {
             text-offWhite cursor-pointer text-[20px] xsm:text-[18px] animate-hamburgerFade"
             >
               <NavItem text="Home" onClick={() => setCurrentPage('home')} closeMenu={closeMobileMenu}></NavItem>
-              {token && <NavItem text="My Application" closeMenu={closeMobileMenu}></NavItem>}
+              {/* {token && <NavItem text="My Application" closeMenu={closeMobileMenu}></NavItem>} */}
               <NavItem text="Tech Support" onClick={() => setCurrentPage('techSupport')} closeMenu={closeMobileMenu}></NavItem>
               <NavItem text="Contact" onClick={() => setCurrentPage('contact')} closeMenu={closeMobileMenu}></NavItem>
               <a
