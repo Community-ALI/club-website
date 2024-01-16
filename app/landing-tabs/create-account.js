@@ -36,30 +36,28 @@ export default function CreateAccount({ setCurrentPage }) {
 
     setIsFormFilled(_isFormFilled);
 
+    function checkPassword(password, confirmPassword) {
+      let _fullfilledPasswordRequirements = [true, true, true, true];
 
-  function checkPassword(password, confirmPassword) {
-    let _fullfilledPasswordRequirements = [true, true, true, true];
+      if (password.length < 8) {
+        _fullfilledPasswordRequirements[0] = false;
+      }
 
-    if (password.length < 8) {
-      _fullfilledPasswordRequirements[0] = false;
-    }
+      if (!password.match(/[A-Z]/)) {
+        _fullfilledPasswordRequirements[1] = false;
+      }
 
-    if (!password.match(/[A-Z]/)) {
-      _fullfilledPasswordRequirements[1] = false;
+      if (!password.match(/[0-9]/)) {
+        _fullfilledPasswordRequirements[2] = false;
+      }
+      if (password !== confirmPassword) {
+        _fullfilledPasswordRequirements[3] = false;
+      }
+      // console.log(_fullfilledPasswordRequirements);
+      setFullfilledPasswordRequirements(_fullfilledPasswordRequirements);
+      return _fullfilledPasswordRequirements;
     }
-
-    if (!password.match(/[0-9]/)) {
-      _fullfilledPasswordRequirements[2] = false;
-    }
-    if (password !== confirmPassword) {
-      _fullfilledPasswordRequirements[3] = false;
-    }
-    // console.log(_fullfilledPasswordRequirements);
-    setFullfilledPasswordRequirements(_fullfilledPasswordRequirements);
-    return _fullfilledPasswordRequirements;
-  }
   }, [password, confirmPassword]);
-
 
   function submitForm(e) {
     e.preventDefault();
@@ -159,17 +157,19 @@ export default function CreateAccount({ setCurrentPage }) {
             ></FormInput>
           </div>
           <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
-              <FormInput
-                title="Club Password"
-                type="password"
-                placeholder="MJC Club Password"
-                onchange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                sideBySide
-              ></FormInput>
+            <FormInput
+              title="Club Password"
+              createAccount={true}
+              type="password"
+              placeholder="MJC Club Password"
+              onchange={(e) => {
+                setPassword(e.target.value);
+              }}
+              sideBySide
+            ></FormInput>
             <FormInput
               title="Confirm Password"
+              createAccount={true}
               type="password"
               placeholder="Confirm Password"
               onchange={(e) => {
@@ -198,9 +198,11 @@ export default function CreateAccount({ setCurrentPage }) {
             text="Create Account"
           ></MainButton>
 
-<p
+          <p
             className={`text-center text-[12px] ${
-              fullfilledPasswordRequirements[3] ? "text-lightBlue" : "text-orange"
+              fullfilledPasswordRequirements[3]
+                ? "text-lightBlue"
+                : "text-orange"
             } mt-[5px] xsm:text-[10px]`}
           >
             Passwords match

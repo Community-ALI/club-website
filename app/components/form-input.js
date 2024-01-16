@@ -11,6 +11,7 @@ export default function FormInput({
   autoFocus = false,
   sideBySide = false,
   onchange = () => {},
+  createAccount = false,
 }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
@@ -65,7 +66,7 @@ export default function FormInput({
           placeholder={placeholder}
           onChange={(e) => {
             onchange(e);
-            if (type === "password")
+            if (type === "password" && createAccounts)
               setPassword(e.target.value);
           }}
           className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
@@ -81,7 +82,7 @@ export default function FormInput({
           />
         )}
       </div>
-      {type === "password" && (
+      {(type === "password" && createAccount) && (
         <div>
           <p
             className={`text-center text-[12px] ${
