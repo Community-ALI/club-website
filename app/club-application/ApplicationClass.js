@@ -143,8 +143,8 @@ class ClubApplication {
       buildingAndRoomNumber: json.buildingRoomNumber,
       zoomLink: json.zoomLink,
     };
-    console.log(json.advisors);
     this.clubAdvisors = defaultClubAdvisors;
+    // fill in club advisors
     for (let i = 0; i < json.advisors.length; i++) {
       this.clubAdvisors[i].name = json.advisors[i].name;
       this.clubAdvisors[i].email = json.advisors[i].email;
@@ -161,12 +161,18 @@ class ClubApplication {
           this.clubOfficers[j].wNumber = json.officers[i].wnumber;
           this.clubOfficers[j].phoneNumber = json.officers[i].phonenumber;
           this.clubOfficers[j].major = json.officers[i].major;
-          this.clubOfficers[j].gradeLevel = json.officers[i].gradeLevel || this.clubOfficers[j].gradeLevel;
+          this.clubOfficers[j].gradeLevel = json.officers[i].gradelevel || this.clubOfficers[j].gradeLevel;
           this.clubOfficers[j].isUsed = json.officers[i].isused || this.clubOfficers[j].isRequired;
         }
       }
     }
-    this.clubMembers = json.members;
+    this.clubMembers = defaultMembers;
+    // fill in club members
+    for (let i = 0; i < json.members.length; i++) {
+      this.clubMembers[i].name = json.members[i].name;
+      this.clubMembers[i].email = json.members[i].email;
+      this.clubMembers[i].wNumber = json.members[i].wnumber;
+    }
     this.clubAgreement = [
       {
         role: "Club President",
