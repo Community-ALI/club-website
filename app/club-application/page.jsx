@@ -12,8 +12,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle} from "@fortawesome/free-solid-svg-icons";
 import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { ClubApplication } from "./ApplicationClass";
-import updateCompletionPercentage from "./requiredData";
+import {updateCompletionPercentage} from "./requiredData";
 import {getToken, setToken} from '../components/getToken';
+import LoadingPage from "./Loading";
 
 
 function SectionButton(props) {
@@ -91,6 +92,12 @@ export default function ClubAgreementPage() {
         const newClub = await loadDraft();
         console.log("loaded club", newClub);
         updateClub(newClub, false); // Then set the club
+        // once the club is set we need to go to section 1, club advisors, then back to section 0, club information in order to update the input fields
+        setCurrentSection(-1);
+        // delay the update to allow the club to update
+        setTimeout(() => {
+          setCurrentSection(0);
+        }, 1000);
       } catch (error) {
         console.error("Failed to load draft:", error);
       }
@@ -123,14 +130,14 @@ export default function ClubAgreementPage() {
 
   // function to save the draft to the database
   function saveDraft(club) {
+    const token = getToken();
+    if (!token) {
+      return;
+    }
     // get the JSON for the club object
     const clubJSON = club.getJSON();
     //get the token
-    const token = getToken();
-    if (!token) {
-      alert("You must be logged in to save a draft");
-      return;
-    }
+    
     // send a POST request to the server with the JSON data
     fetch("/api/draft", {
       method: "POST",
@@ -179,6 +186,11 @@ export default function ClubAgreementPage() {
     }
     setRefreshKey((prevKey) => prevKey + 1); // Force a re-render
   }
+
+
+  const loadingForm = (
+    <LoadingPage/>
+  );
 
   const [sections, setSections] = useState([
     {
@@ -254,7 +266,13 @@ export default function ClubAgreementPage() {
         xlg:items-center"
       >
         <div className="bg-offWhite w-[850px] h-fit lg:w-[90%] xsm:w-[100%] lg:mx-auto">
-          {sections[currentSection].form}
+          {/* if there is a form, load it */}
+          {sections[currentSection] ? (
+            sections[currentSection].form
+          ) : (
+            loadingForm
+          )}
+          
         </div>
         
         <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12">

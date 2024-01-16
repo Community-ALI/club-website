@@ -7,7 +7,16 @@ class RequiredDatapoint {
   check (value) {
     if (this.type === "text") {
       if (this.condition === "not empty") {
-        return value !== "";
+        if (value === "") {
+          return false;
+        }
+        if (value === null) {
+          return false;
+        }
+        if (value === undefined) {
+          return false;
+        }
+        return true;
       }
     }
   }
@@ -149,7 +158,7 @@ function checkClubAgreement (clubData) {
     return completionPercentage;
 }
 
-export default function updateCompletionPercentage (clubData, sections, setSections) {
+function updateCompletionPercentage (clubData, sections, setSections) {
     // for each section, set the completion percentage
     let newSections = sections;
     newSections[0].progress = checkClubInformation(clubData);
@@ -159,3 +168,18 @@ export default function updateCompletionPercentage (clubData, sections, setSecti
     newSections[4].progress = checkClubAgreement(clubData);
     setSections(newSections);
 }
+
+function getCompletionPercentage (clubData) {
+    let completionPercentage = 0;
+    completionPercentage += checkClubInformation(clubData);
+    completionPercentage += checkClubAdvisors(clubData);
+    completionPercentage += checkClubOfficers(clubData);
+    completionPercentage += checkClubMembers(clubData);
+    completionPercentage += checkClubAgreement(clubData);
+    return completionPercentage / 5;
+}
+
+export { 
+    updateCompletionPercentage,
+    getCompletionPercentage
+};
