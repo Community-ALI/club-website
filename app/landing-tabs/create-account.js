@@ -190,13 +190,21 @@ export default function CreateAccount({ setCurrentPage }) {
           </div>
         </form>
 
-        <div className="flex justify-center items-center mt-[40px] md:mt-[30px]">
+        <div className="flex items-center flex-col mt-[40px] md:mt-[30px]">
           {/* when clicked, trigger the form to submit */}
           <MainButton
             isDisabled={!isFormFilled}
             onClick={clickSubmit}
             text="Create Account"
           ></MainButton>
+
+<p
+            className={`text-center text-[12px] ${
+              fullfilledPasswordRequirements[3] ? "text-lightBlue" : "text-orange"
+            } mt-[5px] xsm:text-[10px]`}
+          >
+            Passwords match
+          </p>
         </div>
       </div>
     </>
