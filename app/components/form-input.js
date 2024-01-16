@@ -99,10 +99,10 @@ export default function FormInput({
           </p>
           <p
             className={`text-center text-[12px] ${
-              fulfilledRequirements[3] ? "text-lightBlue" : "text-orange"
+              fulfilledRequirements[1] ? "text-lightBlue" : "text-orange"
             } mt-[5px] xsm:text-[10px]`}
           >
-            Password must contain a special character.
+            Password must contain at least one capital letter.
           </p>
         </div>
       )}
