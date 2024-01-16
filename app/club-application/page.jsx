@@ -5,95 +5,17 @@ import ClubInformation from "./ClubInformation";
 import ClubAdvisors from "./ClubAdvisors";
 import ClubOfficers from "./ClubOfficersSection";
 import ClubMembers from "./ClubMembers";
-import ClubAgreemet from "./ClubAgreement";
+import ClubAgreemet from "./ClubAgreement"; 
 import SubmitApplication from "./SubmitApplication";
 import NavbarForApplication from "../components/navbar-for-application";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle} from "@fortawesome/free-solid-svg-icons";
 import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
-import { defaultClubAdvisors, defaultClubOfficers, defaultMembers, defaultClubAgreement } from "./defaultClubData";
-import updateCompletionPercentage from "./requiredData";
+import { ClubApplication } from "./ApplicationClass";
+import {updateCompletionPercentage} from "./requiredData";
+import {getToken, setToken} from '../components/getToken';
+import LoadingPage from "./Loading";
 
-// create a class for club applications
-class ClubApplication {
-  constructor() {
-    this.clubInformation = {
-      clubName: "",
-      meetingDaysAndTime: "",
-      meetingLocation: "",
-      buildingAndRoomNumber: "",
-      zoomLink: "",
-    };
-    this.clubAdvisors = defaultClubAdvisors;
-    this.clubOfficers = defaultClubOfficers;
-    this.clubMembers = defaultMembers;
-    this.clubAgreement = defaultClubAgreement;
-  }
-  loadFromJSON(json) {
-    this.clubInformation = {
-      clubName: json.clubName,
-      meetingDaysAndTime: json.meetingDaysTimes,
-      meetingLocation: json.meetingLocation,
-      buildingAndRoomNumber: json.buildingRoomNumber,
-      zoomLink: json.zoomLink,
-    };
-    this.clubAdvisors = json.advisors;
-    this.clubOfficers = json.officers;
-    this.clubMembers = json.members;
-    this.clubAgreement = [
-      {
-        role: "Club President",
-        signature: json.clubPresidentSignature,
-        date: json.dateOfPresidentSignature,
-      },
-      {
-        role: "Club Advisor",
-        signature: json.clubAdvisorSignature,
-        date: json.dateOfAdvisorSignature,
-      },
-    ];
-  }
-  getJSON() {
-    return {
-      clubName: this.clubInformation.clubName,
-      meetingDaysTimes: this.clubInformation.meetingDaysAndTime,
-      meetingLocation: this.clubInformation.meetingLocation,
-      buildingRoomNumber: this.clubInformation.buildingAndRoomNumber,
-      zoomLink: this.clubInformation.zoomLink,
-      clubPresidentSignature: this.clubAgreement.clubPresidentSignature,
-      dateOfPresidentSignature: this.clubAgreement.dateOfPresidentSignature,
-      clubAdvisorSignature: this.clubAgreement.clubAdvisorSignature,
-      dateOfAdvisorSignature: this.clubAgreement.dateOfAdvisorSignature,
-      advisors: this.clubAdvisors.map((advisor) => {
-        return {
-          advisorID: advisor.advisorID,
-          name: advisor.name,
-          email: advisor.email,
-          phoneNumber: advisor.phoneNumber,
-        };
-      }),
-      officers: this.clubOfficers.map((officer) => {
-        return {
-          officerID: officer.officerID,
-          name: officer.name,
-          email: officer.email,
-          phoneNumber: officer.phoneNumber,
-          position: officer.position,
-          major: officer.major,
-          gradeLevel: officer.gradeLevel,
-        };
-      }),
-      members: this.clubMembers.map((member) => {
-        return {
-          memberID: member.memberID,
-          name: member.name,
-          email: member.email,
-          wNumber: member.wNumber,
-        };
-      }),
-    };
-  }
-}
 
 function SectionButton(props) {
   const { section, index, currentSection, handleSectionClick } = props;
@@ -139,7 +61,7 @@ export default function ClubAgreementPage() {
   useEffect(() => {
     // a function to load the draft from the database
     async function loadDraft() {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       if (!token) {
         console.log("no token");
         return new ClubApplication();
@@ -170,6 +92,12 @@ export default function ClubAgreementPage() {
         const newClub = await loadDraft();
         console.log("loaded club", newClub);
         updateClub(newClub, false); // Then set the club
+        // once the club is set we need to go to section 1, club advisors, then back to section 0, club information in order to update the input fields
+        setCurrentSection(-1);
+        // delay the update to allow the club to update
+        setTimeout(() => {
+          setCurrentSection(0);
+        }, 1000);
       } catch (error) {
         console.error("Failed to load draft:", error);
       }
@@ -202,10 +130,15 @@ export default function ClubAgreementPage() {
 
   // function to save the draft to the database
   function saveDraft(club) {
+    const token = getToken();
+    if (!token) {
+      return;
+    }
     // get the JSON for the club object
     const clubJSON = club.getJSON();
-    //get the token from local storage to be used in the request header
-    const token = localStorage.getItem("token");
+    //get the token
+    console.log("clubJSON", clubJSON);
+    
     // send a POST request to the server with the JSON data
     fetch("/api/draft", {
       method: "POST",
@@ -254,6 +187,11 @@ export default function ClubAgreementPage() {
     }
     setRefreshKey((prevKey) => prevKey + 1); // Force a re-render
   }
+
+
+  const loadingForm = (
+    <LoadingPage/>
+  );
 
   const [sections, setSections] = useState([
     {
@@ -329,7 +267,13 @@ export default function ClubAgreementPage() {
         xlg:items-center"
       >
         <div className="bg-offWhite w-[850px] h-fit lg:w-[90%] xsm:w-[100%] lg:mx-auto">
-          {sections[currentSection].form}
+          {/* if there is a form, load it */}
+          {sections[currentSection] ? (
+            sections[currentSection].form
+          ) : (
+            loadingForm
+          )}
+          
         </div>
         
         <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12">
@@ -341,9 +285,7 @@ export default function ClubAgreementPage() {
               </div>
               {sections.map((section, index) => {
                 return (
-                  <button
-                    className={`hover:cursor-pointer h-[55px] sm:h-[50px] w-full border-t-darkGray border-t-[1px]
-                  ${currentSection != index ? bgColor : selectionColor}`}
+                  <SectionButton
                     key={index}
                     section={section}
                     index={index}
