@@ -1,4 +1,4 @@
-const defaultClubAdvisors = [
+  const defaultClubAdvisors = [
     {
       name: "",
       email: "",
