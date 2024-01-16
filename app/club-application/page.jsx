@@ -324,22 +324,26 @@ export default function ClubAgreementPage() {
       <NavbarForApplication></NavbarForApplication>
       <div
         id="club-application-page"
-        className="flex justify-center pb-[220px] pt-[60px] min-h-screen h-full 
-        bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px]"
+        className="flex justify-center pb-[220px] xsm:pb-[0px] pt-[60px] xlg:pt-[30px] xsm:pt-0 min-h-screen h-full 
+        bg-gradient-to-bl to-[#112B66] from-[#508BB8] gap-[58px] xsm:gap-0 xlg:flex-col-reverse
+        xlg:items-center"
       >
-        <div key={refreshKey} className="bg-offWhite w-[850px] h-fit">
+        <div className="bg-offWhite w-[850px] h-fit lg:w-[90%] xsm:w-[100%] lg:mx-auto">
           {sections[currentSection].form}
         </div>
+        
+        <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12">
 
-        <div className="flex flex-col gap-y-10 sticky top-5 h-fit z-10">
-          <div className="w-[280px] text-[15px] h-fit">
+          <div className="w-[280px] text-[15px] sm:text-[14px] h-fit xlg:w-[850px] lg:w-[90%] xsm:w-[100%] lg:mx-auto sm:border-b-8 border-b-darkBlue">
             <div>
-              <div className="bg-darkBlue flex items-center text-white w-full pl-6 h-[55px]">
+              <div className="bg-darkBlue flex items-center text-white w-full pl-6 h-[55px] sm:h-[50px]">
                 <h1 className="tracking-wider">REGISTRATION PACKET</h1>
               </div>
               {sections.map((section, index) => {
                 return (
-                  <SectionButton
+                  <button
+                    className={`hover:cursor-pointer h-[55px] sm:h-[50px] w-full border-t-darkGray border-t-[1px]
+                  ${currentSection != index ? bgColor : selectionColor}`}
                     key={index}
                     section={section}
                     index={index}
@@ -352,15 +356,12 @@ export default function ClubAgreementPage() {
             <div className="bg-offWhite"></div>
           </div>
 
-          <div className="w-[280px] text-[15px] h-[190px] bg-offWhite flex flex-col gap-y-6 p-6">
-            <div className="flex flex-col">
-              <h1 className="text-darkBlue tracking-wide">
-                Application Deadline
-              </h1>
-              <p className="font-[Nunito] text-[15px]">
-                Thursday, January 25th 2024
-              </p>
-            </div>
+          <div className="w-[280px] text-[15px] h-[190px] bg-offWhite flex flex-col gap-y-6 p-6 xlg:w-[850px] 
+          xlg:flex-row xlg:h-[120px] xlg:justify-around xlg:items-center xlg:hidden">
+              <div className="flex flex-col">
+                <h1 className="text-darkBlue tracking-wide">Application Deadline</h1>
+                <p className="font-[Nunito] text-[15px]">Thursday, January 25th 2024</p>
+              </div>
 
             <div className="flex flex-col">
               <h1 className="text-lightBlue mb-1">Need Help?</h1>
