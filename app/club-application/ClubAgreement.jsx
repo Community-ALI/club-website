@@ -21,7 +21,7 @@ export default function ClubAgreemet(props) {
     updateClub(club);
     props.goToNextSection();
   }
-
+  
   return (
     <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection sectionTitle="Club Agreement" />
@@ -33,8 +33,9 @@ export default function ClubAgreemet(props) {
               <ClubApplicationTextField
                 label={clubAgreementSignatures[index].role + " Signature"}
                 onChange={(e) => ChangeSignatureField("signature", index, e)}
+                value={clubAgreementSignatures[index].signature}
               />
-              <ClubApplicationTextField label="Date" onChange={(e) => ChangeSignatureField("date", index, e)} />
+              <ClubApplicationTextField label="Date" value={clubAgreementSignatures[index].date} onChange={(e) => ChangeSignatureField("date", index, e)} />
             </div>
           );
         })}

@@ -36,6 +36,7 @@ export default function ClubOfficersSection(props) {
             gradeLevels={gradeLevels}
             key={index}
             isRequired={officer.isRequired}
+            isUsed={officer.isUsed}
           />
         );
       })}
@@ -57,15 +58,24 @@ function OfficerField(props) {
     clubOfficers,
     gradeLevels,
     isRequired,
+    isUsed,
   } = props;
-  const [showOfficerField, setShowOfficerField] = useState(isRequired);
-    function setOfficerField(field, value) {
-      setClubOfficers(
-        clubOfficers.map((officer, index) =>
-          index === officerIndex ? { ...officer, [field]: value, showOfficer: showOfficerField } : officer
-        )
-      );
-    }
+  const [showOfficerField, setShowOfficerField] = useState(isUsed);
+  function setOfficerField(field, value) {
+    setClubOfficers(
+      clubOfficers.map((officer, index) =>
+        index === officerIndex ? { ...officer, [field]: value } : officer
+      )
+    );
+  }
+  function toggleUsed(e) {
+    setClubOfficers(
+      clubOfficers.map((officer, index) =>
+        index === officerIndex ? { ...officer, isUsed: !officer.isUsed } : officer
+      )
+    );
+    setShowOfficerField(e.target.value === "Yes")
+  }
 
   return (
     <div className="">
@@ -75,7 +85,7 @@ function OfficerField(props) {
             label={`Do you have a ${clubOfficers[officerIndex].role}?`}
             subtext="This position is not required but is recommended"
             value={showOfficerField ? "Yes" : "No"}
-            onChange={(e) => setShowOfficerField(e.target.value === "Yes")}
+            onChange={(e) => toggleUsed(e)}
             options={["Yes", "No"]}
             checkedValue={showOfficerField ? "Yes" : "No"}
           />

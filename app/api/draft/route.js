@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // get the draft object from the database
-export async function GET() {
+export async function GET(request) {
   // check the headers for the JWT token
   const tokenHeader = request.headers.get("Authorization");
   // remove the 'Bearer ' prefix from the token
@@ -26,19 +26,35 @@ export async function GET() {
       });
     }
     // fetch the draft object from the database
-    const result = await sql`SELECT * FROM ClubDraft WHERE UserId = ${userId}`;
-    if (result.count === 0) {
-      return new Response(JSON.stringify({ message: "Draft not found" }), {
-        headers: { "Content-Type": "application/json" },
-        status: 404,
-      });
-    }
-    const draft = result.rows[0];
-    // fetch the advisors, officers, and members from the database
-    const advisors = await sql`SELECT * FROM ClubAdvisors WHERE ClubID = ${draft.clubid}`;
-    const officers = await sql`SELECT * FROM ClubOfficers WHERE ClubID = ${draft.clubid}`;
-    const members = await sql`SELECT * FROM ClubMembers WHERE ClubID = ${draft.clubid}`;
-    const data = { ...draft, advisors, officers, members };
+    const draft = await sql`
+            SELECT * FROM ClubDraft WHERE UserId = ${userId}
+        `;
+    // fetch the advisors from the database
+    const advisors = await sql`
+            SELECT * FROM ClubAdvisors WHERE ClubID = ${draft.rows[0].clubid}
+        `;
+    // fetch the officers from the database
+    const officers = await sql`
+            SELECT * FROM ClubOfficers WHERE ClubID = ${draft.rows[0].clubid}
+        `;
+    // fetch the members from the database
+    const members = await sql`
+            SELECT * FROM ClubMembers WHERE ClubID = ${draft.rows[0].clubid}
+        `;
+    const data = {
+      clubName: draft.rows[0].clubname,
+      meetingDaysTimes: draft.rows[0].meetingdaystimes,
+      meetingLocation: draft.rows[0].meetinglocation,
+      buildingRoomNumber: draft.rows[0].buildingroomnumber,
+      zoomLink: draft.rows[0].zoomlink,
+      clubPresidentSignature: draft.rows[0].clubpresidentsignature,
+      dateOfPresidentSignature: draft.rows[0].dateofpresidentsignature,
+      clubAdvisorSignature: draft.rows[0].clubadvisorsignature,
+      dateOfAdvisorSignature: draft.rows[0].dateofadvisorsignature,
+      advisors: advisors.rows,
+      officers: officers.rows,
+      members: members.rows,
+    };
     return new Response(JSON.stringify(data), {
       headers: { "Content-Type": "application/json" },
     });
@@ -114,25 +130,24 @@ export async function POST(request) {
     console.log("ClubID: " + ClubID);
     // Assuming body contains 'advisors', 'officers', and 'members' fields
     const { advisors, officers, members } = body;
-
+    console.log('clubJSON: ' + JSON.stringify(body));
     // Update advisors
     if (advisors && advisors.length) {
       await sql`DELETE FROM ClubAdvisors WHERE ClubID = ${ClubID}`;
       for (const advisor of advisors) {
         await sql`
-                INSERT INTO ClubAdvisors (ClubID, Name, Email, PhoneNumber)
-                VALUES (${ClubID}, ${advisor.name}, ${advisor.email}, ${advisor.phoneNumber})
+                INSERT INTO ClubAdvisors (ClubID, Name, Email, PhoneNumber, EmployeeTitle)
+                VALUES (${ClubID}, ${advisor.name}, ${advisor.email}, ${advisor.phoneNumber}, ${advisor.employeeTitle})
             `;
       }
     }
-
     // Update officers
     if (officers && officers.length) {
       await sql`DELETE FROM ClubOfficers WHERE ClubID = ${ClubID}`;
       for (const officer of officers) {
         await sql`
-                INSERT INTO ClubOfficers (ClubID, Name, Email, PhoneNumber, Position, Major, GradeLevel)
-                VALUES (${ClubID}, ${officer.name}, ${officer.email}, ${officer.phoneNumber}, ${officer.position}, ${officer.major}, ${officer.gradeLevel})
+                INSERT INTO ClubOfficers (ClubID, Role, Name, Email, wNumber, PhoneNumber, Major, GradeLevel, IsUsed)
+                VALUES (${ClubID}, ${officer.role}, ${officer.name}, ${officer.email}, ${officer.wNumber}, ${officer.phoneNumber}, ${officer.major}, ${officer.gradeLevel}, ${officer.isUsed})
             `;
       }
     }
@@ -148,7 +163,6 @@ export async function POST(request) {
       }
     }
     const data = { message: "Success"};
-    console.log(data);
     return new Response(JSON.stringify(data), {
       headers: { "Content-Type": "application/json" },
     });
