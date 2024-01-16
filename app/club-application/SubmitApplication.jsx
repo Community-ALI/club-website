@@ -12,7 +12,7 @@ export default function SubmitApplication(props) {
       name: advisor.name,
       email: advisor.email,
       phoneNumber: advisor.phoneNumber,
-      title: advisor.title,
+      title: advisor.employeeTitle,
     };
   });
   let clubOfficers = club.clubOfficers;
