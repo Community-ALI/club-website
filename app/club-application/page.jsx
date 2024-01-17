@@ -150,7 +150,7 @@ export default function ClubAgreementPage() {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert("Success:", data);
+        console.log("Section saved");
       })
       .catch((error) => {
         console.error("Error:", error);

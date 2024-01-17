@@ -63,8 +63,24 @@ export default function SubmitApplication(props) {
       alert("Please fill out all the required fields before submitting your application.");
       return;
     }
-    alert("Your application has been submitted. Thank you for your time.")
-    
+    // send all data to the backend
+    fetch("/api/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Application submitted:", data);
+        alert("Your application has been submitted!");
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("There was an error submitting your application. Please try again.");
+      });
   }
 
   return (
