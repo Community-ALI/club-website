@@ -3,7 +3,7 @@ import React, { Component, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import {getToken, setToken} from "../components/getToken";
+import { getToken, setToken } from "../components/getToken";
 
 const NavItem = ({ text, onClick, closeMenu, href }) => (
   <li
@@ -65,7 +65,7 @@ export default function NavbarForApplication() {
           >
             <ul
               className="flex flex-col items-center justify-center mt-[140px] gap-8
-            text-offWhite cursor-pointer text-[20px] xsm:text-[18px] animate-hamburgerFade"
+            text-offWhite cursor-pointer text-[20px] xsm:text-[18px] e-hamburgerFadeanimat"
             >
               <NavItem
                 text="Home"
@@ -105,7 +105,7 @@ export default function NavbarForApplication() {
             className="hover:text-orange text-[white]
            hover:border-orange ease-in-out duration-300
            bg-opacity-0 font-[700]"
-           href="/#signIn"
+            href="/#signIn"
             onClick={() => {
               // remove the token from local storage
               setToken(null);
@@ -118,7 +118,7 @@ export default function NavbarForApplication() {
           </a>
         </nav>
       ) : (
-        <nav className="bg-darkBlue h-[100px] lg:h-[90px] flex justify-between items-center relative px-[40px] lg:px-[20px]">
+        <nav className="bg-darkBlue h-[100px] xlg:h-[90px] lg:h-[80px] flex justify-between items-center relative px-[40px] xlg:px-[20px]">
           <div className="flex justify-center items-center gap-6 xlg:gap-4">
             <NavIcon
               href="https://www.mjc.edu/"
