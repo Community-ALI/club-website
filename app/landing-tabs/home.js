@@ -29,7 +29,7 @@ function Overlay({ onClose }) {
         ></FontAwesomeIcon>
         <h1 className="text-center text-darkBlue text-[28px] lg:text-[26px] sm:text-[24px] xxsm:text-[20px] 
         animate-hamburgerFade mt-2 sm:mt-3">
-          Let's Get Started
+          {"Let's"} Get Started
         </h1>
         <h2 className="text-center text-lightBlue text-[18px] lg:text-[16px] sm:text-[15px] mt-2 animate-hamburgerFade">
           Select the Status of Your Club
