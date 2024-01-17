@@ -60,14 +60,22 @@ function OfficerField(props) {
     isRequired,
     isUsed,
   } = props;
-  const [showOfficerField, setShowOfficerField] = useState(isRequired);
-    function setOfficerField(field, value) {
-      setClubOfficers(
-        clubOfficers.map((officer, index) =>
-          index === officerIndex ? { ...officer, [field]: value, showOfficer: showOfficerField } : officer
-        )
-      );
-    }
+  const [showOfficerField, setShowOfficerField] = useState(isUsed);
+  function setOfficerField(field, value) {
+    setClubOfficers(
+      clubOfficers.map((officer, index) =>
+        index === officerIndex ? { ...officer, [field]: value } : officer
+      )
+    );
+  }
+  function toggleUsed(e) {
+    setClubOfficers(
+      clubOfficers.map((officer, index) =>
+        index === officerIndex ? { ...officer, isUsed: !officer.isUsed } : officer
+      )
+    );
+    setShowOfficerField(e.target.value === "Yes")
+  }
 
   return (
     <div className="">

@@ -7,7 +7,6 @@ import ClubApplicationRadioField from "./ClubApplicationRadioField";
 import RoundedButton from "@components/RoundedButton";
 
 const ClubInformation = (props) => {
-  console.log('club information props', props);
   const { club, updateClub } = props;
 
   const [ClubInformation, setClubInformation] = useState(club.clubInformation);

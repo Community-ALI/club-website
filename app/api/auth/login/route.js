@@ -23,9 +23,12 @@ export async function POST(request) {
         }
         // User is valid, create a JWT token using the user's ID
         const user = result.rows[0];
-        const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
+        // Token expires in 24 hours
+        const expireTime = Date.now() + 86400000;
+        
+        const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '24h' });
 
-        const data = { message: "Success", token: token };
+        const data = { message: "Success", token: token, expireTime: expireTime };
         return new Response(JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'

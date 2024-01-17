@@ -9,6 +9,7 @@ export const ClubOptions = [
     'Entrepreneur Club',
     'Electronic Music Club',
     'Freedom Forum',
+    'Film Club', 
     'Geology Club',
     'Great Valley Astronomy Club',
     'International Club',

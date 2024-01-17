@@ -3,6 +3,7 @@ import React, { Component, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import {getToken, setToken} from "../components/getToken";
 
 const NavItem = ({ text, onClick, closeMenu}) => (
   <li className="hover:text-orange ease-out duration-200" onClick={() => { onClick && onClick(); closeMenu && closeMenu(); }}>{text}</li>
@@ -29,12 +30,14 @@ export default function Navbar({ setCurrentPage }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const [token, setToken] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     // This code runs only on the client side
-    const storedToken = localStorage.getItem('token');
-    setToken(storedToken);
+    const storedToken = getToken();
+    if (storedToken) {
+      setLoggedIn(true);
+    }
   }, []);
 
   return (
@@ -60,6 +63,7 @@ export default function Navbar({ setCurrentPage }) {
             text-offWhite cursor-pointer text-[20px] xsm:text-[18px] animate-hamburgerFade"
             >
               <NavItem text="Home" onClick={() => setCurrentPage('home')} closeMenu={closeMobileMenu}></NavItem>
+              {/* {token && <NavItem text="My Application" closeMenu={closeMobileMenu}></NavItem>} */}
               <NavItem text="Tech Support" onClick={() => setCurrentPage('techSupport')} closeMenu={closeMobileMenu}></NavItem>
               <NavItem text="Contact" onClick={() => setCurrentPage('contact')} closeMenu={closeMobileMenu}></NavItem>
               <a
@@ -113,30 +117,32 @@ export default function Navbar({ setCurrentPage }) {
            hover:border-orange ease-in-out duration-300
            bg-opacity-0 font-[700]"
            onClick={() => {
-            localStorage.removeItem('token'); // remove the token from local storage
+            
+            // remove the token
+            setToken(null);
             setCurrentPage('signIn');
             closeMobileMenu();
             // reload the page to update the navbar
-            setToken(null);
+            setLoggedIn(false);
           }}
           >
-            {token ? 'Sign Out' : 'Sign In'}
+            {loggedIn ? 'Sign Out' : 'Sign In'}
           </div>
         </nav>
       ) : (
-        <nav className="bg-darkBlue h-[100px] lg:h-[90px] flex justify-between items-center relative px-[40px] lg:px-[20px]">
+        <nav className="bg-darkBlue h-[100px] xlg:h-[90px] lg:h-[80px] flex justify-between items-center relative px-[40px] lg:px-[20px]">
           <div className="flex justify-center items-center gap-6 xlg:gap-4">
             <NavIcon
               href="https://www.mjc.edu/"
               imgSrc="images/MJC.png"
               imgAlt="MJC Logo"
-              imgWidth="w-[135px] mr-[20px] lg:w-[110px]"
+              imgWidth="w-[130px] mr-[20px] lg:w-[110px]"
             />
             <NavIcon
               href="https://www.youtube.com/@mjccampuslifestudentlearni6266/featured"
               imgSrc="images/Youtube.png"
               imgAlt="Youtube Logo"
-              imgWidth="w-[30px] lg:w-[25px]"
+              imgWidth="w-[27px] lg:w-[25px]"
             />
             <NavIcon
               href="https://www.facebook.com/modestojuniorcollege"
@@ -165,6 +171,7 @@ export default function Navbar({ setCurrentPage }) {
           ></img>
           <ul className="flex items-center gap-10 xlg:gap-7 lg:gap-5 text-offWhite cursor-pointer lg:text-[13px] xlg:text-[15px]">
             <NavItem text="Home" onClick={() => setCurrentPage('home')}></NavItem>
+            {/* {token && <NavItem text="My Application"></NavItem>} */}
             <NavItem text="Tech Support" onClick={() => setCurrentPage('techSupport')}></NavItem>
             <NavItem text="Contact" onClick={() => setCurrentPage('contact')}></NavItem>
             <li
@@ -172,12 +179,13 @@ export default function Navbar({ setCurrentPage }) {
            hover:border-orange ease-in-out duration-300 px-[20px] py-[5px] 
            bg-opacity-0 rounded-[20px] border-2 border-white font-[700] lg:px-[15px] lg:py-[3px]"
            onClick={() => {
-            localStorage.removeItem('token'); // remove the token from local storage
-            setCurrentPage('signIn');
+            // remove the token
             setToken(null);
+            setCurrentPage('signIn');
+            setLoggedIn(false);
           }
            }>
-              {token ? 'Sign Out' : 'Sign In'}
+              {loggedIn ? 'Sign Out' : 'Sign In'}
             </li>
           </ul>
         </nav>
