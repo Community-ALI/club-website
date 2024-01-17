@@ -39,7 +39,6 @@ function checkClubInformation (clubData) {
         }    
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Club Information: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -68,7 +67,6 @@ function checkClubAdvisors (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Advisors: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -100,7 +98,6 @@ function checkClubOfficers (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Officers: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -128,7 +125,6 @@ function checkClubMembers (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Members: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -154,7 +150,6 @@ function checkClubAgreement (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Agreements: " + completionPercentage);
     return completionPercentage;
 }
 

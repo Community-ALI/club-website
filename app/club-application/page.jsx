@@ -79,7 +79,6 @@ export default function ClubAgreementPage() {
         const data = await response.json();
         const newClub = new ClubApplication();
         newClub.loadFromJSON(data);
-        console.log("new club", newClub);
         return newClub;
       } catch (error) {
         console.error("Error:", error);
@@ -90,7 +89,6 @@ export default function ClubAgreementPage() {
     async function fetchDraft() {
       try {
         const newClub = await loadDraft();
-        console.log("loaded club", newClub);
         updateClub(newClub, false); // Then set the club
         // once the club is set we need to go to section 1, club advisors, then back to section 0, club information in order to update the input fields
         setCurrentSection(-1);
@@ -136,8 +134,6 @@ export default function ClubAgreementPage() {
     }
     // get the JSON for the club object
     const clubJSON = club.getJSON();
-    //get the token
-    console.log("clubJSON", clubJSON);
     
     // send a POST request to the server with the JSON data
     fetch("/api/draft", {
@@ -173,7 +169,6 @@ export default function ClubAgreementPage() {
     }
     setClub(updatedClub);
     // Calculate the progress of the application
-    console.log("updated club", updatedClub);
     updateCompletionPercentage(updatedClub, sections, setSections);
     // update all club values in the sections
     setSections(prevSections => prevSections.map(section => ({

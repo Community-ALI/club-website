@@ -43,7 +43,6 @@ export default function FormInput({
     if (!password.match(/[0-9]/)) {
       _fullfilledPasswordRequirements[2] = false;
     }
-    console.log("fulfilledRequirements",_fullfilledPasswordRequirements);
     setFulfilledRequirements(_fullfilledPasswordRequirements);
     return _fullfilledPasswordRequirements;
   }

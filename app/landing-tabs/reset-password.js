@@ -32,8 +32,6 @@ export default function PasswordReset() {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
     const email = urlParams.get("email");
-    console.log(token); // logs null
-    console.log(email);
     fetch("/api/auth/reset-password", {
       method: "POST",
       headers: {
@@ -50,6 +48,7 @@ export default function PasswordReset() {
         alert(data.message);
         // if the password was reset successfully, reload the page and remove the token and email from the url
         if (data.message === "Password updated successfully") {
+          console.log("Password updated successfully");
           window.location.href = window.location.href.split("?")[0] + "#signIn";
         }
       });

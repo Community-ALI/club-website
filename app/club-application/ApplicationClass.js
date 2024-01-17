@@ -173,7 +173,6 @@ class ClubApplication {
       this.clubMembers[i].email = json.members[i].email;
       this.clubMembers[i].wNumber = json.members[i].wnumber;
     }
-    console.log(json);
     this.clubAgreement = [
       {
         role: "Club President",
@@ -188,7 +187,6 @@ class ClubApplication {
     ];
   }
   getJSON() {
-    console.log(this.clubAgreement);
     return {
       clubName: this.clubInformation.clubName,
       meetingDaysTimes: this.clubInformation.meetingDaysAndTime,

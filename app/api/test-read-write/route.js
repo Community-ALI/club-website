@@ -23,9 +23,10 @@ export async function GET() {
 export async function POST(request) {
     try {
         const body = await request.json();
-        console.log(body);
+
         await sql `INSERT INTO USERS (Email, Password, Club_name) VALUES (${body.email}, ${body.password}, ${body.club_name})`;
         const data = { message: "Success" };
+        console.log('new user added');
         return new Response(JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'

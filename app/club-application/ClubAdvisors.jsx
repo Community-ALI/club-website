@@ -11,8 +11,6 @@ export default function ClubAdvisors(props) {
   function handleSubmit() {
     club.clubAdvisors = clubAdvisors;
     updateClub(club);
-    console.log(club);
-    console.log(club.getJSON());
     props.goToNextSection();
   }
 

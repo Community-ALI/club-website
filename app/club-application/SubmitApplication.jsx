@@ -74,7 +74,7 @@ export default function SubmitApplication(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Application submitted:", data);
+        console.log("Application submitted successfully");
         alert("Your application has been submitted!");
         window.location.href = "/";
       })
@@ -103,7 +103,7 @@ export default function SubmitApplication(props) {
           Click here to receive a copy
         </a>
       </div>
-      
+
       {/* the form section */}
       <RegistrationFilled form={form} />
 

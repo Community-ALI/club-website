@@ -15,7 +15,7 @@ function generatePDF(json) {
 export async function POST(request) {
     // user does not need to be logged in to submit an application
     const body = await request.json();
-    console.log('received application: ' + JSON.stringify(body));
+    console.log('application received');
     let userId = null;
     // check the headers for the JWT token, if it exists, use the user id
     const tokenHeader = request.headers.get("Authorization");
@@ -65,7 +65,6 @@ async function POSTfromDraft(request) {
     // check the headers for the JWT token
     const tokenHeader = request.headers.get("Authorization");
     // remove the 'Bearer ' prefix from the token
-    console.log(tokenHeader);
     if (!tokenHeader) {
       console.log("No token");
       return new Response(JSON.stringify({ message: "Unauthorized" }), {

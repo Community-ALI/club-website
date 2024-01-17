@@ -73,7 +73,6 @@ export async function POST(request) {
   // check the headers for the JWT token
   const tokenHeader = request.headers.get("Authorization");
   // remove the 'Bearer ' prefix from the token
-  console.log(tokenHeader);
   if (!tokenHeader) {
     console.log("No token");
     return new Response(JSON.stringify({ message: "Unauthorized" }), {
@@ -86,7 +85,6 @@ export async function POST(request) {
   try {
     console.log("Verifying token");
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log(decoded);
     const userId = decoded.id;
     if (!userId) {
       console.log("No userId");
@@ -130,7 +128,6 @@ export async function POST(request) {
     console.log("ClubID: " + ClubID);
     // Assuming body contains 'advisors', 'officers', and 'members' fields
     const { advisors, officers, members } = body;
-    console.log('clubJSON: ' + JSON.stringify(body));
     // Update advisors
     if (advisors && advisors.length) {
       await sql`DELETE FROM ClubAdvisors WHERE ClubID = ${ClubID}`;
