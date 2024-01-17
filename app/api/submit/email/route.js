@@ -6,7 +6,8 @@ export async function POST(request) {
     sendEmail(
       body.email,
       `${body.clubTitle} Application PDF`,
-      `honestly idk what to put here. but here's the link to the pdf: ${body.pdfLink}`
+      `honestly idk what to put here. but here's the link to the pdf:`,
+      body.pdfBase64
     );
   } catch (err) {
     console.log(err);
