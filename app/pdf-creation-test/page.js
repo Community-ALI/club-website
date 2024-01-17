@@ -70,7 +70,20 @@ export default function PDFCreationTestPage() {
         <html>
         <head>
             <style>
-                ${css}
+            h1 {
+                font-family: 'Heavitas', sans-serif;
+                color: aqua;
+                background-color: brown;
+            }
+            
+            p {
+                color: red;
+            }
+            
+            .officer {
+                page-break-inside: avoid;
+                color: blue;
+            }
             </style>
         </head>
         <body>
