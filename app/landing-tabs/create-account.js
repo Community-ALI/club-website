@@ -27,10 +27,10 @@ export default function CreateAccount({ setCurrentPage }) {
 
   function checkPassword(password, confirmPassword) {
     const requirements = [
-      password.length >= 8,
+      password.length >= 6,
       /[A-Z]/.test(password),
       /\d/.test(password),
-      password === confirmPassword,
+      password !== "" && confirmPassword !== "" && password === confirmPassword,
     ];
     return requirements;
   }
@@ -50,8 +50,8 @@ export default function CreateAccount({ setCurrentPage }) {
       alert("Passwords do not match");
       return;
     }
-    if (password.length < 8) {
-      alert("Password must be at least 8 characters long");
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long");
       return;
     }
     if (!password.match(/[A-Z]/)) {
@@ -62,8 +62,6 @@ export default function CreateAccount({ setCurrentPage }) {
       alert("Password must contain at least one number");
       return;
     }
-
-    // if all the checks pass, submit the form to the api
 
     fetch("/api/auth/register", {
       method: "POST",
@@ -97,7 +95,7 @@ export default function CreateAccount({ setCurrentPage }) {
         <SectionTitle text="Create Account"></SectionTitle>
         {/* flex justify-center flex-col w-[450px] lg:w-[400px] md:w-[350px] xsm:w-[80%] mr-auto ml-auto */}
         <form
-          className="flex justify-center flex-col w-[950px] lg:w-[90%] md:w-[400px] xsm:w-[80%] xxsm:w-[85%] mr-auto ml-auto text-darkBlue"
+          className="flex justify-center flex-col w-[940px] lg:w-[90%] md:w-[400px] xsm:w-[80%] xxsm:w-[85%] mr-auto ml-auto text-darkBlue"
           onSubmit={submitForm}
         >
           <div className="flex justify-center md:flex-col gap-[50px] md:gap-[10px]">
@@ -110,7 +108,7 @@ export default function CreateAccount({ setCurrentPage }) {
                 defaultValue={""}
                 placeholder="MJC Club Email"
                 className="w-[100%] px-6 py-3 bg-white rounded-[80px] border-2
-         border-darkBlue font-[400] tracking-wide text-[18px]
+         border-darkBlue font-[400] tracking-wide text-[16px]
          lg:text-[16px] md:text-[14px] md:px-5 sm:py-[10px]
          xsm:text-[14px] xxsm:text-[12px] xxsm:px-4 appearance-none"
               >
@@ -120,7 +118,6 @@ export default function CreateAccount({ setCurrentPage }) {
                 {ClubOptions.map((club, index) => (
                   <option key={index}>{club}</option>
                 ))}
-                <option>Other / New Club</option>
               </select>
               <FontAwesomeIcon
                 className="absolute right-[20px] top-[50px] lg:top-[46px] sm:top-[40px] text-lightBlue"
@@ -140,7 +137,7 @@ export default function CreateAccount({ setCurrentPage }) {
             <FormInput
               title="Club Password"
               type="password"
-              placeholder="MJC Club Password"
+              placeholder="Create Password"
               onchange={handlePasswordChange}
               createAccount={true}
               sideBySide
@@ -148,7 +145,7 @@ export default function CreateAccount({ setCurrentPage }) {
             <FormInput
               title="Confirm Password"
               type="password"
-              placeholder="Confirm Password"
+              placeholder="Match Password"
               onchange={handleConfirmPasswordChange}
               createAccount={true}
               sideBySide
@@ -167,7 +164,7 @@ export default function CreateAccount({ setCurrentPage }) {
           </div> */}
         </form>
 
-        <div className="flex items-center flex-col mt-[30px] md:mt-[20px]">
+        <div className="flex items-center flex-col mt-[40px] md:mt-[30px]">
           <MainButton
             isDisabled={!isFormFilled}
             onClick={clickSubmit}

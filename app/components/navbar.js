@@ -136,13 +136,13 @@ export default function Navbar({ setCurrentPage }) {
               href="https://www.mjc.edu/"
               imgSrc="images/MJC.png"
               imgAlt="MJC Logo"
-              imgWidth="w-[135px] mr-[20px] lg:w-[110px]"
+              imgWidth="w-[130px] mr-[20px] lg:w-[110px]"
             />
             <NavIcon
               href="https://www.youtube.com/@mjccampuslifestudentlearni6266/featured"
               imgSrc="images/Youtube.png"
               imgAlt="Youtube Logo"
-              imgWidth="w-[30px] lg:w-[25px]"
+              imgWidth="w-[27px] lg:w-[25px]"
             />
             <NavIcon
               href="https://www.facebook.com/modestojuniorcollege"

@@ -55,7 +55,7 @@ export default function FormInput({
           : "flex flex-col justify-center items-center mt-[20px] sm:mt-[10px]"
       }
     >
-      <p className="text-center text-darkBlue font-[Nunito] font-[600] tracking-wide text-[18px] mb-[10px] xsm:text-[16px]">
+      <p className="text-center text-darkBlue font-[Nunito] font-[600] tracking-wide text-[18px] mb-[10px] lg:text-[16px]">
         {title}
       </p>
       <div className="relative w-[100%] flex justify-center items-center">
@@ -70,9 +70,8 @@ export default function FormInput({
               setPassword(e.target.value);
           }}
           className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
-          border-darkBlue text-darkBlue font-[600] tracking-wide text-[18px]
-          lg:text-[16px] md:text-[15px] md:px-5 xsm:py-[10px]
-          xsm:text-[14px] xxsm:text-[13px] xxsm:px-4"
+          border-darkBlue text-darkBlue font-[600] tracking-wide text-[16px]
+          md:text-[15px] md:px-5 xsm:py-[10px] xsm:text-[14px] xxsm:text-[13px] xxsm:px-4"
         ></input>
         {type === "password" && (
           <FontAwesomeIcon

@@ -64,7 +64,7 @@ function Overlay({ onClose }) {
         underline underline-offset-4 mt-8 lg:mt-[45px] sm:mt-[40px] xsm:mt-[35px] cursor-pointer
         hover:text-darkBlue duration-100"
           >
-            Need help? Click here for contacts.
+            Not sure? Click here for contact info.
           </p>
         </a>
       </div>
@@ -100,7 +100,7 @@ export default function Home() {
         campus event.
       </p>
       <div className="flex justify-center items-center mt-[80px] lg:mt-[60px] xsm:mt-[40px]">
-        <a onClick={handleStartApplicationClick}>
+        <a onClick={handleStartApplicationClick} className="w-[100%] mx-auto text-center">
           <MainButton text="Start Application"></MainButton>
         </a>
       </div>
