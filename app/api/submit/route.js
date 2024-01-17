@@ -3,8 +3,13 @@
 // saves the final application to the database (similar to the draft route)
 function saveSubmission(json) {
 
+}
+
+function generatePDF(json) {
 
 }
+
+
 
 // This route also emails the application to the specified email address.
 export async function POST(request) {
@@ -28,6 +33,8 @@ export async function POST(request) {
         });
       }
     }
+    // FIXME: generate the PDF from the application data
+
     // FIXME: send the email
 
     // FIXME: save the application to the database
