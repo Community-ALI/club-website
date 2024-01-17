@@ -82,31 +82,6 @@ export default function FormInput({
           />
         )}
       </div>
-      {(type === "password" && createAccount) && (
-        <div>
-          <p
-            className={`text-center text-[13px] ${
-              fulfilledRequirements[0] ? "text-darkBlue" : "text-[#ff0000]"
-            } mt-[5px] xsm:text-[10px] font-[Nunito] font-[700]`}
-          >
-            Password must be at least 8 characters long.
-          </p>
-          <p
-            className={`text-center text-[13px] ${
-              fulfilledRequirements[2] ? "text-darkBlue" : "text-[#ff0000]"
-            } mt-[5px] xsm:text-[10px] font-[Nunito] font-[700]`}
-          >
-            Password must contain a number.
-          </p>
-          <p
-            className={`text-center text-[13px] ${
-              fulfilledRequirements[1] ? "text-darkBlue" : "text-[#ff0000]"
-            } mt-[5px] xsm:text-[10px] font-[Nunito] font-[700]`}
-          >
-            Password must contain at least one capital letter.
-          </p>
-        </div>
-      )}
     </div>
   );
 }

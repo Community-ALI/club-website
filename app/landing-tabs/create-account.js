@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import SectionTitle from "../components/section-title";
 import MainButton from "../components/main-button";
 import FormInput from "../components/form-input";
+import PasswordRequirements from "../components/password";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { ClubOptions } from "./clubs";
@@ -138,23 +139,24 @@ export default function CreateAccount({ setCurrentPage }) {
           <div className="flex justify-center gap-[50px] mt-[15px] md:mt-[10px] md:flex-col md:gap-[10px]">
             <FormInput
               title="Club Password"
-              createAccount={true}
               type="password"
               placeholder="MJC Club Password"
               onchange={handlePasswordChange}
+              createAccount={true}
               sideBySide
             ></FormInput>
             <FormInput
               title="Confirm Password"
-              createAccount={true}
               type="password"
               placeholder="Confirm Password"
               onchange={handleConfirmPasswordChange}
+              createAccount={true}
               sideBySide
             ></FormInput>
           </div>
+          <PasswordRequirements fulfilledRequirements={fulfilledPasswordRequirements} />
           <input type="submit" className="hidden" ref={submitRef}></input>{" "}
-          <div className="flex justify-center mt-[30px] sm:mt-[20px] font-[Nunito] text-lightBlue underline underline-offset-4">
+          {/* <div className="flex justify-center mt-[30px] sm:mt-[20px] font-[Nunito] text-lightBlue underline underline-offset-4">
             <p
               className="px-[10px] text-[15px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue 
               duration-200 ease"
@@ -162,7 +164,7 @@ export default function CreateAccount({ setCurrentPage }) {
             >
               Already Have an Account? Sign In
             </p>
-          </div>
+          </div> */}
         </form>
 
         <div className="flex items-center flex-col mt-[30px] md:mt-[20px]">
