@@ -152,7 +152,6 @@ export default function CreateAccount({ setCurrentPage }) {
               title="Club Email"
               type="email"
               placeholder="MJC Club Email"
-              autoFocus={true}
               sideBySide
             ></FormInput>
           </div>
@@ -179,10 +178,10 @@ export default function CreateAccount({ setCurrentPage }) {
             ></FormInput>
           </div>
           <input type="submit" className="hidden" ref={submitRef}></input>{" "}
-          {/* this is the hidden submit button */}
           <div className="flex justify-center mt-[30px] sm:mt-[20px] font-[Nunito] text-lightBlue underline underline-offset-4">
             <p
-              className="px-[10px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue duration-200 ease"
+              className="px-[10px] text-[15px] md:text-[14px] sm:px-[5px] xxsm:text-[12px] cursor-pointer hover:text-darkBlue 
+              duration-200 ease"
               onClick={() => setCurrentPage("signIn")}
             >
               Already Have an Account? Sign In
@@ -190,23 +189,12 @@ export default function CreateAccount({ setCurrentPage }) {
           </div>
         </form>
 
-        <div className="flex items-center flex-col mt-[40px] md:mt-[30px]">
-          {/* when clicked, trigger the form to submit */}
+        <div className="flex items-center flex-col mt-[30px] md:mt-[20px]">
           <MainButton
             isDisabled={!isFormFilled}
             onClick={clickSubmit}
             text="Create Account"
           ></MainButton>
-
-          <p
-            className={`text-center text-[12px] ${
-              fullfilledPasswordRequirements[3]
-                ? "text-lightBlue"
-                : "text-orange"
-            } mt-[5px] xsm:text-[10px]`}
-          >
-            Passwords match
-          </p>
         </div>
       </div>
     </>
