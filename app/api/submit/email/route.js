@@ -6,7 +6,16 @@ export async function POST(request) {
     sendEmail(
       body.email,
       `${body.clubTitle} Application PDF`,
-      `honestly idk what to put here. but here's the link to the pdf:`,
+      `Dear Administrator,
+    
+      Please find attached the application for the club titled "${body.clubTitle}".
+    
+      Thank you for your time.
+    
+      Best regards,
+      The Community Alis Team
+    
+      Note: This is an automated message. Please do not reply directly to this email.`,
       body.pdfBase64
     );
   } catch (err) {
