@@ -7,68 +7,48 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { ClubOptions } from "./clubs";
 
 export default function CreateAccount({ setCurrentPage }) {
-  // set up a ref for the form
   const submitRef = useRef(null);
-  const [passwordRequriments, setPasswordRequirements] = useState([
-    "Password must be at least 6 characters long",
-    "Password must contain at least one capital letter",
-    "Password must contain at least one number",
-  ]);
-  const [fullfilledPasswordRequirements, setFullfilledPasswordRequirements] =
-    useState([false, false, false, false]);
-  const [isFormFilled, setIsFormFilled] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isFormFilled, setIsFormFilled] = useState(false);
+  const [fulfilledPasswordRequirements, setFulfilledPasswordRequirements] =
+    useState([false, false, false, false]); // Corrected typo
 
   useEffect(() => {
-    let _isFormFilled = true;
-    let inputs = document.getElementsByTagName("input");
-    // console.log(password, confirmPassword);
-    let _fullfilledPasswordRequirements = checkPassword(
+    // Password validation logic here
+    const _fulfilledPasswordRequirements = checkPassword(
       password,
       confirmPassword
     );
-    for (let i = 0; i < _fullfilledPasswordRequirements.length; i++) {
-      if (!_fullfilledPasswordRequirements[i]) {
-        _isFormFilled = false;
-      }
-    }
-
-    setIsFormFilled(_isFormFilled);
-
-    function checkPassword(password, confirmPassword) {
-      let _fullfilledPasswordRequirements = [true, true, true, true];
-
-      if (password.length < 8) {
-        _fullfilledPasswordRequirements[0] = false;
-      }
-
-      if (!password.match(/[A-Z]/)) {
-        _fullfilledPasswordRequirements[1] = false;
-      }
-
-      if (!password.match(/[0-9]/)) {
-        _fullfilledPasswordRequirements[2] = false;
-      }
-      if (password !== confirmPassword) {
-        _fullfilledPasswordRequirements[3] = false;
-      }
-      // console.log(_fullfilledPasswordRequirements);
-      setFullfilledPasswordRequirements(_fullfilledPasswordRequirements);
-      return _fullfilledPasswordRequirements;
-    }
+    setFulfilledPasswordRequirements(_fulfilledPasswordRequirements); // Corrected typo
+    setIsFormFilled(_fulfilledPasswordRequirements.every((req) => req));
   }, [password, confirmPassword]);
 
+  function checkPassword(password, confirmPassword) {
+    const requirements = [
+      password.length >= 8,
+      /[A-Z]/.test(password),
+      /\d/.test(password),
+      password === confirmPassword,
+    ];
+    return requirements;
+  }
+
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
+  function handleConfirmPasswordChange(e) {
+    setConfirmPassword(e.target.value);
+  }
   function submitForm(e) {
     e.preventDefault();
-    // make sure the passwords match
     const password = e.target[2].value;
     const confirmPassword = e.target[3].value;
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    // make sure the password is at least 8 characters, has a capital letter, and has a number
     if (password.length < 8) {
       alert("Password must be at least 8 characters long");
       return;
@@ -161,9 +141,7 @@ export default function CreateAccount({ setCurrentPage }) {
               createAccount={true}
               type="password"
               placeholder="MJC Club Password"
-              onchange={(e) => {
-                setPassword(e.target.value);
-              }}
+              onchange={handlePasswordChange}
               sideBySide
             ></FormInput>
             <FormInput
@@ -171,9 +149,7 @@ export default function CreateAccount({ setCurrentPage }) {
               createAccount={true}
               type="password"
               placeholder="Confirm Password"
-              onchange={(e) => {
-                setConfirmPassword(e.target.value);
-              }}
+              onchange={handleConfirmPasswordChange}
               sideBySide
             ></FormInput>
           </div>

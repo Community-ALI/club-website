@@ -66,7 +66,7 @@ export default function FormInput({
           placeholder={placeholder}
           onChange={(e) => {
             onchange(e);
-            if (type === "password" && createAccounts)
+            if (type === "password" && createAccount)
               setPassword(e.target.value);
           }}
           className="w-[100%] px-8 py-3 bg-white rounded-[80px] border-2
