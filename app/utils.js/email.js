@@ -7,23 +7,31 @@ AWS.config.update({
 const ses = new AWS.SES();
 
 
-const sendEmail = async (toAdress, subject, body) => {
-    const params = {
-      Destination: {
-        ToAddresses: [toAdress],
-      },
-      Message: {
-        Body: {
-          Text: {
-            Data: body,
-          },
-        },
-        Subject: {
-          Data: subject,
-        },
-      },
-      Source: "communityalis@gmail.com",
-    };
+const sendEmail = async (toAddress, subject, body, fileBase64) => {
+  const params = {
+    RawMessage: {
+      Data: Buffer.from(
+        `From: communityalis@gmail.com\n` +
+        `To: ${toAddress}\n` +
+        `Subject: ${subject}\n` +
+        `MIME-Version: 1.0\n` +
+        `Content-Type: multipart/mixed; boundary="NextPart"\n\n` +
+        `--NextPart\n` +
+        `Content-Type: text/plain\n\n` +
+        `${body}\n\n` +
+        `--NextPart\n` +
+        `Content-Type: application/octet-stream; name="attachment"\n` +
+        `Content-Description: attachment\n` +
+        `Content-Disposition: attachment; filename="attachment"\n` +
+        `Content-Transfer-Encoding: base64\n\n` +
+        `${fileBase64}\n\n` +
+        `--NextPart--`,
+        'utf-8'
+      ),
+    },
+    Destinations: [toAddress],
+    Source: 'communityalis@gmail.com',
+  };
   
     try {
       const data = await ses.sendEmail(params).promise();
