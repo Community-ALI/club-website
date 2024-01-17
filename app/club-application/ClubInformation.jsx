@@ -23,19 +23,19 @@ const ClubInformation = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" />
+      <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" priority />
       <div className="px-[50px] md:px-[30px] xsm:px-[20px] py-[30px]">
         <ClubApplicationHeaderSection sectionTitle="CLUB INFORMATION" />
         <div>
-            <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3 md:text-[14px] xsm:text-[14px]">
-              The Associated Students of Modesto Junior College are responsible
-              for the registration of all student clubs and organizations. To be
-              considered as a new or returning club, this packet MUST be
-              submitted along with a Constitution and Bylaws, Officer Roster,
-              and Membership Roster with five (5) members to Campus Life
-              Department and Student Learning.
-            </p>
-            <hr className="border-lightGray border-[.5px] mt-[20px]"></hr>
+          <p className="font-[Nunito] text-[15px] mt-[20px] mb-[30px] px-3 md:text-[14px] xsm:text-[14px]">
+            The Associated Students of Modesto Junior College are responsible
+            for the registration of all student clubs and organizations. To be
+            considered as a new or returning club, this packet MUST be submitted
+            along with a Constitution and Bylaws, Officer Roster, and Membership
+            Roster with five (5) members to Campus Life Department and Student
+            Learning.
+          </p>
+          <hr className="border-lightGray border-[.5px] mt-[20px]"></hr>
           <div>
             <div className="flex items-center gap-[80px] lg:gap-[40px] md:flex-col md:items-start md:gap-[0px] px-3">
               <ClubApplicationTextField
@@ -69,13 +69,22 @@ const ClubInformation = (props) => {
               value={ClubInformation.meetingLocation}
               onChange={(e) => {
                 const newMeetingLocation = e.target.value;
-                setClubInformation(prevState => {
+                setClubInformation((prevState) => {
                   // Reset the irrelevant field based on the new meeting location
-                  const updatedState = { ...prevState, meetingLocation: newMeetingLocation };
-                  if (newMeetingLocation === "In Person" || newMeetingLocation === "Both") {
+                  const updatedState = {
+                    ...prevState,
+                    meetingLocation: newMeetingLocation,
+                  };
+                  if (
+                    newMeetingLocation === "In Person" ||
+                    newMeetingLocation === "Both"
+                  ) {
                     updatedState.zoomLink = "";
                   }
-                  if (newMeetingLocation === "Online/Zoom" || newMeetingLocation === "Both") {
+                  if (
+                    newMeetingLocation === "Online/Zoom" ||
+                    newMeetingLocation === "Both"
+                  ) {
                     updatedState.buildingAndRoomNumber = "";
                   }
                   return updatedState;
@@ -84,12 +93,12 @@ const ClubInformation = (props) => {
               options={meetingLocationOptions}
               checkedValue={ClubInformation.meetingLocation}
             />
-
           </div>
         </div>
       </div>
       <div className="pr-12 pl-[62px] flex gap-[80px] lg:gap-[40px] md:flex-col md:gap-0 md:pl-[42px] xsm:pl-[32px]">
-        {ClubInformation.meetingLocation === "In Person" || ClubInformation.meetingLocation === "Both" ? (
+        {ClubInformation.meetingLocation === "In Person" ||
+        ClubInformation.meetingLocation === "Both" ? (
           <div>
             <ClubApplicationTextField
               label="Building and Room Number"
@@ -103,7 +112,8 @@ const ClubInformation = (props) => {
             />
           </div>
         ) : null}
-        {ClubInformation.meetingLocation === "Online/Zoom" || ClubInformation.meetingLocation === "Both" ? (
+        {ClubInformation.meetingLocation === "Online/Zoom" ||
+        ClubInformation.meetingLocation === "Both" ? (
           <div>
             <ClubApplicationTextField
               label="Zoom Link"
@@ -119,7 +129,7 @@ const ClubInformation = (props) => {
         ) : null}
       </div>
       <div className="px-[50px] md:px-[30px] xsm:px-[20px] pb-[50px]">
-      <hr className="border-lightGray border-[.5px] mt-[40px]"></hr>
+        <hr className="border-lightGray border-[.5px] mt-[40px]"></hr>
         <RoundedButton
           innerHTML="Save and Continue"
           variant={0}
