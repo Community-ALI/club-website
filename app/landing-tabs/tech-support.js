@@ -1,5 +1,6 @@
 import SectionTitle from "../components/section-title";
 import MainButton from "../components/main-button";
+import { useState } from "react";
 
 const InputField = ({ title, type, placeholder, onChange, value, name }) => (
   <div className="w-full">
@@ -29,27 +30,37 @@ export default function TechSupport() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    const email = {
-      email: "", //Idk who to send this email too
-      subject: ``,
-      message
-    }
 
-    const response = await fetch('https://api.example.com/data', {
-      method: 'POST',
+    const email = {
+      email: "communityalis@gmail.com",
+      subject: `Club Website Tech Support`,
+      message: `${formInfo.fullName} has an issue with his club application. Please read his message below - 
+
+      ${formInfo.message}
+      
+      Contact Info:
+      ${formInfo.email}
+      ${formInfo.phoneNumber ?? ""}
+      ${formInfo.clubRelation ?? ""}
+      `,
+    };
+
+    console.log(email);
+
+    const response = await fetch("/api/email", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formInfo),
+      body: JSON.stringify(email),
     });
-  
+
     if (response.ok) {
       const jsonResponse = await response.json();
       console.log(jsonResponse);
       // handle the response
     } else {
-      console.error('HTTP-Error: ' + response.status);
+      console.error("HTTP-Error: " + response.status);
     }
   };
 
@@ -115,7 +126,7 @@ export default function TechSupport() {
           ].map(mapField)}
         </form>
         <div className="flex justify-center items-center mt-[60px]">
-          <MainButton text="Send Message"></MainButton>
+          <MainButton onClick={handleSubmit} text="Send Message"></MainButton>
         </div>
       </div>
     </>
