@@ -27,6 +27,32 @@ export default function TechSupport() {
     message: "",
   });
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const email = {
+      email: "", //Idk who to send this email too
+      subject: ``,
+      message
+    }
+
+    const response = await fetch('https://api.example.com/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formInfo),
+    });
+  
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      console.log(jsonResponse);
+      // handle the response
+    } else {
+      console.error('HTTP-Error: ' + response.status);
+    }
+  };
+
   function mapField(input, index) {
     return (
       <InputField
