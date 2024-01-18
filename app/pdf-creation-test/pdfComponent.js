@@ -1,5 +1,8 @@
 function MyComponent() {
   // the JSON object that will be used to populate the PDF
+
+  const currentDate = new Date().toLocaleDateString();
+
   const form = {
     clubInformation: {
       clubName: "MJC Business Club",
@@ -55,45 +58,45 @@ function MyComponent() {
       },
       {
         role: "Club Social Media Manager",
-        placeholder: "This club does not have a Club Treasurer",
+        placeholder: "This club does not have a Club Social Media Manager",
       },
     ],
     clubMembers: [
       {
-        name: "adfasdg",
-        email: "adsgsadgsa",
+        name: "Adrean Cajigas",
+        email: "adrean.cajigas@gmail.com",
         wNumber: "0917714",
       },
       {
-        name: "adsg",
-        email: "adsfg",
-        wNumber: "asdgfhgjm,.k",
+        name: "Kirill Kovakuku",
+        email: "kuku942145@my.yosemite.edu",
+        wNumber: "696969",
       },
       {
-        name: "adfsfdas",
-        email: "fdsadfas",
-        wNumber: "jhgfds",
+        name: "Beeyn Schoolland",
+        email: "benjiboy@mjc.edu",
+        wNumber: "420420",
       },
       {
-        name: "dsafgfdhh",
-        email: "fasddfsadsaf",
-        wNumber: "hgfds",
+        name: "Mason Partridge",
+        email: "masonthegoat@gmail.com",
+        wNumber: "969696",
       },
       {
-        name: "ghdjfkglh;",
-        email: "FDGZHxjkfl",
-        wNumber: " vgt",
+        name: "Mariah Carey",
+        email: "AllIWantForChristmasIsYou@gmail.com",
+        wNumber: "123456",
       },
     ],
     clubAgreement: [
       {
         role: "Club President",
-        signature: "test",
+        signature: "Adrean Cajigas",
         date: "123",
       },
       {
         role: "Club Advisor",
-        signature: "testtaketwo",
+        signature: "Brent Wedge",
         date: "234",
       },
     ],
@@ -101,8 +104,9 @@ function MyComponent() {
   return (
     <div class="pdf">
       <h1>{form.clubInformation.clubName}</h1>
+      <p class="date">{`Date Submitted: ${currentDate}`}</p>
 
-      <div class="info">
+      <div class="section">
         <h2 class="section-title">Club Information</h2>
 
         <div class="container">
@@ -123,67 +127,154 @@ function MyComponent() {
         </div>
       </div>
 
+      {/* map all the advisors */}
       {form.clubAdvisors.map((advisor) => (
-        <div class="advisor">
+        <div class="section">
           <h2 class="section-title">Club Advisor</h2>
 
-          <div class="container">
-            <h2 class="header">Name:</h2>
-            <p class="data">{advisor.name}</p>
-          </div>
+          <div class="divider-row">
+            <div class="divider-column">
+              <div class="container">
+                <h2 class="header">Name:</h2>
+                <p class="data">{advisor.name}</p>
+              </div>
 
-          <div class="container">
-            <h2 class="header">Email:</h2>
-            <p class="data">{advisor.email}</p>
-          </div>
+              <div class="container">
+                <h2 class="header">Email:</h2>
+                <p class="data">{advisor.email}</p>
+              </div>
+            </div>
 
-          <div class="container">
-            <h2 class="header">Phone Number:</h2>
-            <p class="data">{advisor.phoneNumber}</p>
-          </div>
+            <div class="divider-column">
+              <div class="container">
+                <h2 class="header">Phone Number:</h2>
+                <p class="data">{advisor.phoneNumber}</p>
+              </div>
 
-          <div class="container">
-            <h2 class="header">Faculty Title:</h2>
-            <p class="data">{advisor.title}</p>
+              <div class="container">
+                <h2 class="header">Faculty Title:</h2>
+                <p class="data">{advisor.title}</p>
+              </div>
+            </div>
           </div>
         </div>
       ))}
 
       {/* map all the officers */}
       {form.clubOfficers.map((officer) => (
-        <div class="officer">
+        <div class="section">
           <h2 class="section-title">{officer.role}</h2>
 
-          <div class="container">
-            <h2 class="header">Name:</h2>
-            <p class="data">{officer.name}</p>
-          </div>
+          {officer.placeholder ? (
+            <p class="placeholder">{officer.placeholder}</p>
+          ) : (
+            <div class="divider-row">
+              <div class="divider-column">
+                <div class="container">
+                  <h2 class="header">Name:</h2>
+                  <p class="data">{officer.name}</p>
+                </div>
 
-          <div class="container">
-            <h2 class="header">Email:</h2>
-            <p class="data">{officer.email}</p>
-          </div>
+                <div class="container">
+                  <h2 class="header">Email:</h2>
+                  <p class="data">{officer.email}</p>
+                </div>
 
-          <div class="container">
-            <h2 class="header">W Number:</h2>
-            <p class="data">{officer.wNumber}</p>
-          </div>
+                <div class="container">
+                  <h2 class="header">W Number:</h2>
+                  <p class="data">{officer.wNumber}</p>
+                </div>
+              </div>
 
-          <div class="container">
-            <h2 class="header">Major:</h2>
-            <p class="data">{officer.major}</p>
-          </div>
+              <div class="divder-column">
+                <div class="container">
+                  <h2 class="header">Major:</h2>
+                  <p class="data">{officer.major}</p>
+                </div>
 
-          <div class="container">
-            <h2 class="header">Grade Level:</h2>
-            <p class="data">{officer.gradeLevel}</p>
-          </div>
-
-          <p class="data">{officer.placeholder}</p>
+                <div class="container">
+                  <h2 class="header">Grade Level:</h2>
+                  <p class="data">{officer.gradeLevel}</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ))}
 
       {/* map all the members */}
+      {form.clubMembers.map((member) => (
+        <div class="section">
+          <h2 class="section-title">Club Member</h2>
+
+          <div class="divider-row">
+            <div class="divider-column">
+              <div class="container">
+                <h2 class="header">Name:</h2>
+                <p class="data">{member.name}</p>
+              </div>
+
+              <div class="container">
+                <h2 class="header">Email:</h2>
+                <p class="data">{member.email}</p>
+              </div>
+            </div>
+            <div class="divider-column">
+              <div class="container">
+                <h2 class="header">W Number:</h2>
+                <p class="data">{member.wNumber}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <h2 class="section-title">Club Agreement Signature</h2>
+
+      <div class="agreement">
+          The membership of the <b>{form.clubInformation.clubName}</b> has agreed to abide by the
+          Inter-Club Council's Standing Orders and the ASMJC Constitution and
+          Bylaws. We are aware of and agree and abide by the following rights,
+          privileges, and responsibilities: 
+          <br></br>
+          <br></br>
+          1. We must attend all Inter Club Council Meetings. If we are absent from one consecutive meeting, our active status shall be suspended and our funds will be frozen. Meetings are held the second Friday of the month from 1-2pm in the East Campus Student Center on Feb 9th, March 8th, and April 12th.
+          <br></br> 
+          <br></br>
+          2.If our club is inactive for two consecutive semesters, all club funds and assets shall be absorbed into the ASMJC club development fund. 
+          <br></br>
+          <br></br>
+          3. We shall ensure that all records pertaining to our club, including but not limited to our Constitution and Bylaws, Officer Roster, and Membership Roster will be kept updated and we shall promptly inform the Club Coordinator of any changes. 
+          <br></br>
+          <br></br>
+          4. All club funds shall be kept in an on-campus account in the Business Office under the support of ASMJC. 
+          <br></br>
+          <br></br>
+          5. We must have an active Advisor who attends all club functions and verifies officer eligibility.
+          <br></br>
+          <br></br> 
+          6. Club officers must maintain a 2.0 grade point average or higher to hold office. 
+          <br></br>
+          <br></br>
+          7. Club officers must be enrolled in 5 units to hold office.
+        </div>
+
+      {/* map the agreements */}
+      <div class="divider-row">
+        {form.clubAgreement.map((agreements) => (
+          <div class="divider-column">
+            <div class="container">
+              <h2 class="header">{agreements.role}:</h2>
+              <p class="data">{agreements.signature}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <footer class="footer">
+        <h2>Thank you for using the MJC Club Application Website!</h2>
+        <p class="author">Created by Adrean Cajigas, Benjamin Schoolland, and Mason Partridge</p>
+        </footer>
     </div>
   );
 }

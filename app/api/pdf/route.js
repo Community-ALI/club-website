@@ -12,7 +12,7 @@ export async function POST(request) {
     
     await page.setContent(data);
 
-    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true, displayHeaderFooter: false });    
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true, displayHeaderFooter: false, margin:{ top: "2cm"} });    
     await browser.close();
 
     return new Response(pdfBuffer, {

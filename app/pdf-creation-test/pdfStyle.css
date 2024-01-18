@@ -15,4 +15,5 @@ p {
 .officer {
     page-break-inside: avoid; 
     color: black;
+    flex-direction: column;
 }

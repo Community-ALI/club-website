@@ -85,21 +85,52 @@ export default function PDFCreationTestPage() {
         }
 
         .pdf {
-            padding: 20px 60px;
+            padding: 0px 60px;
         }
 
         h1 {
             text-align: center;
-            margin-top: 30px;
             margin-bottom: 20px;
+            background-color: #d1d1d1;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .date {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 30px;
         }
 
         .container {
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
             margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+
+        .agreement {
+            margin-top: 10px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            page-break-inside: avoid;
+        }
+
+        .placeholder {
+            margin-bottom: 70px;
+            font-size: 14px;
+        }
+
+        .divider-column {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+
+        .divider-row {
+            display: flex;
         }
 
         .section-title {
@@ -116,17 +147,23 @@ export default function PDFCreationTestPage() {
             font-size: 14px;
         }
 
-        .info {
-            margin-bottom: 50px;
-        }
-        
-        .advisor {
-            margin-bottom: 50px;
-        }
-
-        .officer {
+        .section {
             margin-bottom: 50px;
             page-break-inside: avoid;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            background-color: #d1d1d1;
+            padding-top: 15px;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .author {
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
         </style>
 
