@@ -31,7 +31,7 @@ export default function TechSupport() {
     event.preventDefault();
   
     const email = {
-      email: "communityalis@gmail.com", //Idk who to send this email too
+      email: "communityalis@gmail.com",
       subject: `Club Website Tech Support`,
       message: `${formInfo.fullName} has an issue with his club application. Please read his message below - 
 
@@ -44,12 +44,12 @@ export default function TechSupport() {
       `,
     }
 
-    const response = await fetch('https://api.example.com/data', {
+    const response = await fetch('/api/email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formInfo),
+      body: JSON.stringify(email),
     });
   
     if (response.ok) {
@@ -123,7 +123,7 @@ export default function TechSupport() {
           ].map(mapField)}
         </form>
         <div className="flex justify-center items-center mt-[60px]">
-          <MainButton text="Send Message"></MainButton>
+          <MainButton onClick={handleSubmit} text="Send Message"></MainButton>
         </div>
       </div>
     </>
