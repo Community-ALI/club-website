@@ -32,7 +32,8 @@ export default function LandingPage() {
   useEffect(() => {
     const handleHashChange = () => {
       const newHash = window.location.hash.replace("#", "");
-      setCurrentPage(newHash);
+      if (newHash === "") setCurrentPage("home");
+      else setCurrentPage(newHash);
     };
 
     window.addEventListener("hashchange", handleHashChange);
