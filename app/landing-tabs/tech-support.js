@@ -1,5 +1,6 @@
 import SectionTitle from "../components/section-title";
 import MainButton from "../components/main-button";
+import { useState } from "react";
 
 const InputField = ({ title, type, placeholder, onChange, value, name }) => (
   <div className="w-full">
@@ -29,7 +30,7 @@ export default function TechSupport() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const email = {
       email: "communityalis@gmail.com",
       subject: `Club Website Tech Support`,
@@ -39,25 +40,25 @@ export default function TechSupport() {
       
       Contact Info:
       ${formInfo.email}
-      ${formInfo.phoneNumber}
-      ${formInfo.clubRelation}
+      ${formInfo.phoneNumber ?? ""}
+      ${formInfo.clubRelation ?? ""}
       `,
-    }
+    };
 
-    const response = await fetch('/api/email', {
-      method: 'POST',
+    const response = await fetch("/api/email", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(email),
     });
-  
+
     if (response.ok) {
       const jsonResponse = await response.json();
       console.log(jsonResponse);
       // handle the response
     } else {
-      console.error('HTTP-Error: ' + response.status);
+      console.error("HTTP-Error: " + response.status);
     }
   };
 
