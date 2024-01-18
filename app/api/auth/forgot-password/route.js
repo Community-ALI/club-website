@@ -1,7 +1,7 @@
 // sends a password reset email to the email address specified in the request body
 
 import { sql } from "@vercel/postgres";
-import sendEmail from "../../../utils.js/email.js";
+import sendEmail from "../../../utils/email.js";
 const crypto = require("crypto");
 
 
