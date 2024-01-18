@@ -31,9 +31,17 @@ export default function TechSupport() {
     event.preventDefault();
   
     const email = {
-      email: "", //Idk who to send this email too
-      subject: ``,
-      message
+      email: "communityalis@gmail.com", //Idk who to send this email too
+      subject: `Club Website Tech Support`,
+      message: `${formInfo.fullName} has an issue with his club application. Please read his message below - 
+
+      ${formInfo.message}
+      
+      Contact Info:
+      ${formInfo.email}
+      ${formInfo.phoneNumber}
+      ${formInfo.clubRelation}
+      `,
     }
 
     const response = await fetch('https://api.example.com/data', {
