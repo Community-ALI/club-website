@@ -45,6 +45,8 @@ export default function TechSupport() {
       `,
     };
 
+    console.log(email);
+
     const response = await fetch("/api/email", {
       method: "POST",
       headers: {
