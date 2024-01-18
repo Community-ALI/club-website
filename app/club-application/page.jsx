@@ -9,11 +9,12 @@ import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
 import NavbarForApplication from "../components/navbar-for-application";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle} from "@fortawesome/free-solid-svg-icons";
-import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { faCircle} from "@fortawesome/free-regular-svg-icons";
+// circle and checkmark icons
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { ClubApplication } from "./ApplicationClass";
-import {updateCompletionPercentage} from "./requiredData";
-import {getToken, setToken} from '../components/getToken';
+import { updateCompletionPercentage } from "./requiredData";
+import { getToken } from '../components/getToken';
 import LoadingPage from "./Loading";
 
 
@@ -36,12 +37,11 @@ function SectionButton(props) {
       key={index}
       onClick={() => handleSectionClick(index)}>
       <h1 className={`pl-6 text-left ${textColor}`}>{section.title}</h1>
-      {/* if the progress is 0 the checkmark is invisible, if between 1-99 it is yellow, if 100 it is green */}
-      {/* also it is a full circle if completed, half circle if not */}
+      {/* if the progress is 0 the checkmark is invisible */}
       <div className="ml-auto">
         <FontAwesomeIcon
-          icon={section.progress === 100 ? faCircle : faCircleHalfStroke}
-          className={`text-[20px] mr-6 ${section.progress > 0 ? "visible" : "invisible"} ${section.progress < 100 ? "text-[#FFD700]" : "text-[#32CD32]"}`}
+          icon={section.progress === 100 ? faCircleCheck : faCircle}
+          className={`text-[20px] mr-6 ${section.progress > 0 ? "visible" : "invisible"} ${textColor}`}
         />
       </div>
     </button>
