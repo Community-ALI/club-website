@@ -1,14 +1,18 @@
+*{
+    font-family: "Roboto";
+}
+
 h1 {
-    font-family: 'Heavitas', sans-serif;
-    color: aqua;
-    background-color: brown;
+    color: black;
+    font-family: "Roboto";
+    text-align: center;
 }
 
 p {
-    color: red;
+    color: black;
 }
 
 .officer {
     page-break-inside: avoid; 
-    color: blue;
+    color: black;
 }
