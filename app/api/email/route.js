@@ -1,4 +1,4 @@
-import sendEmail from "../../../utils.js/email.js";
+import sendEmail from "@utils/email.js";
 
 export async function POST(request) {
   const body = await request.json();
