@@ -5,11 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import { getToken } from "../components/getToken";
 
 function Overlay({ onClose }) {
   const handleOverlayClose = () => {
     onClose();
   };
+  // if the user has a token, redirect them to the club application page
+  
+  const token = getToken();
+  if (token) {
+    window.location.href = "/club-application";
+  } else {
+    // if the user does not have a token, show the overlay
+
+  
+  
 
   return (
     <>
@@ -70,6 +81,7 @@ function Overlay({ onClose }) {
       </div>
     </>
   );
+  }
 }
 
 export default function Home() {
