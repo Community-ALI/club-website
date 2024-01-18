@@ -74,9 +74,8 @@ export default function SubmitApplication(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Application submitted successfully");
-        alert("Your application has been submitted!");
-        window.location.href = "/";
+        alert(data)
+        
       })
       .catch((error) => {
         console.error("Error:", error);
