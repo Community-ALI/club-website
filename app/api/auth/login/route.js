@@ -9,7 +9,7 @@ export async function POST(request) {
     try {
         // Fetch the user's hashed password from the database
         const result = await sql`SELECT * FROM USERS WHERE Email = ${body.email}`;
-        if (result.count === 0) {
+        if (result.rowCount === 0) {
             return new Response(JSON.stringify({ message: "Email or password incorrect" }), {
                 headers: { 'Content-Type': 'application/json' }
             });

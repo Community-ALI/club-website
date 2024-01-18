@@ -13,7 +13,8 @@ export default function CreateAccount({ setCurrentPage }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isFormFilled, setIsFormFilled] = useState(false);
   const [fulfilledPasswordRequirements, setFulfilledPasswordRequirements] =
-    useState([false, false, false, false]); // Corrected typo
+    useState([false, false, false, false]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Password validation logic here
@@ -44,8 +45,10 @@ export default function CreateAccount({ setCurrentPage }) {
   }
   function submitForm(e) {
     e.preventDefault();
+    setIsLoading(true);
     const password = e.target[2].value;
     const confirmPassword = e.target[3].value;
+
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
@@ -76,12 +79,14 @@ export default function CreateAccount({ setCurrentPage }) {
     })
       .then((response) => response.json())
       .then((data) => {
+        setIsLoading(false);
         alert(data.message);
         // if the account was created successfully, redirect to the sign in page
         if (data.message === "Account Created") {
           setCurrentPage("signIn");
         }
       });
+      
   }
 
   function clickSubmit() {
@@ -151,7 +156,9 @@ export default function CreateAccount({ setCurrentPage }) {
               sideBySide
             ></FormInput>
           </div>
-          <PasswordRequirements fulfilledRequirements={fulfilledPasswordRequirements} />
+          <PasswordRequirements
+            fulfilledRequirements={fulfilledPasswordRequirements}
+          />
           <input type="submit" className="hidden" ref={submitRef}></input>{" "}
           {/* <div className="flex justify-center mt-[30px] sm:mt-[20px] font-[Nunito] text-lightBlue underline underline-offset-4">
             <p
@@ -164,9 +171,18 @@ export default function CreateAccount({ setCurrentPage }) {
           </div> */}
         </form>
 
+        {isLoading && (
+          <div className="animate-loadingFade z-[100] bg-offWhite bg-opacity-50 absolute top-0 left-0 right-0 
+          h-full w-full flex items-center justify-center">
+            {/* <p className="text-darkBlue text-center font-Nunito font-semibold ml-4">
+              Creating Account...
+            </p> */}
+          </div>
+        )}
+
         <div className="flex items-center flex-col mt-[40px] md:mt-[30px]">
           <MainButton
-            isDisabled={!isFormFilled}
+            isDisabled={!isFormFilled || isLoading}
             onClick={clickSubmit}
             text="Create Account"
           ></MainButton>

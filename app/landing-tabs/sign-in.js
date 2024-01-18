@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef} from "react";
+import React, { useState, useRef } from "react";
 import SectionTitle from "../components/section-title";
 import MainButton from "../components/main-button";
 import FormInput from "../components/form-input";
@@ -7,6 +7,7 @@ import {getToken, setToken} from "../components/getToken";
 
 export default function SignIn( {setCurrentPage}) {
   const submitRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   function clickSubmit() {
     submitRef.current.click();
@@ -14,6 +15,7 @@ export default function SignIn( {setCurrentPage}) {
 
   function submitForm(e) {
     e.preventDefault();
+    setIsLoading(true);
     fetch("/api/auth/login", {
       method: "POST",
       headers: {
@@ -26,8 +28,11 @@ export default function SignIn( {setCurrentPage}) {
     })
       .then((response) => response.json())
       .then((data) => {
+        setIsLoading(false);
         // if the account was created successfully, redirect to the sign in page
         if(data.message === "Success"){
+          // alert(data.message);
+
           setToken(data);
           let currentUrl = window.location.href; // get the current URL
           // remove the hash from the URL
@@ -67,6 +72,15 @@ export default function SignIn( {setCurrentPage}) {
       <div className="flex justify-center items-center mt-[40px]">
         <MainButton onClick={clickSubmit} text="Sign In"></MainButton>
       </div>
+
+      {isLoading && (
+          <div className="animate-loadingFade z-[100] bg-offWhite bg-opacity-50 absolute top-0 left-0 right-0 
+          h-full w-full flex items-center justify-center">
+            {/* <p className="text-darkBlue text-center font-Nunito font-semibold ml-4">
+              Creating Account...
+            </p> */}
+          </div>
+        )}
     </div>
   );
 }

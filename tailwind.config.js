@@ -39,11 +39,16 @@ module.exports = {
           '100%': { transform: 'translateY(0)', opacity: '1' },
           '0%': { transform: 'translateY(-30px)', opacity: '0' },
         },
+        fadeIn: {
+          '100%': { opacity: '1' },
+          '0%': { opacity: '0' },
+        },
       },
 
       animation: {
         'hamburgerFade': 'translateY 400ms ease-in-out',
         'componentFade': 'translateYY 300ms ease-out',
+        'loadingFade': 'fadeIn 300ms ease'
       },
 
       backgroundImage: {

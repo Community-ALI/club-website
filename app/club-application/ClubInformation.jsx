@@ -23,7 +23,7 @@ const ClubInformation = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" priority />
+      <Image src={asmjc_pic_remembreance_day} alt="ASMJC Remembrance Day" className="width-[100%]" priority />
       <div className="px-[50px] md:px-[30px] xsm:px-[20px] py-[30px]">
         <ClubApplicationHeaderSection sectionTitle="CLUB INFORMATION" />
         <div>
