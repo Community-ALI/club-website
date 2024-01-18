@@ -276,9 +276,9 @@ export default function ClubAgreementPage() {
           
         </div>
         
-        <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12">
+        <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12 lg:w-[100%]">
 
-          <div className="w-[280px] text-[15px] sm:text-[14px] h-fit xlg:w-[850px] lg:w-[90%] xsm:w-[100%] lg:mx-auto sm:border-b-8 border-b-darkBlue">
+          <div className="w-[280px] text-[15px] sm:text-[14px] h-fit xlg:w-[850px] lg:w-[90%] xsm:w-[100%] lg:mx-auto xsm:border-b-8 border-b-darkBlue">
             <div>
               <div className="bg-darkBlue flex items-center text-white w-full pl-6 h-[55px] sm:h-[50px]">
                 <h1 className="tracking-wider">REGISTRATION PACKET</h1>
