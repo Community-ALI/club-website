@@ -12,12 +12,15 @@ function Overlay({ onClose }) {
     onClose();
   };
   // if the user has a token, redirect them to the club application page
-  useEffect(() => {
-    const token = getToken();
-    if (token) {
-      window.location.href = "/club-application";
-    }
-  }, []);
+  
+  const token = getToken();
+  if (token) {
+    window.location.href = "/club-application";
+  } else {
+    // if the user does not have a token, show the overlay
+
+  
+  
 
   return (
     <>
@@ -78,6 +81,7 @@ function Overlay({ onClose }) {
       </div>
     </>
   );
+  }
 }
 
 export default function Home() {
