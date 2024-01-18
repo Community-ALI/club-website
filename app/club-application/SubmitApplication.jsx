@@ -65,6 +65,9 @@ export default function SubmitApplication(props) {
       return;
     }
     // send all data to the backend
+    // get the club json
+    let clubJSON = club.getJSON
+    console.log(clubJSON);
     fetch("/api/submit", {
       method: "POST",
       headers: {
@@ -72,10 +75,14 @@ export default function SubmitApplication(props) {
       },
       body: JSON.stringify(form),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        alert(data)
-        
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          alert("Your application has been submitted successfully.");
+          window.location.href = "/";
+        } else {
+          alert("There was an error submitting your application. Please try again.");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
