@@ -8,19 +8,16 @@ async function generatePDF(data) {
   const browser = await puppeteer.launch();
     const page = await browser.newPage();
     // make the newpage look like the pdfComponent
-    
+
     await page.setContent(data);
 
     const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true, displayHeaderFooter: false, margin:{ top: "2cm"} });    
     await browser.close();
-    // as a test, write the pdf to a file
-    await fs.writeFile('./test.pdf', pdfBuffer);
     // convert the pdf buffer to base64
     const pdfBase64 = pdfBuffer.toString('base64');
     
     return pdfBase64;
 }
-
 
 
 // This route also emails the application to the specified email address.
