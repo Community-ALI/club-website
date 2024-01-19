@@ -76,9 +76,9 @@ export default function SubmitApplication(props) {
 
   function finalSubmit() {
     console.log("final submit");
-    setIsLoading(true);
     // prevent multiple submissions
     if (submitted) {
+      setIsLoading(true);
       return;
     }
     setSubmitted(true);
