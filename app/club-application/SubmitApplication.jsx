@@ -13,7 +13,12 @@ export default function SubmitApplication(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [isOverlayVisible, setOverlayVisible] = useState(false);
   const handleStartApplicationClick = () => {
-    setOverlayVisible(true);
+    // Check if all fields are filled out
+    if (getCompletionPercentage(club) === 100) {
+      setOverlayVisible(true);
+    } else {
+      return;
+    }
   };
   const handleCloseOverlay = () => {
     setOverlayVisible(false);
@@ -76,17 +81,18 @@ export default function SubmitApplication(props) {
 
   function finalSubmit() {
     console.log("final submit");
-    setIsLoading(true);
     // prevent multiple submissions
     if (submitted) {
       return;
     }
     setSubmitted(true);
     // check that all the fields are filled out
-    if (getCompletionPercentage(club) !== 100) {
+    if (getCompletionPercentage(club) ===! 100) {
       alert("Please fill out all the required fields before submitting your application.");
+    } else {
       return;
     }
+
     // get the html for the pdf from getPDF
     const html = generatePDF();
     const token = getToken();
@@ -123,10 +129,6 @@ export default function SubmitApplication(props) {
   function handleSubmitAndClose() {
     handleOverlayClose();
     finalSubmit();
-  }
-
-  function createPdf() {
-    // turn the current page into a pdf
   }
 
   function SubmitOverlay({ onClose }) {
@@ -220,7 +222,6 @@ export default function SubmitApplication(props) {
           className="bg-lightBlue text-white border-none hover:bg-darkBlue tracking-widest text-[12px] xsm:text-[11px] 
           px-8 xsm:px-6 py-3 rounded-full duration-200 ease"
           onClick={handleStartApplicationClick}
-          // onClick={finalSubmit}
         >
           Submit Club Application
         </button>
