@@ -267,7 +267,7 @@ export default function ClubAgreementPage() {
           
         </div>
         
-        <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12 lg:w-[100%]">
+        <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-10 xlg:relative xlg:gap-x-12 lg:w-[100%]">
 
           <div className="w-[280px] text-[15px] sm:text-[14px] h-fit xlg:w-[850px] lg:w-[90%] xsm:w-[100%] lg:mx-auto xsm:border-b-8 border-b-darkBlue">
             <div>
@@ -293,7 +293,7 @@ export default function ClubAgreementPage() {
           xlg:flex-row xlg:h-[120px] xlg:justify-around xlg:items-center xlg:hidden">
               <div className="flex flex-col">
                 <h1 className="text-darkBlue tracking-wide">Application Deadline</h1>
-                <p className="font-[Nunito] text-[15px]">Thursday, January 25th 2024</p>
+                <p className="font-[Nunito] text-[15px]">Friday, February 2nd 2024</p>
               </div>
 
             <div className="flex flex-col">

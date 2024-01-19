@@ -13,6 +13,7 @@
 html {
   overflow-x: hidden;
   height: 100%;
+  background-color: #011E60;
 }
 
 body
@@ -20,7 +21,6 @@ body
   background-color: #F9F9F9;
   margin: 0;
   padding: 0;
-  overflow: auto;
 }
 
 h1, h2, h3, button

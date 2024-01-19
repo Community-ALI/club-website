@@ -76,9 +76,9 @@ export default function SignIn( {setCurrentPage}) {
       {isLoading && (
           <div className="animate-loadingFade z-[100] bg-offWhite bg-opacity-50 absolute top-0 left-0 right-0 
           h-full w-full flex items-center justify-center">
-            {/* <p className="text-darkBlue text-center font-Nunito font-semibold ml-4">
-              Creating Account...
-            </p> */}
+            <p className="text-gray text-center font-Nunito font-semibold ml-4">
+              Signing In...
+            </p>
           </div>
         )}
     </div>
