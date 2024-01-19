@@ -1,12 +1,15 @@
 
 import sendEmail from "../../utils/email.js";
-import fs from "fs/promises";
 import { sql } from "@vercel/postgres";
 import puppeteer from "puppeteer";
 import jwt from "jsonwebtoken";
 
 async function generatePDF(data) {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch( {
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+    }
+  );
     const page = await browser.newPage();
     // make the newpage look like the pdfComponent
 
