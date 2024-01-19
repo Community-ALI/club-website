@@ -9,6 +9,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function SubmitApplication(props) {
 
+  const [isLoading, setIsLoading] = useState(false);
   const [isOverlayVisible, setOverlayVisible] = useState(false);
   const handleStartApplicationClick = () => {
     setOverlayVisible(true);
@@ -74,6 +75,7 @@ export default function SubmitApplication(props) {
 
   function finalSubmit() {
     console.log("final submit");
+    setIsLoading(true);
     // prevent multiple submissions
     if (submitted) {
       return;
@@ -98,6 +100,7 @@ export default function SubmitApplication(props) {
     })
       .then((response) => {
         console.log(response);
+        setIsLoading(false);
         if (response.status === 200) {
           alert("Your application has been submitted successfully.");
           window.location.href = "/";
@@ -109,6 +112,15 @@ export default function SubmitApplication(props) {
         console.error("Error:", error);
         alert("There was an error submitting your application. Please try again.");
       });
+  }
+
+  const handleOverlayClose = () => {
+    setOverlayVisible(false);
+  };
+  
+  function handleSubmitAndClose() {
+    handleOverlayClose();
+    finalSubmit();
   }
 
   function createPdf() {
@@ -139,7 +151,7 @@ export default function SubmitApplication(props) {
           Do You Want to Submit This Application?
         </h2>
         <div className="flex items-center justify-center mt-5 gap-7 animate-hamburgerFade">
-          <a onClick={finalSubmit}>
+          <a onClick={handleSubmitAndClose}>
             <div className="flex flex-col hover:bg-veryLightGray p-5 sm:p-4 xsm:p-3 cursor-pointer rounded-md duration-200 ease-in">
               <FontAwesomeIcon
                 icon={faCheck}
@@ -214,6 +226,15 @@ export default function SubmitApplication(props) {
       <PDFCreationComponent jsonObject={form}/> {/* An invisible component that creates a pdf of the current page */}
 
       {isOverlayVisible && <SubmitOverlay onClose={handleCloseOverlay} />}
+
+      {isLoading && (
+          <div className="fixed inset-0 animate-loadingFade z-[100] bg-offWhite bg-opacity-50 top-0 left-0 right-0 
+          h-full w-full flex items-center justify-center">
+            <p className="text-darkBlue text-center font-Nunito font-semibold ml-4">
+              Submitting...
+            </p>
+          </div>
+        )}
     </div>
   );
 }
