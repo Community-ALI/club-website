@@ -3,6 +3,7 @@ import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import { getCompletionPercentage } from "./requiredData";
 import RegistrationFilled from "./registrationFilled";
 import { PDFCreationComponent, generatePDF } from "./MakePdf";
+import { getToken } from "../components/getToken";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -88,13 +89,14 @@ export default function SubmitApplication(props) {
     }
     // get the html for the pdf from getPDF
     const html = generatePDF();
-
+    const token = getToken();
     // send all data to the backend
     // get the club json
     fetch("/api/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,
       },
       body: JSON.stringify({ form: form, html: html }),
     })
