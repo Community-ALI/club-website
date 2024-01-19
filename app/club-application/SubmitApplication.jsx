@@ -19,7 +19,6 @@ export default function SubmitApplication(props) {
     setOverlayVisible(false);
   };
   // to prevent multiple submissions
-  const [submitted, setSubmitted] = useState(false);
   const { club } = props;
   // turn the club into a form
   const clubInformation = club.clubInformation;
@@ -77,10 +76,6 @@ export default function SubmitApplication(props) {
   function finalSubmit() {
     console.log("final submit");
     // prevent multiple submissions
-    if (submitted) {
-      return;
-    }
-    setSubmitted(true);
     // check that all the fields are filled out
     if (getCompletionPercentage(club) !== 100) {
       alert("Please fill out all the required fields before submitting your application.");
@@ -93,6 +88,7 @@ export default function SubmitApplication(props) {
     const token = getToken();
     // send all data to the backend
     // get the club json
+    console.log("form", form);
     fetch("/api/submit", {
       method: "POST",
       headers: {
