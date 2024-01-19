@@ -134,7 +134,8 @@ export default function SubmitApplication(props) {
       {/* the submit button */}
       <div className="flex justify-end mt-8">
         <button
-          className="rounded-full bg-lightBlue text-white font-[600] py-2 px-4 sm:px-6 md:px-8"
+          className="bg-lightBlue text-white border-none hover:bg-darkBlue tracking-widest text-[12px] xsm:text-[11px] 
+          px-8 xsm:px-6 py-3 rounded-full duration-200 ease"
           onClick={finalSubmit}
         >
           Submit Club Application
