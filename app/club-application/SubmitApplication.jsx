@@ -79,10 +79,9 @@ export default function SubmitApplication(props) {
     // check that all the fields are filled out
     if (getCompletionPercentage(club) !== 100) {
       alert("Please fill out all the required fields before submitting your application.");
-    } else {
-      setIsLoading(true);
+      return;
     }
-
+    setIsLoading(true);
     // get the html for the pdf from getPDF
     const html = generatePDF();
     const token = getToken();
