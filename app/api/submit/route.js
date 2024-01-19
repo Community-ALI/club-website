@@ -29,7 +29,6 @@ export async function POST(request) {
     const body = await request.json();
     const form = body.form;
     const html = body.html;
-    console.log(body);
     console.log('application received');
     let userId = -1;
     // check the headers for the JWT token, if it exists, use the user id

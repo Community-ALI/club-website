@@ -37,16 +37,7 @@ const sendEmail = async (toAddress, subject, body, fileBase64) => {
   };
 
   try {
-    console.log(
-      "Sending email with subject:",
-      subject,
-      "to:",
-      toAddress,
-      "with body:",
-      body,
-      "and attachment:",
-      fileBase64
-    );
+    console.log("Sending email with subject:", subject);
     const data = await ses.sendRawEmail(params).promise();
     console.log("Email sent successfully:", data.MessageId);
   } catch (err) {
