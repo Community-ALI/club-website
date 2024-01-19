@@ -26,20 +26,42 @@ const requiredClubInformation = [
     new RequiredDatapoint("clubName", "text", "not empty"),
     new RequiredDatapoint("meetingDaysAndTime", "text", "not empty"),
     new RequiredDatapoint("meetingLocation", "text", "not empty"),
-]; // TODO: contitionally require building and room number as well as zoom link
+]; 
 
 
 function checkClubInformation (clubData) {
     const info = clubData.clubInformation;
-    const requiredFieldCount = requiredClubInformation.length;
+    console.log(info);
+    let requiredFieldCount = requiredClubInformation.length;
     let filledFieldCount = 0;
     for (let i = 0; i < requiredFieldCount; i++) {
         if (requiredClubInformation[i].check(info[requiredClubInformation[i].name])) {
             filledFieldCount++;
         }    
     }
+    // if the meeting location is "In Person", then the building and room number must be filled out
+    if (info.meetingLocation === "In Person" || info.meetingLocation === "Both") {
+        console.log('building: ' + info.buildingRoomNumber)
+        if (info.buildingAndRoomNumber === "") {
+            requiredFieldCount += 1;
+        }
+        else {
+            filledFieldCount += 1;
+            requiredFieldCount += 1;
+        }
+    }
+    // if  the meeting location is "Online/Zoom", then the zoom link must be filled out
+    if (info.meetingLocation === "Online/Zoom" || info.meetingLocation === "Both") {
+        console.log('zoom link: ' + info.zoomLink)
+        if (info.zoomLink === "") {
+            requiredFieldCount += 1;
+        }
+        else {
+            filledFieldCount += 1;
+            requiredFieldCount += 1;
+        }
+    }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Club Information: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -68,7 +90,6 @@ function checkClubAdvisors (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Advisors: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -100,7 +121,6 @@ function checkClubOfficers (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Officers: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -128,7 +148,6 @@ function checkClubMembers (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Members: " + completionPercentage);
     return completionPercentage;
 }
 
@@ -154,7 +173,6 @@ function checkClubAgreement (clubData) {
         }
     }
     let completionPercentage = (filledFieldCount / requiredFieldCount) * 100;
-    console.log("Agreements: " + completionPercentage);
     return completionPercentage;
 }
 

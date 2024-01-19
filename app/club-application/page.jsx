@@ -9,11 +9,12 @@ import ClubAgreemet from "./ClubAgreement";
 import SubmitApplication from "./SubmitApplication";
 import NavbarForApplication from "../components/navbar-for-application";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle} from "@fortawesome/free-solid-svg-icons";
-import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { faCircle} from "@fortawesome/free-regular-svg-icons";
+// circle and checkmark icons
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { ClubApplication } from "./ApplicationClass";
-import {updateCompletionPercentage} from "./requiredData";
-import {getToken, setToken} from '../components/getToken';
+import { updateCompletionPercentage } from "./requiredData";
+import { getToken } from '../components/getToken';
 import LoadingPage from "./Loading";
 
 
@@ -36,12 +37,11 @@ function SectionButton(props) {
       key={index}
       onClick={() => handleSectionClick(index)}>
       <h1 className={`pl-6 text-left ${textColor}`}>{section.title}</h1>
-      {/* if the progress is 0 the checkmark is invisible, if between 1-99 it is yellow, if 100 it is green */}
-      {/* also it is a full circle if completed, half circle if not */}
+      {/* if the progress is 0 the checkmark is invisible */}
       <div className="ml-auto">
         <FontAwesomeIcon
-          icon={section.progress === 100 ? faCircle : faCircleHalfStroke}
-          className={`text-[20px] mr-6 ${section.progress > 0 ? "visible" : "invisible"} ${section.progress < 100 ? "text-[#FFD700]" : "text-[#32CD32]"}`}
+          icon={section.progress === 100 ? faCircleCheck : faCircle}
+          className={`text-[20px] mr-6 ${section.progress > 0 ? "visible" : "invisible"} ${textColor}`}
         />
       </div>
     </button>
@@ -79,7 +79,6 @@ export default function ClubAgreementPage() {
         const data = await response.json();
         const newClub = new ClubApplication();
         newClub.loadFromJSON(data);
-        console.log("new club", newClub);
         return newClub;
       } catch (error) {
         console.error("Error:", error);
@@ -90,7 +89,6 @@ export default function ClubAgreementPage() {
     async function fetchDraft() {
       try {
         const newClub = await loadDraft();
-        console.log("loaded club", newClub);
         updateClub(newClub, false); // Then set the club
         // once the club is set we need to go to section 1, club advisors, then back to section 0, club information in order to update the input fields
         setCurrentSection(-1);
@@ -136,8 +134,6 @@ export default function ClubAgreementPage() {
     }
     // get the JSON for the club object
     const clubJSON = club.getJSON();
-    //get the token
-    console.log("clubJSON", clubJSON);
     
     // send a POST request to the server with the JSON data
     fetch("/api/draft", {
@@ -150,7 +146,7 @@ export default function ClubAgreementPage() {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert("Success:", data);
+        console.log("Section saved");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -173,7 +169,6 @@ export default function ClubAgreementPage() {
     }
     setClub(updatedClub);
     // Calculate the progress of the application
-    console.log("updated club", updatedClub);
     updateCompletionPercentage(updatedClub, sections, setSections);
     // update all club values in the sections
     setSections(prevSections => prevSections.map(section => ({
@@ -276,9 +271,9 @@ export default function ClubAgreementPage() {
           
         </div>
         
-        <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12">
+        <div className="flex flex-col gap-y-10 sticky top-5 xsm:top-0 h-fit z-1 xlg:relative xlg:gap-x-12 lg:w-[100%]">
 
-          <div className="w-[280px] text-[15px] sm:text-[14px] h-fit xlg:w-[850px] lg:w-[90%] xsm:w-[100%] lg:mx-auto sm:border-b-8 border-b-darkBlue">
+          <div className="w-[280px] text-[15px] sm:text-[14px] h-fit xlg:w-[850px] lg:w-[90%] xsm:w-[100%] lg:mx-auto xsm:border-b-8 border-b-darkBlue">
             <div>
               <div className="bg-darkBlue flex items-center text-white w-full pl-6 h-[55px] sm:h-[50px]">
                 <h1 className="tracking-wider">REGISTRATION PACKET</h1>

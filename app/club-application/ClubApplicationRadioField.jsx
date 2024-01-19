@@ -10,6 +10,7 @@ export default function ClubApplicationRadioField(props) {
           const uniqueId = `${label.replace(/\s+/g, '')}-${option.replace(/\s+/g, '')}-${index}`; 
           return (
             <div key={index} className="flex items-center">
+              {onChange && (
               <input
                 type="radio"
                 value={option}
@@ -17,6 +18,15 @@ export default function ClubApplicationRadioField(props) {
                 checked={checkedValue === option}
                 id={uniqueId}
               />
+              ) || (
+              <input
+                type="radio"
+                value={option}
+                defaultChecked={checkedValue === option}
+                id={uniqueId}
+              />
+              )
+              }
               <label htmlFor={uniqueId} className="font-[Nunito] pl-2 text-[#000000] text-[14px] tracking-wider">{option}</label>
             </div>
           );
