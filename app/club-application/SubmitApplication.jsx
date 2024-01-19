@@ -188,12 +188,12 @@ export default function SubmitApplication(props) {
       <hr />
       <div className="flex justify-between my-8 gap-x-8 sm:flex-col gap-y-4">
         <h2>FOR SPRING SEMESTER 2024</h2>
-        <a className="text-lightBlue font-[Nunito] text-[14px] underline underline-offset-4" 
+        {/* <a className="text-lightBlue font-[Nunito] text-[14px] underline underline-offset-4" 
          target="_blank"
          onClick={createPdf}
          >
           Click here to receive a copy
-        </a>
+        </a> */}
         {/*FIXME: Make this work */}
       </div>
 
