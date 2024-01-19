@@ -19,13 +19,10 @@ function Overlay({ onClose }) {
   } else {
     // if the user does not have a token, show the overlay
 
-  
-  
-
   return (
     <>
       <div
-        className="bg-[#000000] opacity-50 absolute top-0 left-0 right-0 
+        className="bg-[#000000] opacity-50 fixed top-0 left-0 right-0 
       h-full w-full"
         onClick={handleOverlayClose}
       ></div>
