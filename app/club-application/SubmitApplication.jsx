@@ -13,12 +13,7 @@ export default function SubmitApplication(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [isOverlayVisible, setOverlayVisible] = useState(false);
   const handleStartApplicationClick = () => {
-    // Check if all fields are filled out
-    if (getCompletionPercentage(club) === 100) {
-      setOverlayVisible(true);
-    } else {
-      return;
-    }
+    setOverlayVisible(true);
   };
   const handleCloseOverlay = () => {
     setOverlayVisible(false);
@@ -82,11 +77,11 @@ export default function SubmitApplication(props) {
     console.log("final submit");
     // prevent multiple submissions
     // check that all the fields are filled out
-    if (getCompletionPercentage(club) ===! 100) {
+    if (getCompletionPercentage(club) !== 100) {
       alert("Please fill out all the required fields before submitting your application.");
       return;
-    } 
-
+    }
+    setIsLoading(true);
     // get the html for the pdf from getPDF
     const html = generatePDF();
     const token = getToken();
