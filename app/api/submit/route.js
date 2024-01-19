@@ -3,6 +3,7 @@ import sendEmail from "../../utils/email.js";
 import fs from "fs/promises";
 import { sql } from "@vercel/postgres";
 import puppeteer from "puppeteer";
+import jwt from "jsonwebtoken";
 
 async function generatePDF(data) {
   const browser = await puppeteer.launch();
@@ -33,25 +34,23 @@ export async function POST(request) {
     if (tokenHeader) {
       // remove the 'Bearer ' prefix from the token
       const token = tokenHeader.split(" ")[1];
+      const JWT_SECRET = process.env.JWT_SECRET;
       try {
         const decoded = jwt.verify(token, JWT_SECRET);
         userId = decoded.id;
       } catch (err) {
         console.error(err);
-        return new Response(JSON.stringify({ message: "Internal server error" }), {
-          headers: { "Content-Type": "application/json" },
-          status: 500,
-        });
       }
     }
+    console.log('user id:', userId);
     // FIXME: generate the PDF from the application data
     // for now, send ./sample.pdf
     const pdfBase64 = await generatePDF(html);
     console.log('pdf generated');
-    // send the PDF to the specified email address
+    // send the PDF to the email from the .env file
     try {
       sendEmail(
-        'bschoolland@gmail.com',
+        process.env.ADMIN_EMAIL,
         `${form.clubInformation.clubName} Application`,
         `Dear Administrator,
       
@@ -60,11 +59,31 @@ export async function POST(request) {
         Thank you for your time.
       
         Best regards,
-        The Community Alis Team
+        The Community ALI Team
       
         Note: This is an automated message. Please do not reply directly to this email.`,
         pdfBase64
       );
+      // send a copy of the email to the user as well if they are logged in
+      if (userId !== -1) {
+        const user = await sql`SELECT email FROM Users WHERE Id = ${userId}`;
+        console.log(user);
+        console.log(user.rows[0]);
+        console.log(user.rows[0].email);
+        sendEmail(
+          user.rows[0].email,
+          `${form.clubInformation.clubName} Application`,
+          `Dear ${form.clubInformation.clubName},
+      
+          Thank you for submitting your application to Community Alis. Please find attached a copy of your application.
+      
+          Best regards,
+          The Community ALI Team
+      
+          Note: This is an automated message. Please do not reply directly to this email.`,
+          pdfBase64
+        );
+      }
     } catch (err) {
       console.log(err);
       const data = { message: "Internal server error" };

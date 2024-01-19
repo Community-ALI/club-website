@@ -151,7 +151,7 @@ function PDFComponent(props) {
         <h2 class="section-title">Club Agreement Signature</h2>
 
         <div class="agreement">
-          {`The membership of the <b>{form.clubInformation.clubName}</b> has
+          The membership of the <b>{form.clubInformation.clubName}</b> {`has
           agreed to abide by the Inter-Club Council's Standing Orders and the
           ASMJC Constitution and Bylaws. We are aware of and agree and abide by
           the following rights, privileges, and responsibilities:`}
