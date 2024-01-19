@@ -3,6 +3,7 @@ import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import { getCompletionPercentage } from "./requiredData";
 import RegistrationFilled from "./registrationFilled";
 import { PDFCreationComponent, generatePDF } from "./MakePdf";
+import { getToken } from "../components/getToken";
 
 export default function SubmitApplication(props) {
   // to prevent multiple submissions
@@ -75,13 +76,14 @@ export default function SubmitApplication(props) {
     }
     // get the html for the pdf from getPDF
     const html = generatePDF();
-
+    const token = getToken();
     // send all data to the backend
     // get the club json
     fetch("/api/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,
       },
       body: JSON.stringify({ form: form, html: html }),
     })

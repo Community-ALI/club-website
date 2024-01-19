@@ -143,13 +143,25 @@ class ClubApplication {
       buildingAndRoomNumber: json.buildingRoomNumber,
       zoomLink: json.zoomLink,
     };
-    this.clubAdvisors = defaultClubAdvisors;
+    this.clubAdvisors = defaultClubAdvisors.slice(); // create a copy of defaultClubAdvisors
+
     // fill in club advisors
     for (let i = 0; i < json.advisors.length; i++) {
-      this.clubAdvisors[i].name = json.advisors[i].name;
-      this.clubAdvisors[i].email = json.advisors[i].email;
-      this.clubAdvisors[i].phoneNumber = json.advisors[i].phonenumber;
-      this.clubAdvisors[i].employeeTitle = json.advisors[i].employeetitle;
+      if (i < this.clubAdvisors.length) {
+        // Update existing advisor
+        this.clubAdvisors[i].name = json.advisors[i].name;
+        this.clubAdvisors[i].email = json.advisors[i].email;
+        this.clubAdvisors[i].phoneNumber = json.advisors[i].phonenumber;
+        this.clubAdvisors[i].employeeTitle = json.advisors[i].employeetitle;
+      } else {
+        // Add new advisor
+        this.clubAdvisors.push({
+          name: json.advisors[i].name,
+          email: json.advisors[i].email,
+          phoneNumber: json.advisors[i].phonenumber,
+          employeeTitle: json.advisors[i].employeetitle
+        });
+      }
     }
     this.clubOfficers = defaultClubOfficers;
     // fill in club officers
@@ -166,12 +178,24 @@ class ClubApplication {
         }
       }
     }
-    this.clubMembers = defaultMembers;
+
+    this.clubMembers = defaultMembers.slice(); // create a copy of defaultMembers
+
     // fill in club members
     for (let i = 0; i < json.members.length; i++) {
-      this.clubMembers[i].name = json.members[i].name;
-      this.clubMembers[i].email = json.members[i].email;
-      this.clubMembers[i].wNumber = json.members[i].wnumber;
+      if (i < this.clubMembers.length) {
+        // Update existing member
+        this.clubMembers[i].name = json.members[i].name;
+        this.clubMembers[i].email = json.members[i].email;
+        this.clubMembers[i].wNumber = json.members[i].wnumber;
+      } else {
+        // Add new member
+        this.clubMembers.push({
+          name: json.members[i].name,
+          email: json.members[i].email,
+          wNumber: json.members[i].wnumber
+        });
+      }
     }
     this.clubAgreement = [
       {

@@ -72,11 +72,11 @@ export default function NavbarForApplication() {
                 href="/#home"
                 closeMenu={closeMobileMenu}
               ></NavItem>
-              <NavItem
+              {/* <NavItem
                 text="Tech Support"
                 href="/#techSupport"
                 closeMenu={closeMobileMenu}
-              ></NavItem>
+              ></NavItem> */}
               <NavItem
                 text="Contact"
                 href="/#contact"
@@ -129,7 +129,7 @@ export default function NavbarForApplication() {
           </div>
           <ul className="flex items-center gap-10 xlg:gap-7 lg:gap-5 text-offWhite cursor-pointer lg:text-[13px] xlg:text-[15px]">
             <NavItem text="Home" href="/#home"></NavItem>
-            <NavItem text="Tech Support" href="/#techSupport"></NavItem>
+            {/* <NavItem text="Tech Support" href="/#techSupport"></NavItem> */}
             <NavItem text="Contact" href="/#contact"></NavItem>
             <li
               className="hover:text-darkBlue hover:bg-orange whitespace-nowrap

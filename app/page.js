@@ -7,7 +7,7 @@ import Deadline from "./components/deadline";
 import SignIn from "./landing-tabs/sign-in";
 import CreateAccount from "./landing-tabs/create-account";
 import ContactInfo from "./landing-tabs/contact-info";
-import TechSupport from "./landing-tabs/tech-support";
+// import TechSupport from "./landing-tabs/tech-support";
 import ForgotPassword from "./landing-tabs/forgot-password";
 import ResetPassword from "./landing-tabs/reset-password";
 
@@ -51,7 +51,7 @@ export default function LandingPage() {
         {currentPage === "signIn" && <SignIn setCurrentPage={handlePageChange} />}
         {currentPage === "createAccount" && <CreateAccount setCurrentPage={handlePageChange} />}
         {currentPage === "contact" && <ContactInfo />}
-        {currentPage === "techSupport" && <TechSupport />}
+        {/* {currentPage === "techSupport" && <TechSupport />} */}
         {currentPage === "forgotPassword" && <ForgotPassword setCurrentPage={handlePageChange} />}
         {currentPage === "resetPassword" && <ResetPassword setCurrentPage={handlePageChange} />}
       </main>
