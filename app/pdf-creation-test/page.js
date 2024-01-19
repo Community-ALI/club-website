@@ -119,8 +119,8 @@ export default function PDFCreationTestPage() {
         }
 
         .placeholder {
-            margin-bottom: 70px;
             font-size: 14px;
+            margin-bottom: 50px;
         }
 
         .divider-column {
@@ -131,11 +131,17 @@ export default function PDFCreationTestPage() {
 
         .divider-row {
             display: flex;
+            margin-bottom: 20px;
         }
 
         .section-title {
             font-size: 20px;
             margin-bottom: 20px;
+        }
+
+        .section-line {
+            border-width: 1px;
+            border-color: #363636;
         }
 
         .header {
@@ -145,11 +151,19 @@ export default function PDFCreationTestPage() {
 
         .data {
             font-size: 14px;
+            cursor: default;
+            text-decoration: none;
         }
 
         .section {
-            margin-bottom: 50px;
             page-break-inside: avoid;
+            margin-top: 20px;
+        }
+
+        .info {
+            page-break-inside: avoid;
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
 
         .footer {
