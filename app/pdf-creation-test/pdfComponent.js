@@ -169,8 +169,8 @@ function MyComponent() {
       <hr class="section-line"></hr>
 
       {/* map all the officers */}
-      {form.clubOfficers.map((officer) => (
-        <div class="section">
+      {form.clubOfficers.map((officer, index) => (
+        <div class="section" key={index}>
           <h2 class="section-title">{officer.role}</h2>
 
           {officer.placeholder ? (
@@ -249,10 +249,10 @@ function MyComponent() {
         <h2 class="section-title">Club Agreement Signature</h2>
 
         <div class="agreement">
-          The membership of the <b>{form.clubInformation.clubName}</b> has
+          {`The membership of the <b>{form.clubInformation.clubName}</b> has
           agreed to abide by the Inter-Club Council's Standing Orders and the
           ASMJC Constitution and Bylaws. We are aware of and agree and abide by
-          the following rights, privileges, and responsibilities:
+          the following rights, privileges, and responsibilities:`}
           <br></br>
           <br></br>
           1. We must attend all Inter Club Council Meetings. If we are absent
@@ -291,8 +291,8 @@ function MyComponent() {
 
       {/* map the agreements */}
       <div class="divider-row">
-        {form.clubAgreement.map((agreements) => (
-          <div class="divider-column">
+        {form.clubAgreement.map((agreements, index) => (
+          <div key={index} class="divider-column">
             <div class="container">
               <h2 class="header">{agreements.role}:</h2>
               <p class="data">{agreements.signature}</p>

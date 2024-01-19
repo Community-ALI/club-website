@@ -1,5 +1,5 @@
-import utils from '@/app/utils.js';
-import sendEmail from "@/app/utils.js/email";
+
+import sendEmail from "../../utils/email.js";
 import fs from "fs/promises";
 import { sql } from "@vercel/postgres";
 
