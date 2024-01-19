@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 async function generatePDF(data) {
   const browser = await puppeteer.launch( {
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+    args: ['--no-sandbox']
     }
   );
     const page = await browser.newPage();
