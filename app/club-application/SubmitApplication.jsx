@@ -78,15 +78,16 @@ export default function SubmitApplication(props) {
     console.log("final submit");
     // prevent multiple submissions
     if (submitted) {
-      setIsLoading(true);
       return;
     }
     setSubmitted(true);
     // check that all the fields are filled out
-    if (getCompletionPercentage(club) !== 100) {
+    if (getCompletionPercentage(club) === 100) {
+      setOverlayVisible(true);
+    } else {
       alert("Please fill out all the required fields before submitting your application.");
-      return;
     }
+  };
     // get the html for the pdf from getPDF
     const html = generatePDF();
     const token = getToken();
