@@ -1,8 +1,12 @@
+import React, { useState } from "react";
 import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import { getCompletionPercentage } from "./requiredData";
 import RegistrationFilled from "./registrationFilled";
+import { PDFCreationComponent, generatePDF } from "./MakePdf";
 
 export default function SubmitApplication(props) {
+  // to prevent multiple submissions
+  const [submitted, setSubmitted] = useState(false);
   const { club } = props;
   // turn the club into a form
   const clubInformation = club.clubInformation;
@@ -59,23 +63,36 @@ export default function SubmitApplication(props) {
 
   function finalSubmit() {
     console.log("final submit");
+    // prevent multiple submissions
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
     // check that all the fields are filled out
     if (getCompletionPercentage(club) !== 100) {
       alert("Please fill out all the required fields before submitting your application.");
       return;
     }
+    // get the html for the pdf from getPDF
+    const html = generatePDF();
+
     // send all data to the backend
+    // get the club json
     fetch("/api/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ form: form, html: html }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        alert(data)
-        
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          alert("Your application has been submitted successfully.");
+          window.location.href = "/";
+        } else {
+          alert("There was an error submitting your application. Please try again.");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -123,6 +140,7 @@ export default function SubmitApplication(props) {
           Submit Club Application
         </button>
       </div>
+      <PDFCreationComponent jsonObject={form}/> {/* An invisible component that creates a pdf of the current page */}
     </div>
   );
 }

@@ -163,10 +163,6 @@ export default function ClubAgreementPage() {
     updatedClub.clubMembers = newClubData.clubMembers;
     updatedClub.clubAgreement = newClubData.clubAgreement;
     // Update the club state
-    //as a test set the title to "test"
-    if (!saveToDatabase){
-      updatedClub.clubInformation.clubName = "test";
-    }
     setClub(updatedClub);
     // Calculate the progress of the application
     updateCompletionPercentage(updatedClub, sections, setSections);
