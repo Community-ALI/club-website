@@ -7,7 +7,7 @@ export default function Deadline() {
       px-[30px] md:text-[16px] 
       xsm:text-[14px] xsm:px-[20px] xxsm:px-[5px]"
         >
-          Important: Submit Club Application Before January 25th Deadline!
+          Important: Submit Club Application Before February 2nd Deadline!
         </h3>
       </footer>
     </>

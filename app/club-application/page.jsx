@@ -293,7 +293,7 @@ export default function ClubAgreementPage() {
           xlg:flex-row xlg:h-[120px] xlg:justify-around xlg:items-center xlg:hidden">
               <div className="flex flex-col">
                 <h1 className="text-darkBlue tracking-wide">Application Deadline</h1>
-                <p className="font-[Nunito] text-[15px]">Thursday, January 25th 2024</p>
+                <p className="font-[Nunito] text-[15px]">Friday, February 2nd 2024</p>
               </div>
 
             <div className="flex flex-col">
