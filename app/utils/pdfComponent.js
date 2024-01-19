@@ -18,15 +18,25 @@ function PDFComponent(props) {
           <p class="data">{form.clubInformation.meetingDaysAndTime}</p>
         </div>
 
-        <div class="container">
-          <h2 class="header">Meeting Location:</h2>
-          <p class="data">{form.clubInformation.buildingAndRoomNumber}</p>
-        </div>
+        {/* if the club has a meeting location, display it */}
+        {form.clubInformation.buildingAndRoomNumber !== "" ? (
+          <div class="container">
+            <h2 class="header">Meeting Location:</h2>
+            <p class="data">{form.clubInformation.buildingAndRoomNumber}</p>
+          </div>
+        ) : (
+          <></>
+        )}
 
-        <div class="container">
-          <h2 class="header">Zoom Link:</h2>
-          <p class="data">{form.clubInformation.zoomLink}</p>
-        </div>
+        {/* if the club has a zoom link, display it */}
+        {form.clubInformation.zoomLink !== "" ? (
+          <div class="container">
+            <h2 class="header">Zoom Link:</h2>
+            <p class="data">{form.clubInformation.zoomLink}</p>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
 
       <hr class="section-line"></hr>
@@ -151,7 +161,8 @@ function PDFComponent(props) {
         <h2 class="section-title">Club Agreement Signature</h2>
 
         <div class="agreement">
-          The membership of the <b>{form.clubInformation.clubName}</b> {`has
+          The membership of the <b>{form.clubInformation.clubName}</b>{" "}
+          {`has
           agreed to abide by the Inter-Club Council's Standing Orders and the
           ASMJC Constitution and Bylaws. We are aware of and agree and abide by
           the following rights, privileges, and responsibilities:`}
