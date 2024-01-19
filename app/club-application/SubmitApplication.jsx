@@ -1,9 +1,12 @@
+import React, { useState } from "react";
 import ClubApplicationHeaderSection from "./ClubApplicationHeaderSection";
 import { getCompletionPercentage } from "./requiredData";
 import RegistrationFilled from "./registrationFilled";
 import { PDFCreationComponent, generatePDF } from "./MakePdf";
 
 export default function SubmitApplication(props) {
+  // to prevent multiple submissions
+  const [submitted, setSubmitted] = useState(false);
   const { club } = props;
   // turn the club into a form
   const clubInformation = club.clubInformation;
@@ -60,6 +63,11 @@ export default function SubmitApplication(props) {
 
   function finalSubmit() {
     console.log("final submit");
+    // prevent multiple submissions
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
     // check that all the fields are filled out
     if (getCompletionPercentage(club) !== 100) {
       alert("Please fill out all the required fields before submitting your application.");
