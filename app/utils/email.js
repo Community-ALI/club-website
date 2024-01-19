@@ -16,15 +16,15 @@ const sendEmail = async (toAddress, subject, body, fileBase64) => {
     `--NextPart\n` +
     `Content-Type: text/plain\n\n` +
     `${body}\n\n`;
-  if (fileBase64) {
-    dataString +=
-      `--NextPart\n` +
-      `Content-Type: application/octet-stream; name="attachment"\n` +
-      `Content-Description: attachment\n` +
-      `Content-Disposition: attachment; filename="attachment"\n` +
-      `Content-Transfer-Encoding: base64\n\n` +
-      `${fileBase64}\n\n`;
-  }
+    if (fileBase64) {
+      dataString +=
+        `--NextPart\n` +
+        `Content-Type: application/pdf; name="application.pdf"\n` +
+        `Content-Description: attachment\n` +
+        `Content-Disposition: attachment; filename="application.pdf"\n` + 
+        `Content-Transfer-Encoding: base64\n\n` +
+        `${fileBase64}\n\n`;
+    }
 
   dataString += `--NextPart--`;
 

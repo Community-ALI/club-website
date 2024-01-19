@@ -2,9 +2,23 @@
 import sendEmail from "../../utils/email.js";
 import fs from "fs/promises";
 import { sql } from "@vercel/postgres";
+import puppeteer from "puppeteer";
 
-function generatePDF(json) {
+async function generatePDF(data) {
+  const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    // make the newpage look like the pdfComponent
+    
+    await page.setContent(data);
 
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true, displayHeaderFooter: false, margin:{ top: "2cm"} });    
+    await browser.close();
+    // as a test, write the pdf to a file
+    await fs.writeFile('./test.pdf', pdfBuffer);
+    // convert the pdf buffer to base64
+    const pdfBase64 = pdfBuffer.toString('base64');
+    
+    return pdfBase64;
 }
 
 
@@ -12,84 +26,9 @@ function generatePDF(json) {
 // This route also emails the application to the specified email address.
 export async function POST(request) {
     // user does not need to be logged in to submit an application
-    // const body = await request.json();
-    const body = {
-      clubInformation: {
-        clubName: 'test',
-        meetingDaysAndTime: 'test2',
-        meetingLocation: 'Both',
-        buildingAndRoomNumber: 'test',
-        zoomLink: 'test'
-      },
-      clubAdvisors: [
-        { name: 'test', email: 'adgasd', phoneNumber: 'aaa', title: 'aaa' }
-      ],
-      clubOfficers: [
-        {
-          role: 'Club President',
-          name: 'test',
-          email: 'asdgadsg',
-          wNumber: 'dsgadasg',
-          phoneNumber: 'adsgdsag',
-          major: 'adsgdsga',
-          gradeLevel: 'Freshman (1st Year)'
-        },
-        {
-          role: 'ICC Representative',
-          name: 'asdgasdg',
-          email: 'sadgdsa',
-          wNumber: 'dsaggsda',
-          phoneNumber: 'adsgsdag',
-          major: 'asdgdsag',
-          gradeLevel: 'Senior (4th Year)'
-        },
-        {
-          role: 'Club Vice President',
-          placeholder: 'This club does not have a Club Vice President'
-        },
-        {
-          role: 'Club Secretary',
-          name: 'asdgsdgag',
-          email: 'asdgsdag',
-          wNumber: 'asdgsdag',
-          phoneNumber: 'dsagasdg',
-          major: 'dgsadsg',
-          gradeLevel: '5+ Years'
-        },
-        {
-          role: 'Club Treasurer',
-          placeholder: 'This club does not have a Club Treasurer'
-        },
-        {
-          role: 'Club Social Media Manager',
-          name: 'asdfasd',
-          email: 'asdsad',
-          wNumber: 'dsadsa',
-          phoneNumber: 'fgff',
-          major: 'ffffffffff',
-          gradeLevel: 'Junior (3rd Year)'
-        }
-      ],
-      clubMembers: [
-        { name: 'adfasdg', email: 'adsgsadgsa', wNumber: '0917714' },
-        { name: 'adsg', email: 'adsfg', wNumber: 'asdgfhgjm,.k' },
-        { name: 'adfsfdas', email: 'fdsadfas', wNumber: 'jhgfds' },
-        { name: 'dsafgfdhh', email: 'fasddfsadsaf', wNumber: 'hgfds' },
-        {
-          name: 'ghdjfkglh;',
-          email: 'FDGZHxjkfl',
-          wNumber: 'dsaousdoufha'
-        }
-      ],
-      clubAgreement: [
-        { role: 'Club President', signature: 'aaa', date: 'asdfasdf' },
-        {
-          role: 'Club Advisor',
-          signature: 'dsfafdas',
-          date: 'adsasdfsdaf'
-        }
-      ]
-    };
+    const body = await request.json();
+    const form = body.form;
+    const html = body.html;
     console.log(body);
     console.log('application received');
     let userId = -1;
@@ -111,38 +50,38 @@ export async function POST(request) {
     }
     // FIXME: generate the PDF from the application data
     // for now, send ./sample.pdf
-    const pdfBase64 = await fs.readFile("./app/api/submit/sample.pdf", "base64");
+    const pdfBase64 = await generatePDF(html);
     console.log('pdf generated');
     // send the PDF to the specified email address
-    // try {
-    //   sendEmail(
-    //     'bschoolland@gmail.com',
-    //     `${body.clubInformation.clubName} Application`,
-    //     `Dear Administrator,
+    try {
+      sendEmail(
+        'bschoolland@gmail.com',
+        `${form.clubInformation.clubName} Application`,
+        `Dear Administrator,
       
-    //     Please find attached the application for the club titled "${body.clubInformation.clubName}".
+        Please find attached the application for the club titled "${form.clubInformation.clubName}".
       
-    //     Thank you for your time.
+        Thank you for your time.
       
-    //     Best regards,
-    //     The Community Alis Team
+        Best regards,
+        The Community Alis Team
       
-    //     Note: This is an automated message. Please do not reply directly to this email.`,
-    //     pdfBase64
-    //   );
-    // } catch (err) {
-    //   console.log(err);
-    //   const data = { message: "Internal server error" };
-    //   return new Response(JSON.stringify(data), {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     status: 500,
-    //   });
-    // }
+        Note: This is an automated message. Please do not reply directly to this email.`,
+        pdfBase64
+      );
+    } catch (err) {
+      console.log(err);
+      const data = { message: "Internal server error" };
+      return new Response(JSON.stringify(data), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 500,
+      });
+    }
     // save the pdf to the database
     try {
-      await sql`INSERT INTO ClubApplication (UserId, ClubTitle, ClubApplicationPDF) VALUES (${userId}, ${body.clubInformation.clubName}, ${pdfBase64})`;
+      await sql`INSERT INTO ClubApplication (UserId, ClubTitle, ClubApplicationPDF) VALUES (${userId}, ${form.clubInformation.clubName}, ${pdfBase64})`;
     } catch (err) {
       console.error(err);
       return new Response(JSON.stringify({ message: "Internal server error" }), {
