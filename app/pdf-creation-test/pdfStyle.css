@@ -1,5 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+    font-family: "Roboto";
+    color: black;
+    margin: 0px;
+    padding: 0px;
+}
+
+.pdf {
+    padding: 0px 60px;
+}
+
 h1 {
-    font-family: 'Heavitas', sans-serif;
-    color: aqua;
-    background-color: brown;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #d1d1d1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.date {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+}
+
+.agreement {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    page-break-inside: avoid;
+}
+
+.placeholder {
+    font-size: 14px;
+    margin-bottom: 50px;
+}
+
+.divider-column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.divider-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.section-line {
+    border-width: 1px;
+    border-color: #363636;
+}
+
+.header {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.data {
+    font-size: 14px;
+}
+
+.section {
+    page-break-inside: avoid;
+    margin-top: 20px;
+}
+
+.info {
+    page-break-inside: avoid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+    background-color: #d1d1d1;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+.author {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

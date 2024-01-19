@@ -90,6 +90,11 @@ export default function SubmitApplication(props) {
       });
   }
 
+  function createPdf() {
+    // turn the current page into a pdf
+    
+  }
+
   return (
     <div className="px-12 py-12 md:px-[30px] xsm:px-[20px]">
       <ClubApplicationHeaderSection title="SUBMIT APPLICATION" />
@@ -104,11 +109,13 @@ export default function SubmitApplication(props) {
       <hr />
       <div className="flex justify-between my-8 gap-x-8 sm:flex-col gap-y-4">
         <h2>FOR SPRING SEMESTER 2024</h2>
-        {/* <a className="text-lightBlue font-[Nunito] text-[14px] underline underline-offset-4" 
-        href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+        <a className="text-lightBlue font-[Nunito] text-[14px] underline underline-offset-4" 
+         target="_blank"
+         onClick={createPdf}
+         >
           Click here to receive a copy
         </a>
-        FIXME: Make this work */}
+        {/*FIXME: Make this work */}
       </div>
 
       {/* the form section */}
