@@ -1,14 +1,12 @@
 ### MJC Club Website Project
-
+#### Live Site:
+[club application website](https://club-application-c15c28325e63.herokuapp.com/)
+(may take 30 seconds to load due to hosting limitations)
 #### Description
 
 This website is designed to help MJC clubs fill out the required forms to be recognized as an official club on campus. The site will also assist in streamlining all paperwork and forms that are required to be filled out by clubs, including for field trips and events.
 
-#### Contributing
-If you are a member of the team
-
 ### Timeline
-
 Finish by: January 10 2024
 
 ### Link to Figma Design
